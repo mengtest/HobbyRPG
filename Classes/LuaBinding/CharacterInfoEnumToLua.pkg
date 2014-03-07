@@ -1,0 +1,8 @@
+$cfile "..\Enum\CharacterInfoEnum.h" 
+enum CharacterInfoEnum {
+    ALIAS = 0,
+    SPRITE = 1,
+    CLASS = 2,
+    ARMOR = 3,
+    WEAPON = 4,
+};

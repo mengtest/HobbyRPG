@@ -1,0 +1,12 @@
+$cfile "..\Enum\ItemStatEnum.h" 
+enum ItemStatEnum {
+    NAME = 0,
+    DESCRIPTION = 1,
+    STACKS = 2,
+    USE = 3,
+    USE_DESCRIPTION = 4,
+    EQUIP = 5,
+    WEAPON_TYPE = 6,
+    ARMOR_TYPE = 7,
+    ITEM_TYPE = 8,
+};

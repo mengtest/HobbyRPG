@@ -1,0 +1,9 @@
+$cfile "..\Enum\StatsEnum.h" 
+enum StatsEnum {
+    LEVEL = 0,
+    HP = 1,
+    APOW = 2,
+    MPOW = 3,
+    ADEF = 4,
+    MDEF = 5,
+};

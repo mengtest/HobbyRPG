@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>animations</key>
+	<dict>
+		<key>testsprite_walk_front</key>
+		<dict>
+			<key>delay</key>
+			<real>0.2</real>
+			<key>frames</key>
+			<array>
+				<string>testsprite_front_1</string>
+				<string>testsprite_front_3</string>
+			</array>
+		</dict>
+		
+		<key>testsprite_walk_left</key>
+		<dict>
+			<key>delay</key>
+			<real>0.2</real>
+			<key>frames</key>
+			<array>
+				<string>testsprite_left_1</string>
+				<string>testsprite_left_3</string>
+			</array>
+		</dict>
+		
+		<key>testsprite_walk_right</key>
+		<dict>
+			<key>delay</key>
+			<real>0.2</real>
+			<key>frames</key>
+			<array>
+				<string>testsprite_right_1</string>
+				<string>testsprite_right_3</string>
+			</array>
+		</dict>
+		
+		<key>testsprite_walk_back</key>
+		<dict>
+			<key>delay</key>
+			<real>0.2</real>
+			<key>frames</key>
+			<array>
+				<string>testsprite_back_1</string>
+				<string>testsprite_back_3</string>
+			</array>
+		</dict>
+		
+	</dict>
+</dict>
+</plist>

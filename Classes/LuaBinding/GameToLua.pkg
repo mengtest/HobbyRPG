@@ -1,0 +1,137 @@
+
+$cfile "GameToLua.h"
+$cfile "..\Overworld\OwManager\OwManager.h"
+$cfile "..\Overworld\OwEntities\OwEntityBase.h"
+$cfile "..\Overworld\OwEntities\OwCharacter.h"
+$cfile "..\Overworld\OwEntities\OwAICharacter.h"
+$cfile "..\Overworld\OwAICommands\OwAIMove.h"
+
+$cfile "..\Overworld\OwEvents\OwEventDelay.h"
+$cfile "..\Overworld\OwEvents\OwEventDialog.h"
+
+
+$cfile "..\Enum\DirectionEnum.h"
+
+$cfile "..\Common\Common.h"
+$cfile "..\Character\Character.h"
+$cfile "..\Player\Player.h"
+$cfile "..\Inventory\Inventory.h"
+$cfile "..\Party\Party.h"
+
+$cfile "..\World\WorldManager\WorldManager.h"
+$cfile "..\World\WorldEvents\WorldEventDialog.h"
+
+
+enum DirectionEnum
+{
+	UP = 1,
+	DOWN = 2,
+	LEFT = 3,
+	RIGHT = 4
+};
+
+class Common
+{
+	static float getGameWidth();
+	static float getGameHeight();
+};
+
+class WorldManager
+{
+	static WorldManager * getInstance();
+	void addEvent(EventBase * event); 
+	void gotoOverworld(std::string where);
+};
+
+class WorldEventDialog : public EventBase
+{
+	WorldEventDialog(std::string text);
+	void addPage(const std::string& text);
+};
+
+class OwManager
+{
+	static OwManager * getInstance();
+	void addEvent(EventBase * event); 
+	OwAICharacter* getAICharacterByName(std::string name);
+	void gotoWorld(int origin_node);
+	void gotoOverworld( std::string name, int x, int y);
+	void addChildToUILayer( CCNode * obj );
+	void removeChildFromUILayer( CCNode * obj );
+	void pause();
+	void unpause();
+	void resetMenuLUA();
+};
+
+class OwCharacter : public OwEntityBase
+{
+};
+
+class OwAICharacter : public OwCharacter
+{
+	void addCommand(OwAICommand * command);
+	void clearCommands();
+
+	void setLoop( bool loop );
+
+	void pauseCommands();
+	void playCommands()	;
+	void resetCommands();
+	void lockCommands()	;
+	void unlockCommands();
+
+};
+
+class OwAIMove : public OwAICommand
+{
+	OwAIMove(DirectionEnum direction, int steps);
+};
+
+
+class OwEventDialog : public EventBase
+{
+	OwEventDialog(std::string text, OwEntityBase * lhs = 0, OwEntityBase * rhs = 0);
+	void addPage(const std::string& text);
+};
+
+
+
+class OwEventDelay: public EventBase
+{
+	OwEventDelay(float delay, OwEntityBase * lhs = 0, OwEntityBase * rhs = 0);
+};
+
+
+class Character
+{
+	void setLevel( int level ); 
+	void heal( int amount );
+	void damage( int amount );
+	bool equipWeapon( ItemEnum item );
+	bool equipArmor( ItemEnum item );
+	bool equipRing( ItemEnum item );
+	ItemEnum getWeapon();
+	ItemEnum getArmor();
+	ItemEnum getRing();
+};
+
+class Player
+{
+	static Player& getInstance();
+	Party * getParty();
+	Character * getCharacter(const char * name );
+	Inventory * getInventory();
+};
+
+class Party
+{
+	bool replaceMemberAtSlot( Character *  character, int slot);
+	Character * getCharacterAtSlot( int slot );
+};
+
+class Inventory
+{
+	bool addItem(ItemEnum item, int amount = 1 );
+	bool removeItem(ItemEnum item, int amount = 1);
+    const std::map< ItemEnum, int >& getItemList();
+};

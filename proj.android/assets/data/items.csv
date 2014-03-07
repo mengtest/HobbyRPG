@@ -1,0 +1,5 @@
+Empty,Empty,1,null,Nothing Happened,null,null,null
+Plain Water,Useless plain water,20,use_plain_water,Refreshing!,null,null,null
+Potion,Heals for 10 HP,5,use_potion,Healed for 10HP!,null,null,null
+Sword,Just a normal sword,1,equip_weapon,Equipped Sword!,Weapon,Sword,null
+Chainmail,Just a normal chainmail,1,equip_armor,Equipped Armor!,Armor,null,Heavy

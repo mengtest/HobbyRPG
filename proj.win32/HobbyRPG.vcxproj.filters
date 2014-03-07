@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\AI">
+      <UniqueIdentifier>{412f9386-56d6-484a-8356-17aeb57d7e83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Config">
+      <UniqueIdentifier>{db0c0132-cd66-49d4-a29e-404901337786}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Common">
+      <UniqueIdentifier>{c1f70b42-7183-4242-a730-168ba992fa97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Overworld">
+      <UniqueIdentifier>{505b829e-cd39-4fca-bd0e-a0326261d09d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\ActionManager">
+      <UniqueIdentifier>{13ce457c-d69d-4d45-909f-85431dee8f7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Overworld\OwEntities">
+      <UniqueIdentifier>{564d2ed4-8fa3-43b1-9e8b-6cebeda94310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Overworld\OwTiledMapUserData">
+      <UniqueIdentifier>{b149cd04-f8b5-46f8-92df-3437fcbcfd90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Overworld\OwEvents">
+      <UniqueIdentifier>{ad050cd2-5971-42af-9552-c9f20434a488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Overworld\OwDialogUI">
+      <UniqueIdentifier>{f992851e-f9a5-4968-8af4-b94d8bb7a4af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Overworld\OwAICommands">
+      <UniqueIdentifier>{40188eb0-2e8c-4e37-9aa2-ca8ba17c49bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Overworld\OwPlayerController">
+      <UniqueIdentifier>{220a7e5f-eccb-4de6-98a5-91a3d54c2aee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua">
+      <UniqueIdentifier>{11e164d1-c782-4505-8ca0-db90aca17f76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua\world">
+      <UniqueIdentifier>{20cc5365-b2dd-4dab-99d4-f34e56ad1fac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Overworld\OwControlUI">
+      <UniqueIdentifier>{f2f6e782-9b54-42ed-a63f-ba750a8ab91c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Character">
+      <UniqueIdentifier>{c07dbeae-20e6-49f4-a610-505f652dfac4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Item">
+      <UniqueIdentifier>{a18ad0a2-a8d3-4fb9-a59f-5dcafc0afd3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Enum">
+      <UniqueIdentifier>{b78b8dd1-da56-40ef-bf76-cbe9ad261ee2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\LuaBinding">
+      <UniqueIdentifier>{21cafbad-bb10-4c4f-8598-eba8a281f1f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Inventory">
+      <UniqueIdentifier>{bd167206-1c35-4700-9a00-13bc7bc209f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Player">
+      <UniqueIdentifier>{f4642c60-5812-4f9e-8c08-4ef5b4dfef19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Party">
+      <UniqueIdentifier>{3214d704-9b4e-435c-a565-a9c8f1bb11a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\World">
+      <UniqueIdentifier>{9b05714b-8a94-41ce-b9fe-3b020105d800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Overworld\OwManager">
+      <UniqueIdentifier>{91b6964d-e512-44bb-9ed2-fb06f1515278}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\World\WorldManager">
+      <UniqueIdentifier>{833ecdac-0c71-48c0-90bc-4ab31ed85905}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Events">
+      <UniqueIdentifier>{e76cb395-b825-40a6-b990-7a6ee6c23d32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Graph">
+      <UniqueIdentifier>{68dbbbe6-e3ab-4ac8-9632-feaf321bcf37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\World\WorldGraphGenerator">
+      <UniqueIdentifier>{94ca29e0-217f-4e77-8614-c24c54b54370}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\World\WorldEvents">
+      <UniqueIdentifier>{68440e3d-f2fe-4cc9-ae76-d2970a3d2bbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\World\WorldDialogUI">
+      <UniqueIdentifier>{75415146-ce49-46bf-999f-c8215dfe007d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua\item">
+      <UniqueIdentifier>{10c35e54-35cd-4d7f-b105-3f65fa5d045f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lua\menu">
+      <UniqueIdentifier>{caaad21c-89e0-4245-b827-407f9f8997d4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AI\iState.cpp">
+      <Filter>Classes\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Config\Config.cpp">
+      <Filter>Classes\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Config\ConfigReader.cpp">
+      <Filter>Classes\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Common\Common.cpp">
+      <Filter>Classes\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CustomActionManager\CustomActionManager.cpp">
+      <Filter>Classes\ActionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwEntities\OwCharacter.cpp">
+      <Filter>Classes\Overworld\OwEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwEntities\OwEntityBase.cpp">
+      <Filter>Classes\Overworld\OwEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwTiledMapUserData\OwTiledMapUserData.cpp">
+      <Filter>Classes\Overworld\OwTiledMapUserData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwEntities\OwAICharacter.cpp">
+      <Filter>Classes\Overworld\OwEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwEvents\OwEventDialog.cpp">
+      <Filter>Classes\Overworld\OwEvents</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwDialogUI\OwDialogUI.cpp">
+      <Filter>Classes\Overworld\OwDialogUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwAICommands\OwAIMove.cpp">
+      <Filter>Classes\Overworld\OwAICommands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwPlayerController\OwPlayerController.cpp">
+      <Filter>Classes\Overworld\OwPlayerController</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwControlUI\OwControlUITypeB.cpp">
+      <Filter>Classes\Overworld\OwControlUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwControlUI\OwControlUITypeBButton.cpp">
+      <Filter>Classes\Overworld\OwControlUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwEvents\OwEventDelay.cpp">
+      <Filter>Classes\Overworld\OwEvents</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Character\Character.cpp">
+      <Filter>Classes\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LuaBinding\GameToLua.cpp">
+      <Filter>Classes\LuaBinding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LuaBinding\StatsEnumToLua.cpp">
+      <Filter>Classes\LuaBinding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Item\ItemManager.cpp">
+      <Filter>Classes\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LuaBinding\ItemEnumToLua.cpp">
+      <Filter>Classes\LuaBinding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LuaBinding\ItemStatEnumToLua.cpp">
+      <Filter>Classes\LuaBinding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Inventory\Inventory.cpp">
+      <Filter>Classes\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Player\Player.cpp">
+      <Filter>Classes\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Party\Party.cpp">
+      <Filter>Classes\Party</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LuaBinding\CharacterInfoEnumToLua.cpp">
+      <Filter>Classes\LuaBinding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwManager\OwManager.cpp">
+      <Filter>Classes\Overworld\OwManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwManager\OwManager_Event.cpp">
+      <Filter>Classes\Overworld\OwManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwManager\OwManager_Normal.cpp">
+      <Filter>Classes\Overworld\OwManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OverworldScene.cpp">
+      <Filter>Classes\Overworld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\World\WorldScene.cpp">
+      <Filter>Classes\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Events\EventManager.cpp">
+      <Filter>Classes\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\World\WorldManager\WorldManager.cpp">
+      <Filter>Classes\World\WorldManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Graph\Graph2D.cpp">
+      <Filter>Classes\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\World\WorldGraphGenerator\WorldGraphGenerator.cpp">
+      <Filter>Classes\World\WorldGraphGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\World\WorldEvents\WorldEventDialog.cpp">
+      <Filter>Classes\World\WorldEvents</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\World\WorldDialogUI\WorldDialogUI.cpp">
+      <Filter>Classes\World\WorldDialogUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\World\WorldManager\WorldManager_Normal.cpp">
+      <Filter>Classes\World\WorldManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\World\WorldManager\WorldManager_Event.cpp">
+      <Filter>Classes\World\WorldManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Overworld\OwManager\OwManager_Pause.cpp">
+      <Filter>Classes\Overworld\OwManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AI\AIHeaders.h">
+      <Filter>Classes\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AI\cState.h">
+      <Filter>Classes\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AI\cStateMachine.h">
+      <Filter>Classes\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AI\cTrigger.h">
+      <Filter>Classes\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AI\iState.h">
+      <Filter>Classes\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AI\iTrigger.h">
+      <Filter>Classes\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Config\Config.h">
+      <Filter>Classes\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Config\ConfigReader.h">
+      <Filter>Classes\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Common\Common.h">
+      <Filter>Classes\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CustomActionManager\CustomActionManager.h">
+      <Filter>Classes\ActionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OwEntities\OwCharacter.h">
+      <Filter>Classes\Overworld\OwEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OwEntities\OwEntityBase.h">
+      <Filter>Classes\Overworld\OwEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OwTiledMapUserData\OwTiledMapUserData.h">
+      <Filter>Classes\Overworld\OwTiledMapUserData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OwEntities\OwAICharacter.h">
+      <Filter>Classes\Overworld\OwEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OwEvents\OwEventDialog.h">
+      <Filter>Classes\Overworld\OwEvents</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OwDialogUI\OwDialogUI.h">
+      <Filter>Classes\Overworld\OwDialogUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OwAICommands\OwAIMove.h">
+      <Filter>Classes\Overworld\OwAICommands</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OwAICommands\OwAICommand.h">
+      <Filter>Classes\Overworld\OwAICommands</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OwPlayerController\OwPlayerController.h">
+      <Filter>Classes\Overworld\OwPlayerController</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OwControlUI\OwControlUITypeB.h">
+      <Filter>Classes\Overworld\OwControlUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OwControlUI\OwControlUITypeBButton.h">
+      <Filter>Classes\Overworld\OwControlUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OwEvents\OwEventDelay.h">
+      <Filter>Classes\Overworld\OwEvents</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Character\Character.h">
+      <Filter>Classes\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enum\DirectionEnum.h">
+      <Filter>Classes\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enum\StatsEnum.h">
+      <Filter>Classes\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LuaBinding\GameToLua.h">
+      <Filter>Classes\LuaBinding</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Item\ItemManager.h">
+      <Filter>Classes\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enum\ItemEnum.h">
+      <Filter>Classes\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enum\ItemStatEnum.h">
+      <Filter>Classes\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Inventory\Inventory.h">
+      <Filter>Classes\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Player\Player.h">
+      <Filter>Classes\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Party\Party.h">
+      <Filter>Classes\Party</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enum\CharacterInfoEnum.h">
+      <Filter>Classes\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OwManager\OwManager.h">
+      <Filter>Classes\Overworld\OwManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OverworldScene.h">
+      <Filter>Classes\Overworld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\World\WorldScene.h">
+      <Filter>Classes\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Events\EventBase.h">
+      <Filter>Classes\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Events\EventManager.h">
+      <Filter>Classes\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\World\WorldManager\WorldManager.h">
+      <Filter>Classes\World\WorldManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Graph\Graph2D.h">
+      <Filter>Classes\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Graph\GraphNode.h">
+      <Filter>Classes\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\World\WorldGraphGenerator\WorldGraphGenerator.h">
+      <Filter>Classes\World\WorldGraphGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\World\WorldEvents\WorldEventDialog.h">
+      <Filter>Classes\World\WorldEvents</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\World\WorldDialogUI\WorldDialogUI.h">
+      <Filter>Classes\World\WorldDialogUI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Classes\AI\cState.inl">
+      <Filter>Classes\AI</Filter>
+    </None>
+    <None Include="..\Classes\AI\cTrigger.inl">
+      <Filter>Classes\AI</Filter>
+    </None>
+    <None Include="..\Resources\config\HobbyRPG.config" />
+    <None Include="..\Classes\AI\cStateMachine.inl">
+      <Filter>Classes\AI</Filter>
+    </None>
+    <None Include="..\Resources\lua\world\npc0_functions.lua">
+      <Filter>Lua\world</Filter>
+    </None>
+    <None Include="..\Resources\lua\world\npc1_functions.lua">
+      <Filter>Lua\world</Filter>
+    </None>
+    <None Include="..\Classes\LuaBinding\GameToLua.pkg">
+      <Filter>Classes\LuaBinding</Filter>
+    </None>
+    <None Include="..\Classes\LuaBinding\StatsEnumToLua.pkg">
+      <Filter>Classes\LuaBinding</Filter>
+    </None>
+    <None Include="..\Classes\LuaBinding\ItemEnumToLua.pkg">
+      <Filter>Classes\LuaBinding</Filter>
+    </None>
+    <None Include="..\Classes\LuaBinding\ItemStatEnumToLua.pkg">
+      <Filter>Classes\LuaBinding</Filter>
+    </None>
+    <None Include="..\Classes\LuaBinding\CharacterInfoEnumToLua.pkg">
+      <Filter>Classes\LuaBinding</Filter>
+    </None>
+    <None Include="..\Resources\lua\world\MainWorld.lua">
+      <Filter>Lua\world</Filter>
+    </None>
+    <None Include="..\Resources\lua\item\items.lua">
+      <Filter>Lua\item</Filter>
+    </None>
+    <None Include="..\Resources\lua\common.lua">
+      <Filter>Lua</Filter>
+    </None>
+    <None Include="..\Resources\lua\menu\OverworldMenu.lua">
+      <Filter>Lua\menu</Filter>
+    </None>
+  </ItemGroup>
+</Project>

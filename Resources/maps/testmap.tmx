@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tmw_desert_spacing" tilewidth="32" tileheight="32" spacing="1" margin="1">
+  <image source="testmap/tmw_desert_spacing.png" trans="ff00ff" width="265" height="199"/>
+ </tileset>
+ <tileset firstgid="49" name="meta_tiles" tilewidth="32" tileheight="32" spacing="1" margin="1">
+  <image source="testmap/meta_tiles.png" trans="ff00ff" width="67" height="34"/>
+  <tile id="0">
+   <properties>
+    <property name="Collidable" value="True"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="name" value="npc0"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Background" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztk90KgCAMRn2NCor+hAp6/8fLIEFkw+1bQRdeHIiZO3M675zzlUpGT/B1fs7Fual43N8E2gKdsf4xMBWYDb3TOhDPXx1az/3/Ftgf1iTvksQP0EG90ZOJc2+55JPkss5l3DMk5PmoNWlu1KGpH+2VJK/FIa2d+tY40BlEz2CdE8ksIG7NHWjvB3FIe/P2OS4Q61Zg
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="25" height="25">
+  <object name="player_spawn" x="320" y="544" width="32" height="29"/>
+  <object x="-401" y="372"/>
+ </objectgroup>
+ <layer name="Meta" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztlEkKwDAMA/sl9/+PC70V4bQeJb5FYMjB8ohscR0d9Sukqv2UMeP9FWHEa13N5HAoo9q/g1HluAzi0T3WfF9n7eSi6maQN6WezDfbw2oWh+HcKSrnbdD57l9CPLS/OxPxufPV/9Sd1Op8VcbYrVXGALXhFLw=
+  </data>
+ </layer>
+ <objectgroup name="Entity" width="25" height="25">
+  <object name="npc" x="458" y="293">
+   <properties>
+    <property name="namae" value="npc0"/>
+    <property name="sprite" value="testsprite"/>
+   </properties>
+  </object>
+  <object name="npc" x="416" y="480">
+   <properties>
+    <property name="namae" value="npc1"/>
+    <property name="sprite" value="testsprite"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Exits" width="25" height="25">
+  <object name="exit" type="exit" x="287" y="712" width="162" height="56">
+   <properties>
+    <property name="destination" value="overworld_to_overworld(&quot;outskirts&quot;, 12, 19)"/>
+    <property name="startx" value="3"/>
+    <property name="starty" value="3"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

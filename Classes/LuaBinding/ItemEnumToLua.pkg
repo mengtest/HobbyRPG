@@ -1,0 +1,8 @@
+$cfile "..\Enum\ItemEnum.h" 
+enum ItemEnum {
+    PLAIN_WATER = 0,
+    POTION = 1,
+    SWORD = 2,
+    CHAINMAIL = 3,
+    NUM_ITEMS = 4,
+};

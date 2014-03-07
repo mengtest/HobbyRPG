@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tmw_desert_spacing" tilewidth="32" tileheight="32" spacing="1" margin="1">
+  <image source="testmap/tmw_desert_spacing.png" trans="ff00ff" width="265" height="199"/>
+ </tileset>
+ <tileset firstgid="49" name="meta_tiles" tilewidth="32" tileheight="32" spacing="1" margin="1">
+  <image source="testmap/meta_tiles.png" trans="ff00ff" width="67" height="34"/>
+  <tile id="0">
+   <properties>
+    <property name="Collidable" value="True"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Background" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxTY2BgkBvFo3gUj+JRPIpH8SgexUMKAwCgFklH
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="25" height="25">
+  <object x="-401" y="372"/>
+ </objectgroup>
+ <layer name="Meta" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJwzZGBgMKQDNqIhHrVj1I5RO0btGLVj1I5RO0btGGx20BoDAFcpebM=
+  </data>
+ </layer>
+ <objectgroup name="Entity" width="25" height="25"/>
+</map>

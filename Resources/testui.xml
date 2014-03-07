@@ -1,0 +1,107 @@
+<menu>
+	<Page name="startmenu" pos="0.5 0.5" image="" size="1.0 1.0">
+		<control name="test" type="button" pos="0.0 -0.4" size="0.2 0.15" image="menu_background.png" text="Menu" goto="gamemenu"/>
+		<!--<control name="reset" type="button" pos="0.23 0.3" size="0.2 0.2" image="menu_background.png" text="Reset" goto=""/>-->
+	</Page>
+	<Page name="gamemenu" pos="0.5 0.5" image="menu_background.png" size="1.0 1.0">
+		<control name="Items" type="button"   pos="0.4 0.4"  size="0.2 0.15" image="menu_background.png" text="Items" goto="Inventory"/>		
+		<control name="Status" type="button"  pos="0.4 0.275" size="0.2 0.15" image="menu_background.png" text="Status" goto="Status"/>
+    <control name="test3" type="button"   pos="0.4 0.0"  size="0.2 0.15" image="menu_background.png" text="Back" goto="startmenu"/>
+  </Page>
+	<Page name="Status" pos="0.5 0.5" image="menu_background.png" size="1.0 1.0">
+    <control name="title"  type="label" pos="-0.4 0.425" 	  size="0.2 0.15"   scale9Rect="32 32 32 32" image="menu_background.png" text="Items" goto=""/>
+    <control name="help"   type="label" pos="0.095 0.425"   size="0.81 0.15"  scale9Rect="32 32 32 32" image="menu_background.png" text="$help" goto=""/>
+
+    <control name="back0"     type="label" pos="-0.35 0.14" 	  size="0.3 0.2"   scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+    <control name="back1"     type="label" pos="-0.35 -0.025" 	size="0.3 0.2"   scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+    <control name="back2"     type="label" pos="-0.35 -0.2" 	  size="0.3 0.2"   scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+
+    <control name="charImage0"  type="label" pos="-0.425 0.15"   size="0.075 0.125"   scale9Rect="0 0 32 32" image="menu_background.png" text="" goto=""/>
+    <control name="charName0"   type="label" pos="-0.375 0.15"   size="0.5 0.5" text="$charName0" />
+
+
+    <control name="displayBack"     type="label" pos="0.145 -0.13" 	  fontSize="0.8f" size="0.71 0.74"   scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+    <control name="stats"           type="label" pos="-0.175 0.01"      fontSize="0.8f" size="0.4 0.4" text="$stats" />
+    <control name="equipment"       type="label" pos="-0.175 -0.35"        fontSize="0.8f" size="0.4 0.4" text="$equipment" />
+
+    <control name="return"    type="button" pos="-0.45 -0.4"        size ="0.1 0.15"  scale9Rect="32 32 32 32" image="menu_background.png" text="B" goto="gamemenu" />
+
+    <control name="unequip0"     type="label" pos="0.35 0.10" 	  size="0.3 0.15"   fontSize="0.8f" scale9Rect="32 32 32 32" image="menu_background.png" text="Discard Weapon" goto=""/>
+    <control name="unequip1"     type="label" pos="0.35 -0.065" 	size="0.3 0.15"   fontSize="0.8f" scale9Rect="32 32 32 32" image="menu_background.png" text="Discard Armor" goto=""/>
+    <control name="unequip2"     type="label" pos="0.35 -0.24" 	  size="0.3 0.15"   fontSize="0.8f" scale9Rect="32 32 32 32" image="menu_background.png" text="Discard Ring" goto=""/>
+   
+	</Page>
+	<Page name="Inventory" pos="0.5 0.5" image="menu_background.png" size="1.0 1.0">
+    <control name="title"     type="label" pos="-0.4 0.425" 	  size="0.2 0.15"   scale9Rect="32 32 32 32" image="menu_background.png" text="Items" goto=""/>
+    <control name="help"      type="label" pos="0.095 0.425"    size="0.81 0.15"  scale9Rect="32 32 32 32" image="menu_background.png" text="$help" goto=""/>
+    <control name="desc"      type="label" pos="0.0 0.3"        size ="1.0, 0.15" scale9Rect="32 32 32 32" image="menu_background.png" text="$desc" goto="" />
+    <control name="return"    type="button" pos="-0.45 -0.4"        size ="0.1 0.15"  scale9Rect="32 32 32 32" image="menu_background.png" text="B" goto="gamemenu" />
+
+
+    <control name="back0"  type="label" pos="-0.19 0.075" 	size="0.4 0.15"   scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+    <control name="back1"  type="label" pos="-0.19 -0.05" 	size="0.4 0.15"   scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+    <control name="back2"  type="label" pos="-0.19 -0.175" size="0.4 0.15"    scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+    <control name="back3"  type="label" pos="-0.19 -0.3"	  size="0.4 0.15"   scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+		<control name="back4"  type="label" pos="-0.19 -0.425" size="0.4 0.15"    scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+    <control name="back5"  type="label" pos="0.19 0.075"  size="0.4 0.15"     scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+		<control name="back6"  type="label" pos="0.19 -0.05" 	size="0.4 0.15"     scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+		<control name="back7"  type="label" pos="0.19 -0.175"	size="0.4 0.15"     scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+		<control name="back8"  type="label" pos="0.19 -0.3"	 	size="0.4 0.15"     scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+		<control name="back9"  type="label" pos="0.19 -0.425"	size="0.4 0.15"     scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+
+    <control name="bag0"        type="label" pos="-0.43 0.02" 	size="0.1 0.15" scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+    <control name="bag1"        type="label" pos="-0.43 -0.1" 	size="0.1 0.15" scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+    <control name="baglabel0"   type="label" pos="-0.44 0.02" 	size="0.1 0.15" text="1" goto=""/>
+    <control name="baglabel1"   type="label" pos="-0.44 -0.1" 	size="0.1 0.15" text="2" goto=""/>
+
+    
+    <control name="use"      type="label" pos="0.45 0.075" 	  size="0.1 0.15" scale9Rect="32 32 32 32" image="menu_background.png" text="U" goto=""/>
+    <control name="move"     type="label" pos="0.45 -0.05"  	size="0.1 0.15" scale9Rect="32 32 32 32" image="menu_background.png" text="M" goto=""/>
+    <control name="discard"  type="label" pos="0.45 -0.175" 	size="0.1 0.15" scale9Rect="32 32 32 32" image="menu_background.png" text="D" goto=""/>
+
+    <control name="inv0" type="label" pos="-0.35 0.075"  	size="0.4 0.5"  fontSize="0.8f"	image="" text="$inv0" goto=""/>
+    <control name="inv1" type="label" pos="-0.35 -0.05"   size="0.5 0.5"  fontSize="0.8f"	image="" text="$inv1" goto=""/>
+		<control name="inv2" type="label" pos="-0.35 -0.175"  size="0.5 0.5"  fontSize="0.8f"	image="" text="$inv2" goto=""/>
+		<control name="inv3" type="label" pos="-0.35 -0.3"	  size="0.5 0.5"  fontSize="0.8f"	image="" text="$inv3" goto=""/>
+		<control name="inv4" type="label" pos="-0.35 -0.425"  size="0.5 0.5"  fontSize="0.8f"	image="" text="$inv4" goto=""/>
+		<control name="inv5" type="label" pos="0.02  0.075"   size="0.5 0.5"  fontSize="0.8f"	image="" text="$inv5" goto=""/>
+		<control name="inv6" type="label" pos="0.02 -0.05"  	size="0.5 0.5"  fontSize="0.8f"	image="" text="$inv6" goto=""/>
+		<control name="inv7" type="label" pos="0.02 -0.175" 	size="0.5 0.5"  fontSize="0.8f"	image="" text="$inv7" goto=""/>
+		<control name="inv8" type="label" pos="0.02 -0.3"	  size="0.5 0.5"    fontSize="0.8f"	image="" text="$inv8" goto=""/>
+		<control name="inv9" type="label" pos="0.02 -0.425" 	size="0.5 0.5"  fontSize="0.8f"	image="" text="$inv9" goto=""/>
+    
+		
+		<control name="stack0" type="label"  pos="-0.1 0.075"  	size="0.5 0.5" 	fontSize="0.8f" image="" 	text="$stack0" goto=""/>
+    <control name="stack1" type="label"  pos="-0.1 -0.05"  	size="0.5 0.5" 	fontSize="0.8f" image="" 	text="$stack1" goto=""/>
+    <control name="stack2" type="label"  pos="-0.1 -0.175"	size="0.5 0.5" 	fontSize="0.8f" image="" 	text="$stack2" goto=""/>
+    <control name="stack3" type="label"  pos="-0.1 -0.3"		size="0.5 0.5" 	fontSize="0.8f" image="" 	text="$stack3" goto=""/>
+    <control name="stack4" type="label"  pos="-0.1 -0.425"	size="0.5 0.5" 	fontSize="0.8f" image="" 	text="$stack4" goto=""/>
+    <control name="stack5" type="label"  pos="0.3  0.075"    size="0.5 0.5" 	  fontSize="0.8f" image="" 	text="$stack5" goto=""/>
+    <control name="stack6" type="label"  pos="0.3  -0.05"     size="0.5 0.5" 	  fontSize="0.8f" image="" 	text="$stack6" goto=""/>
+    <control name="stack7" type="label"  pos="0.3  -0.175"    size="0.5 0.5" 	  fontSize="0.8f" image="" 	text="$stack7" goto=""/>
+    <control name="stack8" type="label"  pos="0.3  -0.3"	    size="0.5 0.5" 	  fontSize="0.8f" image="" 	text="$stack8" goto=""/>
+    <control name="stack9" type="label"  pos="0.3  -0.425"    size="0.5 0.5" 	  fontSize="0.8f" image="" 	text="$stack9" goto=""/>
+   
+	</Page>
+
+  <Page name="Inventory_Character" pos="0.5 0.5" image="menu_background.png" size="1.0 1.0">
+    <control name="title"  type="label" pos="-0.4 0.425" 	  size="0.2 0.15"   scale9Rect="32 32 32 32" image="menu_background.png" text="Items" goto=""/>
+    <control name="help"   type="label" pos="0.095 0.425"   size="0.81 0.15"  scale9Rect="32 32 32 32" image="menu_background.png" text="$help" goto=""/>
+    <control name="desc"   type="label" pos="0.0 0.3"       size ="1.0, 0.15" scale9Rect="32 32 32 32" image="menu_background.png" text="$desc" goto="" />
+    
+    <control name="back0"     type="label" pos="-0.35 0.14" 	  size="0.3 0.2"   scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+    <control name="back1"     type="label" pos="-0.35 -0.025" 	size="0.3 0.2"   scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+    <control name="back2"     type="label" pos="-0.35 -0.2" 	  size="0.3 0.2"   scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+
+    <control name="charImage0"  type="label" pos="-0.425 0.15"   size="0.075 0.125"   scale9Rect="0 0 32 32" image="menu_background.png" text="" goto=""/>
+    <control name="charName0"   type="label" pos="-0.375 0.15"   size="0.5 0.5" text="$charName0" />
+
+
+    <control name="displayBack"     type="label" pos="0.145 -0.125" 	  fontSize="0.8f" size="0.71 0.745"   scale9Rect="32 32 32 32" image="menu_background.png" text="" goto=""/>
+    <control name="stats"           type="label" pos="-0.175 0.01"      fontSize="0.8f" size="0.4 0.4" text="$stats" />
+    <control name="equipment"       type="label" pos="-0.175 -0.35"        fontSize="0.8f" size="0.4 0.4" text="$equipment" />
+
+    <control name="return"    type="button" pos="-0.45 -0.4"        size ="0.1 0.15"  scale9Rect="32 32 32 32" image="menu_background.png" text="B" goto="Inventory" />
+
+  </Page>
+</menu>

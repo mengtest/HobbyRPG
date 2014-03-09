@@ -17,10 +17,10 @@ $cfile "..\Character\Character.h"
 $cfile "..\Player\Player.h"
 $cfile "..\Inventory\Inventory.h"
 $cfile "..\Party\Party.h"
+$cfile "..\Item\ItemManager.h"
 
 $cfile "..\World\WorldManager\WorldManager.h"
 $cfile "..\World\WorldEvents\WorldEventDialog.h"
-
 
 enum DirectionEnum
 {
@@ -28,6 +28,14 @@ enum DirectionEnum
 	DOWN = 2,
 	LEFT = 3,
 	RIGHT = 4
+};
+
+class ItemManager
+{
+	static ItemManager& getInstance();
+
+	const std::vector< std::string >& getItemValues( ItemEnum type );
+	const std::string& getItemStat( ItemEnum type, ItemStatEnum stat ); 
 };
 
 class Common
@@ -133,5 +141,6 @@ class Inventory
 {
 	bool addItem(ItemEnum item, int amount = 1 );
 	bool removeItem(ItemEnum item, int amount = 1);
-    const std::map< ItemEnum, int >& getItemList();
+    int getItemByIndex( int index );
+	int getInventorySize();
 };

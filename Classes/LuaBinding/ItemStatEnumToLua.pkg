@@ -1,4 +1,5 @@
 $cfile "..\Enum\ItemStatEnum.h" 
+
 enum ItemStatEnum {
     NAME = 0,
     DESCRIPTION = 1,

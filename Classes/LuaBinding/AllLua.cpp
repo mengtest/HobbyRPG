@@ -1,6 +1,6 @@
 /*
-** Lua binding: GameToLua
-** Generated automatically by tolua++-1.0.92 on 03/09/14 16:09:14.
+** Lua binding: AllLua
+** Generated automatically by tolua++-1.0.92 on 03/09/14 17:15:21.
 */
 
 #ifndef __cplusplus
@@ -11,7 +11,7 @@
 #include "tolua++.h"
 
 /* Exported function */
-TOLUA_API int  tolua_GameToLua_open (lua_State* tolua_S);
+TOLUA_API int  tolua_AllLua_open (lua_State* tolua_S);
 
 #include "GameToLua.h"
 #include "..\Overworld\OwManager\OwManager.h"
@@ -30,6 +30,9 @@ TOLUA_API int  tolua_GameToLua_open (lua_State* tolua_S);
 #include "..\Item\ItemManager.h"
 #include "..\World\WorldManager\WorldManager.h"
 #include "..\World\WorldEvents\WorldEventDialog.h"
+#include "..\Enum\ItemEnum.h"
+#include "..\Enum\ItemStatEnum.h"
+#include "..\Enum\StatsEnum.h"
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus
@@ -61,13 +64,6 @@ static int tolua_collect_OwEventDialog (lua_State* tolua_S)
 	Mtolua_delete(self);
 	return 0;
 }
-
-static int tolua_collect_ItemEnum (lua_State* tolua_S)
-{
- ItemEnum* self = (ItemEnum*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
 #endif
 
 
@@ -77,12 +73,10 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"OwEventDelay");
  tolua_usertype(tolua_S,"ItemManager");
  tolua_usertype(tolua_S,"OwManager");
- tolua_usertype(tolua_S,"ItemEnum");
  tolua_usertype(tolua_S,"Character");
  tolua_usertype(tolua_S,"OwAICommand");
  tolua_usertype(tolua_S,"CCNode");
  tolua_usertype(tolua_S,"OwCharacter");
- tolua_usertype(tolua_S,"ItemStatEnum");
  tolua_usertype(tolua_S,"OwEntityBase");
  tolua_usertype(tolua_S,"WorldEventDialog");
  tolua_usertype(tolua_S,"Common");
@@ -98,8 +92,8 @@ static void tolua_reg_types (lua_State* tolua_S)
 }
 
 /* method: getInstance of class  ItemManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_ItemManager_getInstance00
-static int tolua_GameToLua_ItemManager_getInstance00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_ItemManager_getInstance00
+static int tolua_AllLua_ItemManager_getInstance00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -126,14 +120,14 @@ static int tolua_GameToLua_ItemManager_getInstance00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getItemValues of class  ItemManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_ItemManager_getItemValues00
-static int tolua_GameToLua_ItemManager_getItemValues00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_ItemManager_getItemValues00
+static int tolua_AllLua_ItemManager_getItemValues00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"ItemManager",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ItemEnum",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -141,7 +135,7 @@ static int tolua_GameToLua_ItemManager_getItemValues00(lua_State* tolua_S)
 #endif
  {
   ItemManager* self = (ItemManager*)  tolua_tousertype(tolua_S,1,0);
-  ItemEnum type = *((ItemEnum*)  tolua_tousertype(tolua_S,2,0));
+  ItemEnum type = ((ItemEnum) (int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getItemValues'", NULL);
 #endif
@@ -160,15 +154,15 @@ static int tolua_GameToLua_ItemManager_getItemValues00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getItemStat of class  ItemManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_ItemManager_getItemStat00
-static int tolua_GameToLua_ItemManager_getItemStat00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_ItemManager_getItemStat00
+static int tolua_AllLua_ItemManager_getItemStat00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"ItemManager",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ItemEnum",0,&tolua_err)) ||
-     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"ItemStatEnum",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
   goto tolua_lerror;
@@ -176,8 +170,8 @@ static int tolua_GameToLua_ItemManager_getItemStat00(lua_State* tolua_S)
 #endif
  {
   ItemManager* self = (ItemManager*)  tolua_tousertype(tolua_S,1,0);
-  ItemEnum type = *((ItemEnum*)  tolua_tousertype(tolua_S,2,0));
-  ItemStatEnum stat = *((ItemStatEnum*)  tolua_tousertype(tolua_S,3,0));
+  ItemEnum type = ((ItemEnum) (int)  tolua_tonumber(tolua_S,2,0));
+  ItemStatEnum stat = ((ItemStatEnum) (int)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getItemStat'", NULL);
 #endif
@@ -196,8 +190,8 @@ static int tolua_GameToLua_ItemManager_getItemStat00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getGameWidth of class  Common */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Common_getGameWidth00
-static int tolua_GameToLua_Common_getGameWidth00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Common_getGameWidth00
+static int tolua_AllLua_Common_getGameWidth00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -224,8 +218,8 @@ static int tolua_GameToLua_Common_getGameWidth00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getGameHeight of class  Common */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Common_getGameHeight00
-static int tolua_GameToLua_Common_getGameHeight00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Common_getGameHeight00
+static int tolua_AllLua_Common_getGameHeight00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -252,8 +246,8 @@ static int tolua_GameToLua_Common_getGameHeight00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getInstance of class  WorldManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_WorldManager_getInstance00
-static int tolua_GameToLua_WorldManager_getInstance00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_WorldManager_getInstance00
+static int tolua_AllLua_WorldManager_getInstance00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -280,8 +274,8 @@ static int tolua_GameToLua_WorldManager_getInstance00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: addEvent of class  WorldManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_WorldManager_addEvent00
-static int tolua_GameToLua_WorldManager_addEvent00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_WorldManager_addEvent00
+static int tolua_AllLua_WorldManager_addEvent00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -313,8 +307,8 @@ static int tolua_GameToLua_WorldManager_addEvent00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: gotoOverworld of class  WorldManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_WorldManager_gotoOverworld00
-static int tolua_GameToLua_WorldManager_gotoOverworld00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_WorldManager_gotoOverworld00
+static int tolua_AllLua_WorldManager_gotoOverworld00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -346,8 +340,8 @@ static int tolua_GameToLua_WorldManager_gotoOverworld00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: new of class  WorldEventDialog */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_WorldEventDialog_new00
-static int tolua_GameToLua_WorldEventDialog_new00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_WorldEventDialog_new00
+static int tolua_AllLua_WorldEventDialog_new00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -376,8 +370,8 @@ static int tolua_GameToLua_WorldEventDialog_new00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: new_local of class  WorldEventDialog */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_WorldEventDialog_new00_local
-static int tolua_GameToLua_WorldEventDialog_new00_local(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_WorldEventDialog_new00_local
+static int tolua_AllLua_WorldEventDialog_new00_local(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -407,8 +401,8 @@ static int tolua_GameToLua_WorldEventDialog_new00_local(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: addPage of class  WorldEventDialog */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_WorldEventDialog_addPage00
-static int tolua_GameToLua_WorldEventDialog_addPage00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_WorldEventDialog_addPage00
+static int tolua_AllLua_WorldEventDialog_addPage00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -441,8 +435,8 @@ static int tolua_GameToLua_WorldEventDialog_addPage00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getInstance of class  OwManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwManager_getInstance00
-static int tolua_GameToLua_OwManager_getInstance00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwManager_getInstance00
+static int tolua_AllLua_OwManager_getInstance00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -469,8 +463,8 @@ static int tolua_GameToLua_OwManager_getInstance00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: addEvent of class  OwManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwManager_addEvent00
-static int tolua_GameToLua_OwManager_addEvent00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwManager_addEvent00
+static int tolua_AllLua_OwManager_addEvent00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -502,8 +496,8 @@ static int tolua_GameToLua_OwManager_addEvent00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getAICharacterByName of class  OwManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwManager_getAICharacterByName00
-static int tolua_GameToLua_OwManager_getAICharacterByName00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwManager_getAICharacterByName00
+static int tolua_AllLua_OwManager_getAICharacterByName00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -536,8 +530,8 @@ static int tolua_GameToLua_OwManager_getAICharacterByName00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: gotoWorld of class  OwManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwManager_gotoWorld00
-static int tolua_GameToLua_OwManager_gotoWorld00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwManager_gotoWorld00
+static int tolua_AllLua_OwManager_gotoWorld00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -569,8 +563,8 @@ static int tolua_GameToLua_OwManager_gotoWorld00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: gotoOverworld of class  OwManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwManager_gotoOverworld00
-static int tolua_GameToLua_OwManager_gotoOverworld00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwManager_gotoOverworld00
+static int tolua_AllLua_OwManager_gotoOverworld00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -606,8 +600,8 @@ static int tolua_GameToLua_OwManager_gotoOverworld00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: addChildToUILayer of class  OwManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwManager_addChildToUILayer00
-static int tolua_GameToLua_OwManager_addChildToUILayer00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwManager_addChildToUILayer00
+static int tolua_AllLua_OwManager_addChildToUILayer00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -639,8 +633,8 @@ static int tolua_GameToLua_OwManager_addChildToUILayer00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: removeChildFromUILayer of class  OwManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwManager_removeChildFromUILayer00
-static int tolua_GameToLua_OwManager_removeChildFromUILayer00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwManager_removeChildFromUILayer00
+static int tolua_AllLua_OwManager_removeChildFromUILayer00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -672,8 +666,8 @@ static int tolua_GameToLua_OwManager_removeChildFromUILayer00(lua_State* tolua_S
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: pause of class  OwManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwManager_pause00
-static int tolua_GameToLua_OwManager_pause00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwManager_pause00
+static int tolua_AllLua_OwManager_pause00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -703,8 +697,8 @@ static int tolua_GameToLua_OwManager_pause00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: unpause of class  OwManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwManager_unpause00
-static int tolua_GameToLua_OwManager_unpause00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwManager_unpause00
+static int tolua_AllLua_OwManager_unpause00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -734,8 +728,8 @@ static int tolua_GameToLua_OwManager_unpause00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: resetMenuLUA of class  OwManager */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwManager_resetMenuLUA00
-static int tolua_GameToLua_OwManager_resetMenuLUA00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwManager_resetMenuLUA00
+static int tolua_AllLua_OwManager_resetMenuLUA00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -765,8 +759,8 @@ static int tolua_GameToLua_OwManager_resetMenuLUA00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: addCommand of class  OwAICharacter */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwAICharacter_addCommand00
-static int tolua_GameToLua_OwAICharacter_addCommand00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwAICharacter_addCommand00
+static int tolua_AllLua_OwAICharacter_addCommand00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -798,8 +792,8 @@ static int tolua_GameToLua_OwAICharacter_addCommand00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: clearCommands of class  OwAICharacter */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwAICharacter_clearCommands00
-static int tolua_GameToLua_OwAICharacter_clearCommands00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwAICharacter_clearCommands00
+static int tolua_AllLua_OwAICharacter_clearCommands00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -829,8 +823,8 @@ static int tolua_GameToLua_OwAICharacter_clearCommands00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setLoop of class  OwAICharacter */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwAICharacter_setLoop00
-static int tolua_GameToLua_OwAICharacter_setLoop00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwAICharacter_setLoop00
+static int tolua_AllLua_OwAICharacter_setLoop00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -862,8 +856,8 @@ static int tolua_GameToLua_OwAICharacter_setLoop00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: pauseCommands of class  OwAICharacter */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwAICharacter_pauseCommands00
-static int tolua_GameToLua_OwAICharacter_pauseCommands00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwAICharacter_pauseCommands00
+static int tolua_AllLua_OwAICharacter_pauseCommands00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -893,8 +887,8 @@ static int tolua_GameToLua_OwAICharacter_pauseCommands00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: playCommands of class  OwAICharacter */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwAICharacter_playCommands00
-static int tolua_GameToLua_OwAICharacter_playCommands00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwAICharacter_playCommands00
+static int tolua_AllLua_OwAICharacter_playCommands00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -924,8 +918,8 @@ static int tolua_GameToLua_OwAICharacter_playCommands00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: resetCommands of class  OwAICharacter */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwAICharacter_resetCommands00
-static int tolua_GameToLua_OwAICharacter_resetCommands00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwAICharacter_resetCommands00
+static int tolua_AllLua_OwAICharacter_resetCommands00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -955,8 +949,8 @@ static int tolua_GameToLua_OwAICharacter_resetCommands00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: lockCommands of class  OwAICharacter */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwAICharacter_lockCommands00
-static int tolua_GameToLua_OwAICharacter_lockCommands00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwAICharacter_lockCommands00
+static int tolua_AllLua_OwAICharacter_lockCommands00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -986,8 +980,8 @@ static int tolua_GameToLua_OwAICharacter_lockCommands00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: unlockCommands of class  OwAICharacter */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwAICharacter_unlockCommands00
-static int tolua_GameToLua_OwAICharacter_unlockCommands00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwAICharacter_unlockCommands00
+static int tolua_AllLua_OwAICharacter_unlockCommands00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1017,8 +1011,8 @@ static int tolua_GameToLua_OwAICharacter_unlockCommands00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: new of class  OwAIMove */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwAIMove_new00
-static int tolua_GameToLua_OwAIMove_new00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwAIMove_new00
+static int tolua_AllLua_OwAIMove_new00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1049,8 +1043,8 @@ static int tolua_GameToLua_OwAIMove_new00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: new_local of class  OwAIMove */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwAIMove_new00_local
-static int tolua_GameToLua_OwAIMove_new00_local(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwAIMove_new00_local
+static int tolua_AllLua_OwAIMove_new00_local(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1082,8 +1076,8 @@ static int tolua_GameToLua_OwAIMove_new00_local(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: new of class  OwEventDialog */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwEventDialog_new00
-static int tolua_GameToLua_OwEventDialog_new00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwEventDialog_new00
+static int tolua_AllLua_OwEventDialog_new00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1116,8 +1110,8 @@ static int tolua_GameToLua_OwEventDialog_new00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: new_local of class  OwEventDialog */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwEventDialog_new00_local
-static int tolua_GameToLua_OwEventDialog_new00_local(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwEventDialog_new00_local
+static int tolua_AllLua_OwEventDialog_new00_local(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1151,8 +1145,8 @@ static int tolua_GameToLua_OwEventDialog_new00_local(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: addPage of class  OwEventDialog */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwEventDialog_addPage00
-static int tolua_GameToLua_OwEventDialog_addPage00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwEventDialog_addPage00
+static int tolua_AllLua_OwEventDialog_addPage00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1185,8 +1179,8 @@ static int tolua_GameToLua_OwEventDialog_addPage00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: new of class  OwEventDelay */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwEventDelay_new00
-static int tolua_GameToLua_OwEventDelay_new00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwEventDelay_new00
+static int tolua_AllLua_OwEventDelay_new00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1219,8 +1213,8 @@ static int tolua_GameToLua_OwEventDelay_new00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: new_local of class  OwEventDelay */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_OwEventDelay_new00_local
-static int tolua_GameToLua_OwEventDelay_new00_local(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_OwEventDelay_new00_local
+static int tolua_AllLua_OwEventDelay_new00_local(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1254,8 +1248,8 @@ static int tolua_GameToLua_OwEventDelay_new00_local(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: setLevel of class  Character */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Character_setLevel00
-static int tolua_GameToLua_Character_setLevel00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Character_setLevel00
+static int tolua_AllLua_Character_setLevel00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1287,8 +1281,8 @@ static int tolua_GameToLua_Character_setLevel00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: heal of class  Character */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Character_heal00
-static int tolua_GameToLua_Character_heal00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Character_heal00
+static int tolua_AllLua_Character_heal00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1320,8 +1314,8 @@ static int tolua_GameToLua_Character_heal00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: damage of class  Character */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Character_damage00
-static int tolua_GameToLua_Character_damage00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Character_damage00
+static int tolua_AllLua_Character_damage00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1353,14 +1347,14 @@ static int tolua_GameToLua_Character_damage00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: equipWeapon of class  Character */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Character_equipWeapon00
-static int tolua_GameToLua_Character_equipWeapon00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Character_equipWeapon00
+static int tolua_AllLua_Character_equipWeapon00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Character",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ItemEnum",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -1368,7 +1362,7 @@ static int tolua_GameToLua_Character_equipWeapon00(lua_State* tolua_S)
 #endif
  {
   Character* self = (Character*)  tolua_tousertype(tolua_S,1,0);
-  ItemEnum item = *((ItemEnum*)  tolua_tousertype(tolua_S,2,0));
+  ItemEnum item = ((ItemEnum) (int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'equipWeapon'", NULL);
 #endif
@@ -1387,14 +1381,14 @@ static int tolua_GameToLua_Character_equipWeapon00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: equipArmor of class  Character */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Character_equipArmor00
-static int tolua_GameToLua_Character_equipArmor00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Character_equipArmor00
+static int tolua_AllLua_Character_equipArmor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Character",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ItemEnum",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -1402,7 +1396,7 @@ static int tolua_GameToLua_Character_equipArmor00(lua_State* tolua_S)
 #endif
  {
   Character* self = (Character*)  tolua_tousertype(tolua_S,1,0);
-  ItemEnum item = *((ItemEnum*)  tolua_tousertype(tolua_S,2,0));
+  ItemEnum item = ((ItemEnum) (int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'equipArmor'", NULL);
 #endif
@@ -1421,14 +1415,14 @@ static int tolua_GameToLua_Character_equipArmor00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: equipRing of class  Character */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Character_equipRing00
-static int tolua_GameToLua_Character_equipRing00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Character_equipRing00
+static int tolua_AllLua_Character_equipRing00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Character",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ItemEnum",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -1436,7 +1430,7 @@ static int tolua_GameToLua_Character_equipRing00(lua_State* tolua_S)
 #endif
  {
   Character* self = (Character*)  tolua_tousertype(tolua_S,1,0);
-  ItemEnum item = *((ItemEnum*)  tolua_tousertype(tolua_S,2,0));
+  ItemEnum item = ((ItemEnum) (int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'equipRing'", NULL);
 #endif
@@ -1455,8 +1449,8 @@ static int tolua_GameToLua_Character_equipRing00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getWeapon of class  Character */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Character_getWeapon00
-static int tolua_GameToLua_Character_getWeapon00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Character_getWeapon00
+static int tolua_AllLua_Character_getWeapon00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1474,17 +1468,7 @@ static int tolua_GameToLua_Character_getWeapon00(lua_State* tolua_S)
 #endif
   {
    ItemEnum tolua_ret = (ItemEnum)  self->getWeapon();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((ItemEnum)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"ItemEnum");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(ItemEnum));
-     tolua_pushusertype(tolua_S,tolua_obj,"ItemEnum");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -1497,8 +1481,8 @@ static int tolua_GameToLua_Character_getWeapon00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getArmor of class  Character */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Character_getArmor00
-static int tolua_GameToLua_Character_getArmor00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Character_getArmor00
+static int tolua_AllLua_Character_getArmor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1516,17 +1500,7 @@ static int tolua_GameToLua_Character_getArmor00(lua_State* tolua_S)
 #endif
   {
    ItemEnum tolua_ret = (ItemEnum)  self->getArmor();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((ItemEnum)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"ItemEnum");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(ItemEnum));
-     tolua_pushusertype(tolua_S,tolua_obj,"ItemEnum");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -1539,8 +1513,8 @@ static int tolua_GameToLua_Character_getArmor00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getRing of class  Character */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Character_getRing00
-static int tolua_GameToLua_Character_getRing00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Character_getRing00
+static int tolua_AllLua_Character_getRing00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1558,17 +1532,7 @@ static int tolua_GameToLua_Character_getRing00(lua_State* tolua_S)
 #endif
   {
    ItemEnum tolua_ret = (ItemEnum)  self->getRing();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((ItemEnum)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"ItemEnum");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(ItemEnum));
-     tolua_pushusertype(tolua_S,tolua_obj,"ItemEnum");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
@@ -1581,8 +1545,8 @@ static int tolua_GameToLua_Character_getRing00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getInstance of class  Player */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Player_getInstance00
-static int tolua_GameToLua_Player_getInstance00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Player_getInstance00
+static int tolua_AllLua_Player_getInstance00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1609,8 +1573,8 @@ static int tolua_GameToLua_Player_getInstance00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getParty of class  Player */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Player_getParty00
-static int tolua_GameToLua_Player_getParty00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Player_getParty00
+static int tolua_AllLua_Player_getParty00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1641,8 +1605,8 @@ static int tolua_GameToLua_Player_getParty00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getCharacter of class  Player */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Player_getCharacter00
-static int tolua_GameToLua_Player_getCharacter00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Player_getCharacter00
+static int tolua_AllLua_Player_getCharacter00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1675,8 +1639,8 @@ static int tolua_GameToLua_Player_getCharacter00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getInventory of class  Player */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Player_getInventory00
-static int tolua_GameToLua_Player_getInventory00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Player_getInventory00
+static int tolua_AllLua_Player_getInventory00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1707,8 +1671,8 @@ static int tolua_GameToLua_Player_getInventory00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: replaceMemberAtSlot of class  Party */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Party_replaceMemberAtSlot00
-static int tolua_GameToLua_Party_replaceMemberAtSlot00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Party_replaceMemberAtSlot00
+static int tolua_AllLua_Party_replaceMemberAtSlot00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1743,8 +1707,8 @@ static int tolua_GameToLua_Party_replaceMemberAtSlot00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getCharacterAtSlot of class  Party */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Party_getCharacterAtSlot00
-static int tolua_GameToLua_Party_getCharacterAtSlot00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Party_getCharacterAtSlot00
+static int tolua_AllLua_Party_getCharacterAtSlot00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1777,14 +1741,14 @@ static int tolua_GameToLua_Party_getCharacterAtSlot00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: addItem of class  Inventory */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Inventory_addItem00
-static int tolua_GameToLua_Inventory_addItem00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Inventory_addItem00
+static int tolua_AllLua_Inventory_addItem00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Inventory",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ItemEnum",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
@@ -1793,7 +1757,7 @@ static int tolua_GameToLua_Inventory_addItem00(lua_State* tolua_S)
 #endif
  {
   Inventory* self = (Inventory*)  tolua_tousertype(tolua_S,1,0);
-  ItemEnum item = *((ItemEnum*)  tolua_tousertype(tolua_S,2,0));
+  ItemEnum item = ((ItemEnum) (int)  tolua_tonumber(tolua_S,2,0));
   int amount = ((int)  tolua_tonumber(tolua_S,3,1));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addItem'", NULL);
@@ -1813,14 +1777,14 @@ static int tolua_GameToLua_Inventory_addItem00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: removeItem of class  Inventory */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Inventory_removeItem00
-static int tolua_GameToLua_Inventory_removeItem00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Inventory_removeItem00
+static int tolua_AllLua_Inventory_removeItem00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Inventory",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ItemEnum",0,&tolua_err)) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
@@ -1829,7 +1793,7 @@ static int tolua_GameToLua_Inventory_removeItem00(lua_State* tolua_S)
 #endif
  {
   Inventory* self = (Inventory*)  tolua_tousertype(tolua_S,1,0);
-  ItemEnum item = *((ItemEnum*)  tolua_tousertype(tolua_S,2,0));
+  ItemEnum item = ((ItemEnum) (int)  tolua_tonumber(tolua_S,2,0));
   int amount = ((int)  tolua_tonumber(tolua_S,3,1));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeItem'", NULL);
@@ -1849,8 +1813,8 @@ static int tolua_GameToLua_Inventory_removeItem00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getItemByIndex of class  Inventory */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Inventory_getItemByIndex00
-static int tolua_GameToLua_Inventory_getItemByIndex00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Inventory_getItemByIndex00
+static int tolua_AllLua_Inventory_getItemByIndex00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1883,8 +1847,8 @@ static int tolua_GameToLua_Inventory_getItemByIndex00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* method: getInventorySize of class  Inventory */
-#ifndef TOLUA_DISABLE_tolua_GameToLua_Inventory_getInventorySize00
-static int tolua_GameToLua_Inventory_getInventorySize00(lua_State* tolua_S)
+#ifndef TOLUA_DISABLE_tolua_AllLua_Inventory_getInventorySize00
+static int tolua_AllLua_Inventory_getInventorySize00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1915,7 +1879,7 @@ static int tolua_GameToLua_Inventory_getInventorySize00(lua_State* tolua_S)
 #endif //#ifndef TOLUA_DISABLE
 
 /* Open function */
-TOLUA_API int tolua_GameToLua_open (lua_State* tolua_S)
+TOLUA_API int tolua_AllLua_open (lua_State* tolua_S)
 {
  tolua_open(tolua_S);
  tolua_reg_types(tolua_S);
@@ -1927,20 +1891,20 @@ TOLUA_API int tolua_GameToLua_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"RIGHT",RIGHT);
   tolua_cclass(tolua_S,"ItemManager","ItemManager","",NULL);
   tolua_beginmodule(tolua_S,"ItemManager");
-   tolua_function(tolua_S,"getInstance",tolua_GameToLua_ItemManager_getInstance00);
-   tolua_function(tolua_S,"getItemValues",tolua_GameToLua_ItemManager_getItemValues00);
-   tolua_function(tolua_S,"getItemStat",tolua_GameToLua_ItemManager_getItemStat00);
+   tolua_function(tolua_S,"getInstance",tolua_AllLua_ItemManager_getInstance00);
+   tolua_function(tolua_S,"getItemValues",tolua_AllLua_ItemManager_getItemValues00);
+   tolua_function(tolua_S,"getItemStat",tolua_AllLua_ItemManager_getItemStat00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Common","Common","",NULL);
   tolua_beginmodule(tolua_S,"Common");
-   tolua_function(tolua_S,"getGameWidth",tolua_GameToLua_Common_getGameWidth00);
-   tolua_function(tolua_S,"getGameHeight",tolua_GameToLua_Common_getGameHeight00);
+   tolua_function(tolua_S,"getGameWidth",tolua_AllLua_Common_getGameWidth00);
+   tolua_function(tolua_S,"getGameHeight",tolua_AllLua_Common_getGameHeight00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"WorldManager","WorldManager","",NULL);
   tolua_beginmodule(tolua_S,"WorldManager");
-   tolua_function(tolua_S,"getInstance",tolua_GameToLua_WorldManager_getInstance00);
-   tolua_function(tolua_S,"addEvent",tolua_GameToLua_WorldManager_addEvent00);
-   tolua_function(tolua_S,"gotoOverworld",tolua_GameToLua_WorldManager_gotoOverworld00);
+   tolua_function(tolua_S,"getInstance",tolua_AllLua_WorldManager_getInstance00);
+   tolua_function(tolua_S,"addEvent",tolua_AllLua_WorldManager_addEvent00);
+   tolua_function(tolua_S,"gotoOverworld",tolua_AllLua_WorldManager_gotoOverworld00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"WorldEventDialog","WorldEventDialog","EventBase",tolua_collect_WorldEventDialog);
@@ -1948,37 +1912,37 @@ TOLUA_API int tolua_GameToLua_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"WorldEventDialog","WorldEventDialog","EventBase",NULL);
   #endif
   tolua_beginmodule(tolua_S,"WorldEventDialog");
-   tolua_function(tolua_S,"new",tolua_GameToLua_WorldEventDialog_new00);
-   tolua_function(tolua_S,"new_local",tolua_GameToLua_WorldEventDialog_new00_local);
-   tolua_function(tolua_S,".call",tolua_GameToLua_WorldEventDialog_new00_local);
-   tolua_function(tolua_S,"addPage",tolua_GameToLua_WorldEventDialog_addPage00);
+   tolua_function(tolua_S,"new",tolua_AllLua_WorldEventDialog_new00);
+   tolua_function(tolua_S,"new_local",tolua_AllLua_WorldEventDialog_new00_local);
+   tolua_function(tolua_S,".call",tolua_AllLua_WorldEventDialog_new00_local);
+   tolua_function(tolua_S,"addPage",tolua_AllLua_WorldEventDialog_addPage00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"OwManager","OwManager","",NULL);
   tolua_beginmodule(tolua_S,"OwManager");
-   tolua_function(tolua_S,"getInstance",tolua_GameToLua_OwManager_getInstance00);
-   tolua_function(tolua_S,"addEvent",tolua_GameToLua_OwManager_addEvent00);
-   tolua_function(tolua_S,"getAICharacterByName",tolua_GameToLua_OwManager_getAICharacterByName00);
-   tolua_function(tolua_S,"gotoWorld",tolua_GameToLua_OwManager_gotoWorld00);
-   tolua_function(tolua_S,"gotoOverworld",tolua_GameToLua_OwManager_gotoOverworld00);
-   tolua_function(tolua_S,"addChildToUILayer",tolua_GameToLua_OwManager_addChildToUILayer00);
-   tolua_function(tolua_S,"removeChildFromUILayer",tolua_GameToLua_OwManager_removeChildFromUILayer00);
-   tolua_function(tolua_S,"pause",tolua_GameToLua_OwManager_pause00);
-   tolua_function(tolua_S,"unpause",tolua_GameToLua_OwManager_unpause00);
-   tolua_function(tolua_S,"resetMenuLUA",tolua_GameToLua_OwManager_resetMenuLUA00);
+   tolua_function(tolua_S,"getInstance",tolua_AllLua_OwManager_getInstance00);
+   tolua_function(tolua_S,"addEvent",tolua_AllLua_OwManager_addEvent00);
+   tolua_function(tolua_S,"getAICharacterByName",tolua_AllLua_OwManager_getAICharacterByName00);
+   tolua_function(tolua_S,"gotoWorld",tolua_AllLua_OwManager_gotoWorld00);
+   tolua_function(tolua_S,"gotoOverworld",tolua_AllLua_OwManager_gotoOverworld00);
+   tolua_function(tolua_S,"addChildToUILayer",tolua_AllLua_OwManager_addChildToUILayer00);
+   tolua_function(tolua_S,"removeChildFromUILayer",tolua_AllLua_OwManager_removeChildFromUILayer00);
+   tolua_function(tolua_S,"pause",tolua_AllLua_OwManager_pause00);
+   tolua_function(tolua_S,"unpause",tolua_AllLua_OwManager_unpause00);
+   tolua_function(tolua_S,"resetMenuLUA",tolua_AllLua_OwManager_resetMenuLUA00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"OwCharacter","OwCharacter","OwEntityBase",NULL);
   tolua_beginmodule(tolua_S,"OwCharacter");
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"OwAICharacter","OwAICharacter","OwCharacter",NULL);
   tolua_beginmodule(tolua_S,"OwAICharacter");
-   tolua_function(tolua_S,"addCommand",tolua_GameToLua_OwAICharacter_addCommand00);
-   tolua_function(tolua_S,"clearCommands",tolua_GameToLua_OwAICharacter_clearCommands00);
-   tolua_function(tolua_S,"setLoop",tolua_GameToLua_OwAICharacter_setLoop00);
-   tolua_function(tolua_S,"pauseCommands",tolua_GameToLua_OwAICharacter_pauseCommands00);
-   tolua_function(tolua_S,"playCommands",tolua_GameToLua_OwAICharacter_playCommands00);
-   tolua_function(tolua_S,"resetCommands",tolua_GameToLua_OwAICharacter_resetCommands00);
-   tolua_function(tolua_S,"lockCommands",tolua_GameToLua_OwAICharacter_lockCommands00);
-   tolua_function(tolua_S,"unlockCommands",tolua_GameToLua_OwAICharacter_unlockCommands00);
+   tolua_function(tolua_S,"addCommand",tolua_AllLua_OwAICharacter_addCommand00);
+   tolua_function(tolua_S,"clearCommands",tolua_AllLua_OwAICharacter_clearCommands00);
+   tolua_function(tolua_S,"setLoop",tolua_AllLua_OwAICharacter_setLoop00);
+   tolua_function(tolua_S,"pauseCommands",tolua_AllLua_OwAICharacter_pauseCommands00);
+   tolua_function(tolua_S,"playCommands",tolua_AllLua_OwAICharacter_playCommands00);
+   tolua_function(tolua_S,"resetCommands",tolua_AllLua_OwAICharacter_resetCommands00);
+   tolua_function(tolua_S,"lockCommands",tolua_AllLua_OwAICharacter_lockCommands00);
+   tolua_function(tolua_S,"unlockCommands",tolua_AllLua_OwAICharacter_unlockCommands00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"OwAIMove","OwAIMove","OwAICommand",tolua_collect_OwAIMove);
@@ -1986,9 +1950,9 @@ TOLUA_API int tolua_GameToLua_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"OwAIMove","OwAIMove","OwAICommand",NULL);
   #endif
   tolua_beginmodule(tolua_S,"OwAIMove");
-   tolua_function(tolua_S,"new",tolua_GameToLua_OwAIMove_new00);
-   tolua_function(tolua_S,"new_local",tolua_GameToLua_OwAIMove_new00_local);
-   tolua_function(tolua_S,".call",tolua_GameToLua_OwAIMove_new00_local);
+   tolua_function(tolua_S,"new",tolua_AllLua_OwAIMove_new00);
+   tolua_function(tolua_S,"new_local",tolua_AllLua_OwAIMove_new00_local);
+   tolua_function(tolua_S,".call",tolua_AllLua_OwAIMove_new00_local);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"OwEventDialog","OwEventDialog","EventBase",tolua_collect_OwEventDialog);
@@ -1996,10 +1960,10 @@ TOLUA_API int tolua_GameToLua_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"OwEventDialog","OwEventDialog","EventBase",NULL);
   #endif
   tolua_beginmodule(tolua_S,"OwEventDialog");
-   tolua_function(tolua_S,"new",tolua_GameToLua_OwEventDialog_new00);
-   tolua_function(tolua_S,"new_local",tolua_GameToLua_OwEventDialog_new00_local);
-   tolua_function(tolua_S,".call",tolua_GameToLua_OwEventDialog_new00_local);
-   tolua_function(tolua_S,"addPage",tolua_GameToLua_OwEventDialog_addPage00);
+   tolua_function(tolua_S,"new",tolua_AllLua_OwEventDialog_new00);
+   tolua_function(tolua_S,"new_local",tolua_AllLua_OwEventDialog_new00_local);
+   tolua_function(tolua_S,".call",tolua_AllLua_OwEventDialog_new00_local);
+   tolua_function(tolua_S,"addPage",tolua_AllLua_OwEventDialog_addPage00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"OwEventDelay","OwEventDelay","EventBase",tolua_collect_OwEventDelay);
@@ -2007,49 +1971,73 @@ TOLUA_API int tolua_GameToLua_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"OwEventDelay","OwEventDelay","EventBase",NULL);
   #endif
   tolua_beginmodule(tolua_S,"OwEventDelay");
-   tolua_function(tolua_S,"new",tolua_GameToLua_OwEventDelay_new00);
-   tolua_function(tolua_S,"new_local",tolua_GameToLua_OwEventDelay_new00_local);
-   tolua_function(tolua_S,".call",tolua_GameToLua_OwEventDelay_new00_local);
+   tolua_function(tolua_S,"new",tolua_AllLua_OwEventDelay_new00);
+   tolua_function(tolua_S,"new_local",tolua_AllLua_OwEventDelay_new00_local);
+   tolua_function(tolua_S,".call",tolua_AllLua_OwEventDelay_new00_local);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Character","Character","",NULL);
   tolua_beginmodule(tolua_S,"Character");
-   tolua_function(tolua_S,"setLevel",tolua_GameToLua_Character_setLevel00);
-   tolua_function(tolua_S,"heal",tolua_GameToLua_Character_heal00);
-   tolua_function(tolua_S,"damage",tolua_GameToLua_Character_damage00);
-   tolua_function(tolua_S,"equipWeapon",tolua_GameToLua_Character_equipWeapon00);
-   tolua_function(tolua_S,"equipArmor",tolua_GameToLua_Character_equipArmor00);
-   tolua_function(tolua_S,"equipRing",tolua_GameToLua_Character_equipRing00);
-   tolua_function(tolua_S,"getWeapon",tolua_GameToLua_Character_getWeapon00);
-   tolua_function(tolua_S,"getArmor",tolua_GameToLua_Character_getArmor00);
-   tolua_function(tolua_S,"getRing",tolua_GameToLua_Character_getRing00);
+   tolua_function(tolua_S,"setLevel",tolua_AllLua_Character_setLevel00);
+   tolua_function(tolua_S,"heal",tolua_AllLua_Character_heal00);
+   tolua_function(tolua_S,"damage",tolua_AllLua_Character_damage00);
+   tolua_function(tolua_S,"equipWeapon",tolua_AllLua_Character_equipWeapon00);
+   tolua_function(tolua_S,"equipArmor",tolua_AllLua_Character_equipArmor00);
+   tolua_function(tolua_S,"equipRing",tolua_AllLua_Character_equipRing00);
+   tolua_function(tolua_S,"getWeapon",tolua_AllLua_Character_getWeapon00);
+   tolua_function(tolua_S,"getArmor",tolua_AllLua_Character_getArmor00);
+   tolua_function(tolua_S,"getRing",tolua_AllLua_Character_getRing00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Player","Player","",NULL);
   tolua_beginmodule(tolua_S,"Player");
-   tolua_function(tolua_S,"getInstance",tolua_GameToLua_Player_getInstance00);
-   tolua_function(tolua_S,"getParty",tolua_GameToLua_Player_getParty00);
-   tolua_function(tolua_S,"getCharacter",tolua_GameToLua_Player_getCharacter00);
-   tolua_function(tolua_S,"getInventory",tolua_GameToLua_Player_getInventory00);
+   tolua_function(tolua_S,"getInstance",tolua_AllLua_Player_getInstance00);
+   tolua_function(tolua_S,"getParty",tolua_AllLua_Player_getParty00);
+   tolua_function(tolua_S,"getCharacter",tolua_AllLua_Player_getCharacter00);
+   tolua_function(tolua_S,"getInventory",tolua_AllLua_Player_getInventory00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Party","Party","",NULL);
   tolua_beginmodule(tolua_S,"Party");
-   tolua_function(tolua_S,"replaceMemberAtSlot",tolua_GameToLua_Party_replaceMemberAtSlot00);
-   tolua_function(tolua_S,"getCharacterAtSlot",tolua_GameToLua_Party_getCharacterAtSlot00);
+   tolua_function(tolua_S,"replaceMemberAtSlot",tolua_AllLua_Party_replaceMemberAtSlot00);
+   tolua_function(tolua_S,"getCharacterAtSlot",tolua_AllLua_Party_getCharacterAtSlot00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Inventory","Inventory","",NULL);
   tolua_beginmodule(tolua_S,"Inventory");
-   tolua_function(tolua_S,"addItem",tolua_GameToLua_Inventory_addItem00);
-   tolua_function(tolua_S,"removeItem",tolua_GameToLua_Inventory_removeItem00);
-   tolua_function(tolua_S,"getItemByIndex",tolua_GameToLua_Inventory_getItemByIndex00);
-   tolua_function(tolua_S,"getInventorySize",tolua_GameToLua_Inventory_getInventorySize00);
+   tolua_function(tolua_S,"addItem",tolua_AllLua_Inventory_addItem00);
+   tolua_function(tolua_S,"removeItem",tolua_AllLua_Inventory_removeItem00);
+   tolua_function(tolua_S,"getItemByIndex",tolua_AllLua_Inventory_getItemByIndex00);
+   tolua_function(tolua_S,"getInventorySize",tolua_AllLua_Inventory_getInventorySize00);
   tolua_endmodule(tolua_S);
+  tolua_constant(tolua_S,"PLAIN_WATER",PLAIN_WATER);
+  tolua_constant(tolua_S,"POTION",POTION);
+  tolua_constant(tolua_S,"HI_POTION",HI_POTION);
+  tolua_constant(tolua_S,"SWORD",SWORD);
+  tolua_constant(tolua_S,"KATANA",KATANA);
+  tolua_constant(tolua_S,"SPEAR",SPEAR);
+  tolua_constant(tolua_S,"HIDE_ARMOR",HIDE_ARMOR);
+  tolua_constant(tolua_S,"CHAINMAIL",CHAINMAIL);
+  tolua_constant(tolua_S,"NUM_ITEMS",NUM_ITEMS);
+  tolua_constant(tolua_S,"NAME",NAME);
+  tolua_constant(tolua_S,"DESCRIPTION",DESCRIPTION);
+  tolua_constant(tolua_S,"STACKS",STACKS);
+  tolua_constant(tolua_S,"USE",USE);
+  tolua_constant(tolua_S,"USE_DESCRIPTION",USE_DESCRIPTION);
+  tolua_constant(tolua_S,"EQUIP",EQUIP);
+  tolua_constant(tolua_S,"WEAPON_TYPE",WEAPON_TYPE);
+  tolua_constant(tolua_S,"ARMOR_TYPE",ARMOR_TYPE);
+  tolua_constant(tolua_S,"ITEM_TYPE",ITEM_TYPE);
+  tolua_constant(tolua_S,"LEVEL",LEVEL);
+  tolua_constant(tolua_S,"HP",HP);
+  tolua_constant(tolua_S,"APOW",APOW);
+  tolua_constant(tolua_S,"MPOW",MPOW);
+  tolua_constant(tolua_S,"ADEF",ADEF);
+  tolua_constant(tolua_S,"MDEF",MDEF);
  tolua_endmodule(tolua_S);
  return 1;
 }
 
 
 #if defined(LUA_VERSION_NUM) && LUA_VERSION_NUM >= 501
- TOLUA_API int luaopen_GameToLua (lua_State* tolua_S) {
- return tolua_GameToLua_open(tolua_S);
+ TOLUA_API int luaopen_AllLua (lua_State* tolua_S) {
+ return tolua_AllLua_open(tolua_S);
 };
 #endif
 

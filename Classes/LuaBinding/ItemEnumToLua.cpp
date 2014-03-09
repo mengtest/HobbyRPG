@@ -1,6 +1,6 @@
 /*
 ** Lua binding: ItemEnumToLua
-** Generated automatically by tolua++-1.0.92 on 03/08/14 01:41:43.
+** Generated automatically by tolua++-1.0.92 on 03/09/14 16:09:14.
 */
 
 #ifndef __cplusplus
@@ -29,7 +29,11 @@ TOLUA_API int tolua_ItemEnumToLua_open (lua_State* tolua_S)
  tolua_beginmodule(tolua_S,NULL);
   tolua_constant(tolua_S,"PLAIN_WATER",PLAIN_WATER);
   tolua_constant(tolua_S,"POTION",POTION);
+  tolua_constant(tolua_S,"HI_POTION",HI_POTION);
   tolua_constant(tolua_S,"SWORD",SWORD);
+  tolua_constant(tolua_S,"KATANA",KATANA);
+  tolua_constant(tolua_S,"SPEAR",SPEAR);
+  tolua_constant(tolua_S,"HIDE_ARMOR",HIDE_ARMOR);
   tolua_constant(tolua_S,"CHAINMAIL",CHAINMAIL);
   tolua_constant(tolua_S,"NUM_ITEMS",NUM_ITEMS);
  tolua_endmodule(tolua_S);

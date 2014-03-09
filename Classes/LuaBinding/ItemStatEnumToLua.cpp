@@ -1,6 +1,6 @@
 /*
 ** Lua binding: ItemStatEnumToLua
-** Generated automatically by tolua++-1.0.92 on 03/08/14 01:41:43.
+** Generated automatically by tolua++-1.0.92 on 03/09/14 16:09:14.
 */
 
 #ifndef __cplusplus

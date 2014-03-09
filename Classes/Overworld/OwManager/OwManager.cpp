@@ -149,6 +149,7 @@ bool OwManager::init(OverworldScene * scene, const string& tmxDir, int startX, i
 	inv->addItem(PLAIN_WATER, 4);
 
 
+
 	inv->outputInventory();
 	
 	//temp->equipArmor(PLAIN_WATER); //fail

@@ -138,11 +138,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile Include="..\Classes\Graph\Graph2D.cpp" />
     <ClCompile Include="..\Classes\Inventory\Inventory.cpp" />
     <ClCompile Include="..\Classes\Item\ItemManager.cpp" />
-    <ClCompile Include="..\Classes\LuaBinding\CharacterInfoEnumToLua.cpp" />
-    <ClCompile Include="..\Classes\LuaBinding\GameToLua.cpp" />
-    <ClCompile Include="..\Classes\LuaBinding\ItemEnumToLua.cpp" />
-    <ClCompile Include="..\Classes\LuaBinding\ItemStatEnumToLua.cpp" />
-    <ClCompile Include="..\Classes\LuaBinding\StatsEnumToLua.cpp" />
+    <ClCompile Include="..\Classes\LuaBinding\AllLua.cpp" />
     <ClCompile Include="..\Classes\Overworld\OverworldScene.cpp" />
     <ClCompile Include="..\Classes\Overworld\OwAICommands\OwAIMove.cpp" />
     <ClCompile Include="..\Classes\Overworld\OwControlUI\OwControlUITypeB.cpp" />
@@ -194,7 +190,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\Graph\GraphNode.h" />
     <ClInclude Include="..\Classes\Inventory\Inventory.h" />
     <ClInclude Include="..\Classes\Item\ItemManager.h" />
-    <ClInclude Include="..\Classes\LuaBinding\GameToLua.h" />
+    <ClInclude Include="..\Classes\LuaBinding\AllLua.h" />
     <ClInclude Include="..\Classes\Overworld\OverworldScene.h" />
     <ClInclude Include="..\Classes\Overworld\OwAICommands\OwAICommand.h" />
     <ClInclude Include="..\Classes\Overworld\OwAICommands\OwAIMove.h" />
@@ -247,6 +243,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <None Include="..\Classes\AI\cState.inl" />
     <None Include="..\Classes\AI\cStateMachine.inl" />
     <None Include="..\Classes\AI\cTrigger.inl" />
+    <None Include="..\Classes\LuaBinding\AllLua.pkg" />
     <None Include="..\Classes\LuaBinding\CharacterInfoEnumToLua.pkg" />
     <None Include="..\Classes\LuaBinding\GameToLua.pkg" />
     <None Include="..\Classes\LuaBinding\ItemEnumToLua.pkg" />

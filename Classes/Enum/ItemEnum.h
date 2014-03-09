@@ -6,9 +6,13 @@
 enum ItemEnum {
     PLAIN_WATER = 0,
     POTION = 1,
-    SWORD = 2,
-    CHAINMAIL = 3,
-    NUM_ITEMS = 4,
+    HI_POTION = 2,
+    SWORD = 3,
+    KATANA = 4,
+    SPEAR = 5,
+    HIDE_ARMOR = 6,
+    CHAINMAIL = 7,
+    NUM_ITEMS = 8,
 };
 
 #endif //__ITEM_ENUM_H__

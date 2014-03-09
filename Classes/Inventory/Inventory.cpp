@@ -6,6 +6,7 @@
 
 Inventory::Inventory()
 {
+	m_masterItemList.resize(NUM_ITEMS);
 }
 
 Inventory::~Inventory()
@@ -44,7 +45,7 @@ void Inventory::outputInventory()
 	int i = 0;
 	for ( ; beg != end; ++beg )
 	{
-		CCLOG("%i: %s = %i", i, ItemManager::getInstance().getItemStat( static_cast<ItemEnum>(beg->first), NAME ).c_str(), beg->second );
+		CCLOG("%i: %s = %i", i, ItemManager::getInstance().getItemStat( static_cast<ItemEnum>(i), NAME ).c_str(), *beg );
 		++i;
 
 	}

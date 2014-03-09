@@ -159,20 +159,8 @@
     <ClCompile Include="..\Classes\Character\Character.cpp">
       <Filter>Classes\Character</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\LuaBinding\GameToLua.cpp">
-      <Filter>Classes\LuaBinding</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\LuaBinding\StatsEnumToLua.cpp">
-      <Filter>Classes\LuaBinding</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Item\ItemManager.cpp">
       <Filter>Classes\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\LuaBinding\ItemEnumToLua.cpp">
-      <Filter>Classes\LuaBinding</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\LuaBinding\ItemStatEnumToLua.cpp">
-      <Filter>Classes\LuaBinding</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Inventory\Inventory.cpp">
       <Filter>Classes\Inventory</Filter>
@@ -182,9 +170,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Party\Party.cpp">
       <Filter>Classes\Party</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\LuaBinding\CharacterInfoEnumToLua.cpp">
-      <Filter>Classes\LuaBinding</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Overworld\OwManager\OwManager.cpp">
       <Filter>Classes\Overworld\OwManager</Filter>
@@ -227,6 +212,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Overworld\OwManager\OwManager_Pause.cpp">
       <Filter>Classes\Overworld\OwManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LuaBinding\AllLua.cpp">
+      <Filter>Classes\LuaBinding</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -311,9 +299,6 @@
     <ClInclude Include="..\Classes\Enum\StatsEnum.h">
       <Filter>Classes\Enum</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\LuaBinding\GameToLua.h">
-      <Filter>Classes\LuaBinding</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Item\ItemManager.h">
       <Filter>Classes\Item</Filter>
     </ClInclude>
@@ -368,6 +353,9 @@
     <ClInclude Include="..\Classes\World\WorldDialogUI\WorldDialogUI.h">
       <Filter>Classes\World\WorldDialogUI</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\LuaBinding\AllLua.h">
+      <Filter>Classes\LuaBinding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Classes\AI\cState.inl">
@@ -412,6 +400,9 @@
     </None>
     <None Include="..\Resources\lua\menu\OverworldMenu.lua">
       <Filter>Lua\menu</Filter>
+    </None>
+    <None Include="..\Classes\LuaBinding\AllLua.pkg">
+      <Filter>Classes\LuaBinding</Filter>
     </None>
   </ItemGroup>
 </Project>

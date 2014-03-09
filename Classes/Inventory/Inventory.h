@@ -1,7 +1,7 @@
 #ifndef __INVENTORY_H__
 #define __INVENTORY_H__
 
-#include <map>
+#include <vector>
 
 #include "..\Enum\ItemEnum.h"
 
@@ -20,12 +20,14 @@ public:
 
 	bool addItem(ItemEnum item, int amount = 1);
 	bool removeItem(ItemEnum item, int amount = 1);
-	const std::map< ItemEnum, int >& getItemList() { return m_masterItemList; }
+	
+	int getItemByIndex( int index ) { return m_masterItemList[index]; }
+	int getInventorySize() { return m_masterItemList.size(); }
 
 	void outputInventory();
 
 private:
-	typedef std::map< ItemEnum, int > ItemListType;
+	typedef std::vector< int > ItemListType;
 	ItemListType m_masterItemList;
 };
 

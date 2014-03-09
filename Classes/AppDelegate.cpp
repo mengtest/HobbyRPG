@@ -3,7 +3,7 @@
 #include "CCDirector.h"
 #include "script_support\CCScriptSupport.h"
 #include "CCLuaEngine.h"
-#include "LuaBinding\GameToLua.h"
+#include "LuaBinding\AllLua.h"
 #include "Config\Config.h"
 #include "Common\Common.h"
 
@@ -45,11 +45,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     CCLuaEngine* pEngine = CCLuaEngine::defaultEngine();
     CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
     
-	CCLuaStack *pStack = CCLuaEngine::defaultEngine()->getLuaStack();
-    lua_State *tolua_s = pStack->getLuaState();
-    
-	tolua_GameToLua_open(tolua_s);
-	tolua_StatsEnumToLua_open(tolua_s);
+	CCLuaStack *pStack = pEngine->getLuaStack();
+    lua_State *tolua_s = pStack->getLuaState();	
+	tolua_AllLua_open (tolua_s);	
 
 	// init assets //
 	if ( Common::init() == 0 )

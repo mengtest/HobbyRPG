@@ -25,15 +25,52 @@ initItemPage = function()
 		OwManager:getInstance():removeChildFromUILayer(gameMenuLayer)
 	end
 
+	local itemButtonList = {}
+	local max = Player:getInstance():getInventory():getInventorySize();
+	local i = 1;
+	local j = PLAIN_WATER;
+	while i <= max do
+		local itemBack = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
+		itemBack:setContentSize( CCSizeMake(256, 48) );
+		itemBack:setPosition( 128 , 336 - 48 * i  );
+
+		local itemName = ItemManager:getInstance():getItemStat( j,NAME );
+
+		local itemFont = CCLabelBMFont:create("" .. itemName, FONT );	
+		itemFont:setAnchorPoint(ccp(0, 0.5));
+		itemFont:setPosition(32 , 336 - 48 * i);
+
+		gameMenuLayer:addChild(itemBack)
+		gameMenuLayer:addChild(itemFont)
+		i = i + 1;
+		j = j + 1;
+
+		table.insert(itemButtonList, itemBack)
+	end
+
+
+
 	local backButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
-	backButton:setPosition(ccp(200, 100));
-	backButton:setContentSize(CCSizeMake(128, 64));
+	backButton:setContentSize(CCSizeMake(640, 48));
+	backButton:setPosition(ccp(320, 24));
 
 	local backFont = CCLabelBMFont:create("Back", FONT );
-	backFont:setPosition(ccp(200,100));
+	backFont:setPosition(ccp(320,24));
+
 
 	gameMenuLayer:addChild(backButton);	
 	gameMenuLayer:addChild(backFont);
+
+	local descButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
+	descButton:setContentSize(CCSizeMake(640, 48));
+	descButton:setPosition(ccp(320, 336));
+	
+	local descFont = CCLabelBMFont:create("Desc", FONT );
+	descFont:setPosition(ccp(320,336));
+
+	gameMenuLayer:addChild(descButton);
+	gameMenuLayer:addChild(descFont);
+
 	
 	--local sliderBackground = CCSprite:createWithSpriteFrameName("slider_thumb.png");
 	--local sliderThumb = CCSprite:createWithSpriteFrameName("slider_background.png");
@@ -46,7 +83,7 @@ initItemPage = function()
 	slider:setScale(0.5);
 	slider:setRotation(90);
 
-
+	
 
 	local function sliderCallback()
 		cclog("hey");
@@ -69,6 +106,15 @@ initItemPage = function()
 			OwManager:getInstance():removeChildFromUILayer(gameMenuLayer)
 			initMenuPage()
 		end
+		for k, v in pairs(itemButtonList) do
+			if checkWithin( v, x, y ) then
+				cclog("test");
+				--v:setDisplayFrame(CCSpriteFrameCache:sharedSpriteFrameCache():spriteFrameByName("menu_background_selected.png"));
+			end
+
+		end
+
+
 	end
 
 	local function onTouch(eventType, x, y)

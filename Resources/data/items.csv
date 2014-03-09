@@ -1,4 +1,8 @@
 Plain Water,Useless plain water,20,use_plain_water,Refreshing!,null,null,null,Item
-Potion,Heals for 10 HP,5,use_potion,Healed for 10HP!,null,null,null,Item
+Potion,Heals for 10HP,5,use_potion,Healed for 10HP!,null,null,null,Item
+Hi-Potion,Heals for 50HP,5,use_potion,Healed for 50HP!,null,null,null,Item
 Sword,Just a normal sword,1,equip_weapon,Equipped Sword!,Weapon,Sword,null,Weapon
+Katana,Cuts bullets in half,1,equip_weapon,Equipped Katana!,Weapon,Sword,null,Weapon
+Spear,Long and sharp,1,equip_weapon,Equipped Spear!,Weapon,Spear,null,Weapon
+Hide Armor,Made of animal skin,1,equip_armor,Equipped Armor!,Armor,null,Light,Armor
 Chainmail,Just a normal chainmail,1,equip_armor,Equipped Armor!,Armor,null,Heavy,Armor

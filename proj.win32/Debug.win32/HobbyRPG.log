@@ -1,5 +1,64 @@
-﻿Build started 2014/03/09 21:24:37.
+﻿Build started 2014/03/10 0:10:26.
+     1>Project "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\HobbyRPG.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\include" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\kazmath\include" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\platform\win32" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\platform\third_party\win32" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\scripting\lua\tolua" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\scripting\lua\cocos2dx_support" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\scripting\lua\lua" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\platform\third_party\win32\OGLES" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\external" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\external\chipmunk\include\chipmunk" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\CocosDenshion\include" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\extensions" /I..\Classes /I.. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\Overworld\OwDialogUI\OwDialogUI.cpp
+         OwDialogUI.cpp
+     1>f:\sandbox\cocos2d-x\cocos2dx\platform\ccsaxparser.h : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+     1>f:\sandbox\cocos2d-x\extensions\gui\cccontrolextension\ccscale9sprite.h : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+       PreLinkEvent:
+         if not exist "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\" mkdir "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\"
+         xcopy /Y /Q "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\external\libwebsockets\win32\lib\*.*" "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\"
+         :VCEnd
+         2 個のファイルをコピーしました
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\HobbyRPG.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:../Dependencies /LIBPATH:"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\\" libExtensions.lib libcocos2d.lib libCocosDenshion.lib opengl32.lib glew32.lib libBox2d.lib libchipmunk.lib libcurl_imp.lib pthreadVCE2.lib websockets.lib liblua.lib lua51.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\HobbyRPG.pdb" /SUBSYSTEM:WINDOWS,"5.01" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\HobbyRPG.lib" /MACHINE:X86 /SAFESEH Debug.win32\iState.obj
+         Debug.win32\AppDelegate.obj
+         Debug.win32\Character.obj
+         Debug.win32\Common.obj
+         Debug.win32\Config.obj
+         Debug.win32\ConfigReader.obj
+         Debug.win32\CustomActionManager.obj
+         Debug.win32\EventManager.obj
+         Debug.win32\Graph2D.obj
+         Debug.win32\Inventory.obj
+         Debug.win32\ItemManager.obj
+         Debug.win32\AllLua.obj
+         Debug.win32\OverworldScene.obj
+         Debug.win32\OwAIMove.obj
+         Debug.win32\OwControlUITypeB.obj
+         Debug.win32\OwControlUITypeBButton.obj
+         Debug.win32\OwDialogUI.obj
+         Debug.win32\OwAICharacter.obj
+         Debug.win32\OwCharacter.obj
+         Debug.win32\OwEntityBase.obj
+         Debug.win32\OwEventDelay.obj
+         Debug.win32\OwEventDialog.obj
+         Debug.win32\OwManager.obj
+         Debug.win32\OwManager_Event.obj
+         Debug.win32\OwManager_Normal.obj
+         Debug.win32\OwManager_Pause.obj
+         Debug.win32\OwPlayerController.obj
+         Debug.win32\OwTiledMapUserData.obj
+         Debug.win32\Party.obj
+         Debug.win32\Player.obj
+         Debug.win32\WorldDialogUI.obj
+         Debug.win32\WorldEventDialog.obj
+         Debug.win32\WorldGraphGenerator.obj
+         Debug.win32\WorldManager.obj
+         Debug.win32\WorldManager_Event.obj
+         Debug.win32\WorldManager_Normal.obj
+         Debug.win32\WorldScene.obj
+         Debug.win32\main.obj
+         "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\libcocos2d.lib"
+         "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\libCocosDenshion.lib"
+         "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\libExtensions.lib"
+         "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\libBox2D.lib"
+         "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\libchipmunk.lib"
+         "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\liblua.lib"
+     1>iState.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+         HobbyRPG.vcxproj -> F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\HobbyRPG.exe
+     1>Done Building Project "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\HobbyRPG.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.03
+Time Elapsed 00:00:02.62

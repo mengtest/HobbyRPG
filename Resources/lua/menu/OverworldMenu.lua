@@ -3,6 +3,9 @@ local MENUMODE_GAME = 0
 local MENUMODE_MENU = 1
 
 local FONT = "fonts/testfont.fnt"
+local SCREEN_WIDTH = Common:getGameWidth()
+local SCREEN_HEIGHT = Common:getGameHeight()
+
 
 local initMenuPage, initEntryPage, initItemPage, initEquipPage
 
@@ -18,6 +21,25 @@ local function checkWithin(sprite, x, y)
 end
 
 initItemPage = function()
+	-- Variables just for this page
+	local currentSelection = -1; 
+	local itemList_overshot_y = 0;
+
+	-- Constants
+	local DESC_WIDTH = 640
+	local DESC_HEIGHT = 48
+	local BACK_WIDTH = 640
+	local BACK_HEIGHT = 48	
+
+	local ITEM_WIDTH = 256
+	local ITEM_HEIGHT = 55
+	local ITEM_START_X = 128
+	local ITEM_START_Y = SCREEN_HEIGHT - DESC_HEIGHT - ITEM_HEIGHT / 2
+	local ITEM_COLS = 2;
+	local ITEM_ROWS = 5;
+	local ITEM_WORD_OFFSET = 24
+
+	--
 	local gameMenuLayer = CCLayer:create()
 
 	local function removeSelf()
@@ -27,46 +49,52 @@ initItemPage = function()
 
 	local itemButtonList = {}
 	local max = Player:getInstance():getInventory():getInventorySize();
-	local i = 1;
+	local i = 0;
 	local j = PLAIN_WATER;
-	while i <= max do
-		local itemBack = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
-		itemBack:setContentSize( CCSizeMake(256, 48) );
-		itemBack:setPosition( 128 , 336 - 48 * i  );
+	local itemListNode = CCNode:create();
+	local itemListHeight = 0;
+	itemListNode:setPosition(ITEM_START_X, ITEM_START_Y );
+	while i < max do
+		local itemBack = CCScale9Sprite:createWithSpriteFrameName("menu_background.png");
+		itemBack:setContentSize( CCSizeMake(ITEM_WIDTH, ITEM_HEIGHT) );
+		itemBack:setPosition( 0, -ITEM_HEIGHT * i );
 
 		local itemName = ItemManager:getInstance():getItemStat( j,NAME );
 
 		local itemFont = CCLabelBMFont:create("" .. itemName, FONT );	
 		itemFont:setAnchorPoint(ccp(0, 0.5));
-		itemFont:setPosition(32 , 336 - 48 * i);
+		itemFont:setPosition(-ITEM_WIDTH / 2 + ITEM_WORD_OFFSET, -ITEM_HEIGHT * i );
 
-		gameMenuLayer:addChild(itemBack)
-		gameMenuLayer:addChild(itemFont)
+		itemListNode:addChild(itemBack)
+		itemListNode:addChild(itemFont)
+
 		i = i + 1;
 		j = j + 1;
+		itemListHeight = itemListHeight + ITEM_HEIGHT;
 
 		table.insert(itemButtonList, itemBack)
 	end
 
-
+	gameMenuLayer:addChild(itemListNode);
 
 	local backButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
-	backButton:setContentSize(CCSizeMake(640, 48));
-	backButton:setPosition(ccp(320, 24));
+	backButton:setContentSize(CCSizeMake(BACK_WIDTH, BACK_HEIGHT));
+	backButton:setPosition(ccp(BACK_WIDTH / 2, BACK_HEIGHT / 2));
 
 	local backFont = CCLabelBMFont:create("Back", FONT );
-	backFont:setPosition(ccp(320,24));
+	backFont:setPosition(ccp(BACK_WIDTH / 2, BACK_HEIGHT / 2));
 
+	itemList_overshot_y = ( itemListHeight - ITEM_START_Y - ( backButton:getPositionY() + BACK_HEIGHT / 2 )) ;
 
 	gameMenuLayer:addChild(backButton);	
 	gameMenuLayer:addChild(backFont);
 
 	local descButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
-	descButton:setContentSize(CCSizeMake(640, 48));
-	descButton:setPosition(ccp(320, 336));
+	descButton:setContentSize(CCSizeMake(DESC_WIDTH, DESC_HEIGHT));
+	descButton:setPosition(ccp(DESC_WIDTH / 2, SCREEN_HEIGHT - DESC_HEIGHT / 2));
 	
 	local descFont = CCLabelBMFont:create("Desc", FONT );
-	descFont:setPosition(ccp(320,336));
+	descFont:setPosition(ccp(DESC_WIDTH / 2, SCREEN_HEIGHT - DESC_HEIGHT / 2));
 
 	gameMenuLayer:addChild(descButton);
 	gameMenuLayer:addChild(descFont);
@@ -78,7 +106,7 @@ initItemPage = function()
 	local slider = CCControlSlider:create("sprites/sliderTrack.png", "sprites/sliderTrack.png", "sprites/sliderThumb.png");
 	slider:setPosition(400, 200 );
 	slider:setMinimumValue(0);
-	slider:setMaximumValue(10);
+	slider:setMaximumValue(1);
 	slider:setValue(0);
 	slider:setScale(0.5);
 	slider:setRotation(90);
@@ -86,7 +114,9 @@ initItemPage = function()
 	
 
 	local function sliderCallback()
-		cclog("hey");
+		local result = ( slider:getValue()  ) * ( ITEM_START_Y + itemList_overshot_y) + ( 1 - slider:getValue() ) * ITEM_START_Y ;
+		itemListNode:setPositionY(result);
+		cclog(""..itemList_overshot_y);
 	end
 
 
@@ -104,12 +134,15 @@ initItemPage = function()
 			OwManager:getInstance():unpause()
 			gameMenuLayer:unregisterScriptTouchHandler()
 			OwManager:getInstance():removeChildFromUILayer(gameMenuLayer)
-			initMenuPage()
+			initMenuPage();
+			return;
 		end
 		for k, v in pairs(itemButtonList) do
 			if checkWithin( v, x, y ) then
-				cclog("test");
+				v:initWithSpriteFrameName("menu_background_selected.png");
+				v:setContentSize( CCSizeMake(256, 48) );
 				--v:setDisplayFrame(CCSpriteFrameCache:sharedSpriteFrameCache():spriteFrameByName("menu_background_selected.png"));
+				return;
 			end
 
 		end

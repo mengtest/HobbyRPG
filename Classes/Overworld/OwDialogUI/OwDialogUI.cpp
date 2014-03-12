@@ -20,7 +20,6 @@ bool OwDialogUI::load( const std::string& backgroundTexture )
 		CCLOG("[OwDialogUI][load]: loading '%s' failed", backgroundTexture.c_str());
 		return false;
 	}
-
 	m_sprite->setContentSize(CCSizeMake(screenWidth, screenHeight * 0.3f));
 	m_sprite->setAnchorPoint(ccp(0.f, 1.f));
 	m_sprite->setPosition(ccp(Common::getNormalizedPositionX(0.0f), Common::getNormalizedPositionY(1.f)));		

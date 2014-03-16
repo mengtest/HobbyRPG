@@ -7,7 +7,7 @@
             <key>menu_background.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{102,2},{96,96}}</string>
+                <string>{{2,2},{96,96}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +20,7 @@
             <key>menu_background_selected.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,100},{96,96}}</string>
+                <string>{{100,2},{96,96}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>menu_background_selected_confirm.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{100,100},{96,96}}</string>
+                <string>{{198,2},{96,96}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>menu_icon.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{36,2},{64,64}}</string>
+                <string>{{296,2},{64,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,20 +59,20 @@
             <key>slider_background.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{198,100},{32,128}}</string>
+                <string>{{2,100},{32,264}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{32,128}}</string>
+                <string>{{0,0},{32,264}}</string>
                 <key>sourceSize</key>
-                <string>{32,128}</string>
+                <string>{32,264}</string>
             </dict>
             <key>slider_thumb.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{32,32}}</string>
+                <string>{{36,100},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,15 +85,15 @@
             <key>slider_track.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{198,100},{32,128}}</string>
+                <string>{{2,100},{32,264}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{32,128}}</string>
+                <string>{{0,0},{32,264}}</string>
                 <key>sourceSize</key>
-                <string>{32,128}</string>
+                <string>{32,264}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -103,9 +103,9 @@
             <key>realTextureFileName</key>
             <string>ui_menu.png</string>
             <key>size</key>
-            <string>{232,232}</string>
+            <string>{366,366}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:21c0d9809ff6bb1ae19430084d164f4b:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:f82e834b83b3fbfd917ff13de7cc2d38:1/1$</string>
             <key>textureFileName</key>
             <string>ui_menu.png</string>
         </dict>

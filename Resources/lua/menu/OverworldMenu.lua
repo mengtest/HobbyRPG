@@ -1,4 +1,6 @@
 local currentMode = 0
+
+-- Constants
 local MENUMODE_GAME = 0
 local MENUMODE_MENU = 1
 
@@ -7,39 +9,50 @@ local SCREEN_WIDTH = Common:getGameWidth()
 local SCREEN_HEIGHT = Common:getGameHeight()
 
 
+local DESC_WIDTH = 640
+local DESC_HEIGHT = 48
+local BACK_WIDTH = 640
+local BACK_HEIGHT = 48	
+
+local ITEM_WIDTH = 256
+local ITEM_HEIGHT = 52.8
+local ITEM_START_X = 128
+local ITEM_START_Y = SCREEN_HEIGHT - DESC_HEIGHT - ITEM_HEIGHT / 2
+local ITEM_COLS = 2;
+local ITEM_MIN_ROWS = 5;
+local ITEM_WORD_OFFSET = 24
+
+local SLIDER_X = SCREEN_WIDTH - 16;
+local SLIDER_Y = SCREEN_HEIGHT / 2;
+--
+
 local initMenuPage, initEntryPage, initItemPage, initEquipPage
 
-local function checkWithin(sprite, x, y)
-	width = sprite:getContentSize().width
-	height = sprite:getContentSize().height
-	rx = sprite:getPositionX() - width / 2
-	ry = sprite:getPositionY() - height / 2
+local function checkWithin(sprite, x, y, parent)
+	local point = ccp(sprite:getPositionX(), sprite:getPositionY());
+	
+	if ( type(parent) ~= "nil" ) then 
+		point.x = point.x + parent:getPositionX();
+		point.y = point.y + parent:getPositionY();
+	end
 
-	rect = CCRectMake(rx, ry, width, height) 
+	local width = sprite:getContentSize().width
+	local height = sprite:getContentSize().height
+	local rx = point.x - width / 2
+	local ry = point.y - height / 2
+
+	local rect = CCRectMake(rx, ry, width, height) 
 
 	return rect:containsPoint( ccp(x,y) );
 end
+
 
 initItemPage = function()
 	-- Variables just for this page
 	local currentSelection = -1; 
 	local itemList_overshot_y = 0;
 
-	-- Constants
-	local DESC_WIDTH = 640
-	local DESC_HEIGHT = 48
-	local BACK_WIDTH = 640
-	local BACK_HEIGHT = 48	
-
-	local ITEM_WIDTH = 256
-	local ITEM_HEIGHT = 55
-	local ITEM_START_X = 128
-	local ITEM_START_Y = SCREEN_HEIGHT - DESC_HEIGHT - ITEM_HEIGHT / 2
-	local ITEM_COLS = 2;
-	local ITEM_ROWS = 5;
-	local ITEM_WORD_OFFSET = 24
-
-	--
+	
 	local gameMenuLayer = CCLayer:create()
 
 	local function removeSelf()
@@ -48,32 +61,58 @@ initItemPage = function()
 	end
 
 	local itemButtonList = {}
+	local itemEnumList = {}
 	local max = Player:getInstance():getInventory():getInventorySize();
-	local i = 0;
-	local j = PLAIN_WATER;
+	if ( max < (ITEM_MIN_ROWS * 2) ) then
+		max = ITEM_MIN_ROWS * 2;
+	end
+
+	local i = 0; -- main iterator
+	local k = 0; -- 
+	local j = PLAIN_WATER; -- enum iterator
 	local itemListNode = CCNode:create();
 	local itemListHeight = 0;
+
 	itemListNode:setPosition(ITEM_START_X, ITEM_START_Y );
 	while i < max do
+		local x = ITEM_WIDTH * (i % 2);
+		local y = -ITEM_HEIGHT * math.floor(i / 2);
+
 		local itemBack = CCScale9Sprite:createWithSpriteFrameName("menu_background.png");
 		itemBack:setContentSize( CCSizeMake(ITEM_WIDTH, ITEM_HEIGHT) );
-		itemBack:setPosition( 0, -ITEM_HEIGHT * i );
-
-		local itemName = ItemManager:getInstance():getItemStat( j,NAME );
-
-		local itemFont = CCLabelBMFont:create("" .. itemName, FONT );	
-		itemFont:setAnchorPoint(ccp(0, 0.5));
-		itemFont:setPosition(-ITEM_WIDTH / 2 + ITEM_WORD_OFFSET, -ITEM_HEIGHT * i );
-
+		itemBack:setPosition( x, y );
 		itemListNode:addChild(itemBack)
-		itemListNode:addChild(itemFont)
 
-		i = i + 1;
-		j = j + 1;
-		itemListHeight = itemListHeight + ITEM_HEIGHT;
+		
+		if ( j < NUM_ITEMS ) then
+			local stacks = Player:getInstance():getInventory():getItemByIndex(j);
+			cclog("".. stacks);
+			if ( stacks > 0 ) then
+				
+				local itemName = ItemManager:getInstance():getItemStat( j,NAME );
+
+				local font_x = ITEM_WIDTH * (k % 2);
+				local font_y = -ITEM_HEIGHT * math.floor(k / 2);
+
+				local itemFont = CCLabelBMFont:create("" .. itemName, FONT );	
+				itemFont:setAnchorPoint(ccp(0, 0.5));
+				itemFont:setPosition(-ITEM_WIDTH / 2 + ITEM_WORD_OFFSET + font_x, font_y );
+
+				itemListNode:addChild(itemFont)
+				table.insert(itemEnumList, j)
+				k = k + 1;			
+			end
+
+			j = j + 1;
+		end
+
+		i = i + 1;		
+		
+		itemListHeight = itemListHeight + ITEM_HEIGHT / 2;
 
 		table.insert(itemButtonList, itemBack)
 	end
+
 
 	gameMenuLayer:addChild(itemListNode);
 
@@ -84,7 +123,7 @@ initItemPage = function()
 	local backFont = CCLabelBMFont:create("Back", FONT );
 	backFont:setPosition(ccp(BACK_WIDTH / 2, BACK_HEIGHT / 2));
 
-	itemList_overshot_y = ( itemListHeight - ITEM_START_Y - ( backButton:getPositionY() + BACK_HEIGHT / 2 )) ;
+	itemList_overshot_y = -( SCREEN_HEIGHT - BACK_HEIGHT - DESC_HEIGHT - itemListHeight ) ;
 
 	gameMenuLayer:addChild(backButton);	
 	gameMenuLayer:addChild(backFont);
@@ -104,7 +143,7 @@ initItemPage = function()
 	--local sliderThumb = CCSprite:createWithSpriteFrameName("slider_background.png");
 	--local sliderTrack = CCSprite:createWithSpriteFrameName("slider_background.png");
 	local slider = CCControlSlider:create("sprites/sliderTrack.png", "sprites/sliderTrack.png", "sprites/sliderThumb.png");
-	slider:setPosition(400, 200 );
+	slider:setPosition(SLIDER_X, SLIDER_Y);
 	slider:setMinimumValue(0);
 	slider:setMaximumValue(1);
 	slider:setValue(0);
@@ -116,7 +155,7 @@ initItemPage = function()
 	local function sliderCallback()
 		local result = ( slider:getValue()  ) * ( ITEM_START_Y + itemList_overshot_y) + ( 1 - slider:getValue() ) * ITEM_START_Y ;
 		itemListNode:setPositionY(result);
-		cclog(""..itemList_overshot_y);
+		cclog("".. itemList_overshot_y );
 	end
 
 
@@ -130,6 +169,7 @@ initItemPage = function()
 	end
 
 	local function processTouchEnded(x, y)
+		
 		if checkWithin(backButton, x, y) then
 			OwManager:getInstance():unpause()
 			gameMenuLayer:unregisterScriptTouchHandler()
@@ -137,14 +177,15 @@ initItemPage = function()
 			initMenuPage();
 			return;
 		end
+		
+		local i = 0 
 		for k, v in pairs(itemButtonList) do
-			if checkWithin( v, x, y ) then
+			if checkWithin( v, x, y, v:getParent() ) then
 				v:initWithSpriteFrameName("menu_background_selected.png");
-				v:setContentSize( CCSizeMake(256, 48) );
-				--v:setDisplayFrame(CCSpriteFrameCache:sharedSpriteFrameCache():spriteFrameByName("menu_background_selected.png"));
+				v:setContentSize( CCSizeMake(ITEM_WIDTH, ITEM_HEIGHT) );
 				return;
 			end
-
+			i = i + 1
 		end
 
 

@@ -11,6 +11,7 @@ local SCREEN_HEIGHT = Common:getGameHeight()
 
 local DESC_WIDTH = 640
 local DESC_HEIGHT = 48
+
 local BACK_WIDTH = 640
 local BACK_HEIGHT = 48	
 
@@ -21,6 +22,9 @@ local ITEM_START_Y = SCREEN_HEIGHT - DESC_HEIGHT - ITEM_HEIGHT / 2
 local ITEM_COLS = 2;
 local ITEM_MIN_ROWS = 5;
 local ITEM_WORD_OFFSET = 24
+
+local ITEM_STACK_START_Y = ITEM_START_Y;
+local ITEM_STACK_OFFSET = 200
 
 local SLIDER_X = SCREEN_WIDTH - 16;
 local SLIDER_Y = SCREEN_HEIGHT / 2;
@@ -98,8 +102,13 @@ initItemPage = function()
 				itemFont:setAnchorPoint(ccp(0, 0.5));
 				itemFont:setPosition(-ITEM_WIDTH / 2 + ITEM_WORD_OFFSET + font_x, font_y );
 
-				itemListNode:addChild(itemFont)
-				table.insert(itemEnumList, j)
+				local itemStack = CCLabelBMFont:create("x" .. stacks, FONT );
+				itemStack:setAnchorPoint(ccp(0, 0.5));
+				itemStack:setPosition( -ITEM_WIDTH / 2 + ITEM_STACK_OFFSET + font_x, font_y);
+
+				itemListNode:addChild(itemFont);
+				itemListNode:addChild(itemStack);
+				table.insert(itemEnumList, j);
 				k = k + 1;			
 			end
 

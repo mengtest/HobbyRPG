@@ -1,5 +1,6 @@
 local currentMode = 0
 
+
 -- Constants
 local MENUMODE_GAME = 0
 local MENUMODE_MENU = 1
@@ -7,7 +8,6 @@ local MENUMODE_MENU = 1
 local FONT = "fonts/testfont.fnt"
 local SCREEN_WIDTH = Common:getGameWidth()
 local SCREEN_HEIGHT = Common:getGameHeight()
-
 
 local DESC_WIDTH = 640
 local DESC_HEIGHT = 48
@@ -30,7 +30,7 @@ local SLIDER_X = SCREEN_WIDTH - 16;
 local SLIDER_Y = SCREEN_HEIGHT / 2;
 --
 
-local initMenuPage, initEntryPage, initItemPage, initEquipPage
+local initMenuPage, initEntryPage, initItemPage, initItemCharPage, initEquipPage
 
 local function checkWithin(sprite, x, y, parent)
 	local point = ccp(sprite:getPositionX(), sprite:getPositionY());
@@ -50,13 +50,62 @@ local function checkWithin(sprite, x, y, parent)
 	return rect:containsPoint( ccp(x,y) );
 end
 
+initItemCharPage = function( inventory_num )
+	local gameMenuLayer = CCLayer:create()
+	cclog("chosen: "..inventory_num)
+
+	local function removeSelf()
+		gameMenuLayer:unregisterScriptTouchHandler()
+		OwManager:getInstance():removeChildFromUILayer(gameMenuLayer)
+	end
+
+	local descButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
+	descButton:setContentSize(CCSizeMake(DESC_WIDTH, DESC_HEIGHT));
+	descButton:setPosition(ccp(DESC_WIDTH / 2, SCREEN_HEIGHT - DESC_HEIGHT / 2));
+	
+	local descFont = CCLabelBMFont:create("Desc", FONT );
+	descFont:setPosition(ccp(DESC_WIDTH / 2, SCREEN_HEIGHT - DESC_HEIGHT / 2));
+
+	gameMenuLayer:addChild(descButton);
+	gameMenuLayer:addChild(descFont);
+
+	local function processTouchBegan(x, y)
+	end
+
+	local function processTouchMoved(x, y)
+	end
+
+	local function processTouchEnded(x, y)
+	end
+
+	local function onTouch(eventType, x, y)
+        if eventType == "began" then
+			processTouchBegan(x, y)
+            return true
+        elseif eventType == "moved" then
+			processTouchMoved(x, y)
+            return true
+		else
+			processTouchEnded(x, y)
+            return true
+        end
+    end
+
+	gameMenuLayer:setTouchEnabled(true)
+	gameMenuLayer:registerScriptTouchHandler(onTouch)
+
+	OwManager:getInstance():addChildToUILayer(gameMenuLayer);
+
+end
 
 initItemPage = function()
 	-- Variables just for this page
-	local currentSelection = -1; 
-	local itemList_overshot_y = 0;
+	local currentSelection = null; 
+	--
 
-	
+	local itemList_overshot_y = 0;
+	local itemButtonList = {} -- list of buttons
+	local inventoryIndexList = {} -- corresponding inventory index for each button in itemButtonList
 	local gameMenuLayer = CCLayer:create()
 
 	local function removeSelf()
@@ -64,8 +113,7 @@ initItemPage = function()
 		OwManager:getInstance():removeChildFromUILayer(gameMenuLayer)
 	end
 
-	local itemButtonList = {}
-	local itemEnumList = {}
+	
 	local max = Player:getInstance():getInventory():getInventorySize();
 	if ( max < (ITEM_MIN_ROWS * 2) ) then
 		max = ITEM_MIN_ROWS * 2;
@@ -90,7 +138,6 @@ initItemPage = function()
 		
 		if ( j < NUM_ITEMS ) then
 			local stacks = Player:getInstance():getInventory():getItemByIndex(j);
-			cclog("".. stacks);
 			if ( stacks > 0 ) then
 				
 				local itemName = ItemManager:getInstance():getItemStat( j,NAME );
@@ -108,18 +155,21 @@ initItemPage = function()
 
 				itemListNode:addChild(itemFont);
 				itemListNode:addChild(itemStack);
-				table.insert(itemEnumList, j);
+				--table.insert(inventoryIndexList, j);
+				inventoryIndexList[k] = j
 				k = k + 1;			
 			end
 
 			j = j + 1;
 		end
 
-		i = i + 1;		
+			
 		
 		itemListHeight = itemListHeight + ITEM_HEIGHT / 2;
 
-		table.insert(itemButtonList, itemBack)
+		--table.insert(itemButtonList, itemBack)
+		itemButtonList[i] = itemBack;
+		i = i + 1;	
 	end
 
 
@@ -172,6 +222,28 @@ initItemPage = function()
 	gameMenuLayer:addChild(slider);	
 	
 	local function processTouchBegan(x, y)
+		local i = 0;
+		for k, v in pairs(itemButtonList) do
+			if checkWithin( v, x, y, v:getParent() ) then
+				if currentSelection ~= null then 
+					currentSelection:initWithSpriteFrameName("menu_background.png");
+					currentSelection:setContentSize( CCSizeMake( ITEM_WIDTH, ITEM_HEIGHT) );
+				end
+
+				if currentSelection == v then
+					gameMenuLayer:unregisterScriptTouchHandler()
+					OwManager:getInstance():removeChildFromUILayer(gameMenuLayer)
+					initItemCharPage(inventoryIndexList[i])
+					return
+				end
+				v:initWithSpriteFrameName("menu_background_selected.png");
+				v:setContentSize( CCSizeMake( ITEM_WIDTH, ITEM_HEIGHT) );
+				currentSelection = v;
+				return;
+			end
+
+			i = i + 1;
+		end
 	end
 
 	local function processTouchMoved(x, y)
@@ -188,14 +260,7 @@ initItemPage = function()
 		end
 		
 		local i = 0 
-		for k, v in pairs(itemButtonList) do
-			if checkWithin( v, x, y, v:getParent() ) then
-				v:initWithSpriteFrameName("menu_background_selected.png");
-				v:setContentSize( CCSizeMake(ITEM_WIDTH, ITEM_HEIGHT) );
-				return;
-			end
-			i = i + 1
-		end
+		
 
 
 	end

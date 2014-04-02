@@ -28,6 +28,8 @@ local ITEM_STACK_OFFSET = 200
 
 local SLIDER_X = SCREEN_WIDTH - 16;
 local SLIDER_Y = SCREEN_HEIGHT / 2;
+
+
 --
 
 local initMenuPage, initEntryPage, initItemPage, initItemCharPage, initEquipPage
@@ -59,15 +61,65 @@ initItemCharPage = function( inventory_num )
 		OwManager:getInstance():removeChildFromUILayer(gameMenuLayer)
 	end
 
+	local PARTY_SIZE = 3
+	
+	local CHARACTER_BACK_WIDTH = SCREEN_WIDTH;
+	local CHARACTER_BACK_HEIGHT = 90;
+	local CHARACTER_BACK_X = SCREEN_WIDTH / 2;
+	local CHARACTER_BACK_Y = SCREEN_HEIGHT - CHARACTER_BACK_HEIGHT / 2 - DESC_HEIGHT;
+	local CHARACTER_HP_X = CHARACTER_BACK_X;
+	local CHARACTER_HP_Y = CHARACTER_BACK_Y;
+	local CHARACTER_BACK_OFFSET = CHARACTER_BACK_HEIGHT;
+	
 	local descButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
 	descButton:setContentSize(CCSizeMake(DESC_WIDTH, DESC_HEIGHT));
 	descButton:setPosition(ccp(DESC_WIDTH / 2, SCREEN_HEIGHT - DESC_HEIGHT / 2));
-	
 	local descFont = CCLabelBMFont:create("Desc", FONT );
 	descFont:setPosition(ccp(DESC_WIDTH / 2, SCREEN_HEIGHT - DESC_HEIGHT / 2));
-
 	gameMenuLayer:addChild(descButton);
 	gameMenuLayer:addChild(descFont);
+
+	local backButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
+	backButton:setContentSize(CCSizeMake(BACK_WIDTH, BACK_HEIGHT));
+	backButton:setPosition(ccp(BACK_WIDTH / 2, BACK_HEIGHT / 2));
+	local backFont = CCLabelBMFont:create("Back", FONT );
+	backFont:setPosition(ccp(BACK_WIDTH / 2, BACK_HEIGHT / 2));
+	gameMenuLayer:addChild(backButton);	
+	gameMenuLayer:addChild(backFont);
+
+	local characterButtons = {} -- list of character buttons
+	local refreshables = {}
+	local refreshable_count = 0;
+	local i = 0;
+	
+	local function refresh()
+		local j = 0;
+		-- kill all refreshables;
+		while j < refreshable_count do
+			gameMenuLayer:removeChild(refreshables[j], true);
+			j = j + 1;
+		end
+
+		refreshable_count = 0;
+		local charHP = CCLabelBMFont:create("HP: " .. Player:getInstance():getParty():getCharacterAtSlot(0):getCurrentHP() .. "/" .. Player:getInstance():getParty():getCharacterAtSlot(0):getStat(HP), FONT );	
+		charHP:setPosition(CHARACTER_HP_X, CHARACTER_HP_Y);
+		gameMenuLayer:addChild(charHP);
+		refreshables[refreshable_count] = charHP;
+		refreshable_count = refreshable_count + 1;
+	end
+
+	while i < PARTY_SIZE do
+		local charBack = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
+		charBack:setContentSize(CCSizeMake(CHARACTER_BACK_WIDTH, CHARACTER_BACK_HEIGHT));
+		charBack:setPosition(ccp(CHARACTER_BACK_X , CHARACTER_BACK_Y - CHARACTER_BACK_OFFSET * i));
+		characterButtons[i] = charBack;
+
+		gameMenuLayer:addChild(charBack);	
+		
+		i = i + 1;
+	end
+
+	refresh();
 
 	local function processTouchBegan(x, y)
 	end
@@ -76,6 +128,24 @@ initItemCharPage = function( inventory_num )
 	end
 
 	local function processTouchEnded(x, y)
+		if checkWithin(backButton, x, y) then
+			OwManager:getInstance():unpause()
+			gameMenuLayer:unregisterScriptTouchHandler()
+			OwManager:getInstance():removeChildFromUILayer(gameMenuLayer)
+			initMenuPage();
+			return;
+		end
+
+		local i = 0;
+		for k, v in pairs(characterButtons) do
+			if checkWithin( v, x, y ) then
+				local func = ItemManager:getInstance():getItemStat( inventory_num, USE );
+				_G[func](i);
+				refresh();
+				i = i + 1;
+				return;
+			end
+		end
 	end
 
 	local function onTouch(eventType, x, y)
@@ -331,6 +401,13 @@ initEntryPage = function()
 end
 
 initMenuPage = function()
+
+	local BUTTON_WIDTH = 128;
+	local BUTTON_HEIGHT = 64;
+	local BUTTON_START_X = SCREEN_WIDTH - BUTTON_WIDTH / 2;
+	local BUTTON_START_Y = SCREEN_HEIGHT - BUTTON_HEIGHT / 2;
+	local BUTTON_OFFSET = BUTTON_HEIGHT;
+
 	local gameMenuLayer = CCLayer:create()
 	
 	local function removeSelf()
@@ -339,22 +416,19 @@ initMenuPage = function()
 	end
 
 	local backButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
-	backButton:setPosition(ccp(200, 100));
-	backButton:setContentSize(CCSizeMake(128, 64));
-
+	backButton:setContentSize(CCSizeMake(BACK_WIDTH, BACK_HEIGHT));
+	backButton:setPosition(ccp(BACK_WIDTH / 2, BACK_HEIGHT / 2));
 	local backFont = CCLabelBMFont:create("Back", FONT );
-	backFont:setPosition(ccp(200,100));
-
+	backFont:setPosition(ccp(BACK_WIDTH / 2, BACK_HEIGHT / 2));
 	gameMenuLayer:addChild(backButton);	
 	gameMenuLayer:addChild(backFont);
 
-
 	local itemButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
-	itemButton:setPosition(ccp(200, 200));
-	itemButton:setContentSize(CCSizeMake(128, 64));
+	itemButton:setPosition(ccp(BUTTON_START_X, BUTTON_START_Y));
+	itemButton:setContentSize(CCSizeMake(BUTTON_WIDTH, BUTTON_HEIGHT));
 
 	local itemFont = CCLabelBMFont:create("Items", FONT );
-	itemFont:setPosition(ccp(200,200));
+	itemFont:setPosition(ccp(BUTTON_START_X,BUTTON_START_Y));
 
 	gameMenuLayer:addChild(itemButton);	
 	gameMenuLayer:addChild(itemFont);

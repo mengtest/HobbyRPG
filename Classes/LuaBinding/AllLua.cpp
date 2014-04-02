@@ -1,6 +1,6 @@
 /*
 ** Lua binding: AllLua
-** Generated automatically by tolua++-1.0.92 on 03/09/14 17:15:21.
+** Generated automatically by tolua++-1.0.92 on 03/31/14 22:04:01.
 */
 
 #ifndef __cplusplus
@@ -1544,6 +1544,72 @@ static int tolua_AllLua_Character_getRing00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: getStat of class  Character */
+#ifndef TOLUA_DISABLE_tolua_AllLua_Character_getStat00
+static int tolua_AllLua_Character_getStat00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Character",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Character* self = (Character*)  tolua_tousertype(tolua_S,1,0);
+  StatsEnum type = ((StatsEnum) (int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getStat'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getStat(type);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getStat'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getCurrentHP of class  Character */
+#ifndef TOLUA_DISABLE_tolua_AllLua_Character_getCurrentHP00
+static int tolua_AllLua_Character_getCurrentHP00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Character",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Character* self = (Character*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getCurrentHP'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getCurrentHP();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getCurrentHP'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: getInstance of class  Player */
 #ifndef TOLUA_DISABLE_tolua_AllLua_Player_getInstance00
 static int tolua_AllLua_Player_getInstance00(lua_State* tolua_S)
@@ -1986,6 +2052,8 @@ TOLUA_API int tolua_AllLua_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getWeapon",tolua_AllLua_Character_getWeapon00);
    tolua_function(tolua_S,"getArmor",tolua_AllLua_Character_getArmor00);
    tolua_function(tolua_S,"getRing",tolua_AllLua_Character_getRing00);
+   tolua_function(tolua_S,"getStat",tolua_AllLua_Character_getStat00);
+   tolua_function(tolua_S,"getCurrentHP",tolua_AllLua_Character_getCurrentHP00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Player","Player","",NULL);
   tolua_beginmodule(tolua_S,"Player");

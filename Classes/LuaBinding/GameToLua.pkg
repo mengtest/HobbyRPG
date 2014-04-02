@@ -121,6 +121,8 @@ class Character
 	ItemEnum getWeapon();
 	ItemEnum getArmor();
 	ItemEnum getRing();
+	int getStat( StatsEnum type );
+	int getCurrentHP();
 };
 
 class Player

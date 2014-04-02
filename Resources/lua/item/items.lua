@@ -1,13 +1,13 @@
-function use_potion(party_slot, item_bag, item_slot)
+function use_potion(party_slot)
 	cclog("use_potion executing");
 	Player:getInstance():getParty():getCharacterAtSlot(party_slot):heal(10);
-	Player:getInstance():getInventory():discardItem(item_bag, item_slot);
+	Player:getInstance():getInventory():removeItem(POTION);
 end
 
-function use_plain_water(party_slot, item_bag, item_slot)
+function use_plain_water(party_slot)
 	cclog("plain_water executing");
 	Player:getInstance():getParty():getCharacterAtSlot(party_slot):damage(10);
-	Player:getInstance():getInventory():discardItem(item_bag, item_slot);
+	Player:getInstance():getInventory():removeItem(PLAIN_WATER);
 end
 
 function equip_armor(party_slot, item_bag, item_slot)

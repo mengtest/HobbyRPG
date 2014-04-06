@@ -31,6 +31,8 @@ Player::Player()
 
 	// TODO: for now...
 	m_party->replaceMemberAtSlot(m_characterMap.find("Chika")->second, 0);
+	m_party->replaceMemberAtSlot(m_characterMap.find("Laksa")->second, 1);
+	m_party->replaceMemberAtSlot(m_characterMap.find("Prata")->second, 2);
 }
 
 Player::~Player()

@@ -83,7 +83,9 @@ int Common::loadGraphics()
 	// Sprite loading
 	// Sprite‚ð“Ç‚Ýž‚Ý‚Ü‚·
 	CCSpriteFrameCache* cache = CCSpriteFrameCache::sharedSpriteFrameCache();
-	cache->addSpriteFramesWithFile("sprites/testsprite.plist");
+	cache->addSpriteFramesWithFile("sprites/chika.plist");
+	cache->addSpriteFramesWithFile("sprites/laksa.plist");
+	cache->addSpriteFramesWithFile("sprites/prata.plist");
 	cache->addSpriteFramesWithFile("sprites/world_sheet.plist");
 	cache->addSpriteFramesWithFile("ui/ui_type_b.plist");
 	cache->addSpriteFramesWithFile("ui/ui_menu.plist");

@@ -6,19 +6,19 @@ using namespace std;
 USING_NS_CC;
 
 OwEntityBase::OwEntityBase(CCPoint position, const std::string& name, 
-							const string& spriteName, int id )
+							const string& spriteBaseName, const std::string& initialSpriteFrameName, int id )
 							: m_name(name), m_id(id)
 {
-	setSprite(spriteName);
+	setSprite(spriteBaseName, initialSpriteFrameName);
 	setPosition(position);
 }
 
-void OwEntityBase::setSprite(const std::string& spriteName)
+void OwEntityBase::setSprite(const std::string& spriteBaseName, const std::string& initialSpriteFrameName)
 {
 	// Sprite creation
 	// SpriteÇçÏê¨ÇµÇ‹Ç∑
-	m_sprite = CCSprite::createWithSpriteFrameName(spriteName.c_str());
-	m_spriteName = spriteName;
+	m_sprite = CCSprite::createWithSpriteFrameName( initialSpriteFrameName.c_str() );
+	m_spriteName = spriteBaseName;
 }
 
 void OwEntityBase::setPosition( cocos2d::CCPoint position )

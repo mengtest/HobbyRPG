@@ -114,7 +114,7 @@ bool WorldManager::init(WorldScene * scene, const std::string& world_name, int o
 		this->addChildToNodeLayer(test);
 	}*/
 
-	m_character = CCSprite::createWithSpriteFrameName("testsprite");
+	m_character = CCSprite::createWithSpriteFrameName("chika");
 	float x = m_graph->getNode(origin_node_id).getX();
 	float y = m_graph->getNode(origin_node_id).getY();
 	m_character->setPosition( ccp( x, y ));

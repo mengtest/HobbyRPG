@@ -35,7 +35,7 @@ public:
 	void release();
 	void update(float dt);
 	
-	OwAICharacter * addAICharacter(cocos2d::CCPoint position, const std::string& name, const std::string& spritename);
+	OwAICharacter * addAICharacter(cocos2d::CCPoint position, const std::string& name, const std::string& spritename, const std::string& initialSpriteName);
 	OwAICharacter * getAICharacterByName(const std::string& name);
     
     void addChildToGameLayer( cocos2d::CCNode * obj );

@@ -216,7 +216,10 @@ bool OwManager::loadEntities()
 			int x = ((CCString)*its->valueForKey("x")).intValue();
 			int y = ((CCString)*its->valueForKey("y")).intValue();
 
-			this->addAICharacter(ccp(x,y), ((CCString*)its->objectForKey("namae"))->m_sString, ((CCString*)its->objectForKey("sprite"))->m_sString );
+			this->addAICharacter(ccp(x,y), 
+								((CCString*)its->objectForKey("namae"))->m_sString, 
+								((CCString*)its->objectForKey("sprite"))->m_sString,
+								((CCString*)its->objectForKey("initial_sprite"))->m_sString ); // TODO: expose this to tmx?
 
         }
 	}
@@ -243,10 +246,10 @@ void OwManager::processTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pE
 	m_controlUI->processTouchMoved(pTouch, pEvent);
 }
 
-OwAICharacter * OwManager::addAICharacter(CCPoint position, const string& name, const string& spritename)
+OwAICharacter * OwManager::addAICharacter(CCPoint position, const string& name, const string& spritename, const string& initialSpriteName)
 {
 	CCLOG("[OwManager][addAICharacter]: adding '%s'", name.c_str());
-	OwAICharacter * rtn	= new OwAICharacter(position, name, spritename, m_aiList.size());
+	OwAICharacter * rtn	= new OwAICharacter(position, name, spritename, initialSpriteName, m_aiList.size());
 	
 	if ( rtn->loadLUA() )
 	{
@@ -359,7 +362,7 @@ bool OwManager::loadPlayer(int x, int y)
 	x *= getTiledMap()->getTileSize().width;
 	y = ( getTiledMap()->getMapSize().height -  y ) * getTiledMap()->getTileSize().height;
  	
-	m_character = addAICharacter(ccp(x,y), "Player", "testsprite");
+	m_character = addAICharacter(ccp(x,y), "Player", "chika", "chika_front_2.png");
 	if ( m_character == 0 )
 	{
 		return false;

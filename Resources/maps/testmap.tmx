@@ -33,14 +33,16 @@
  <objectgroup name="Entity" width="25" height="25">
   <object name="npc" x="458" y="293">
    <properties>
+    <property name="initial_sprite" value="chika_front_2.png"/>
     <property name="namae" value="npc0"/>
-    <property name="sprite" value="testsprite"/>
+    <property name="sprite" value="chika"/>
    </properties>
   </object>
   <object name="npc" x="416" y="480">
    <properties>
+    <property name="initial_sprite" value="chika_front_2.png"/>
     <property name="namae" value="npc1"/>
-    <property name="sprite" value="testsprite"/>
+    <property name="sprite" value="chika"/>
    </properties>
   </object>
  </objectgroup>

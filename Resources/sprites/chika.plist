@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>chika_back_10.png</key>
+            <key>chika_back_1.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{32,32}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>chika_back_11.png</key>
+            <key>chika_back_2.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{36,2},{32,32}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>chika_back_12.png</key>
+            <key>chika_back_3.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{70,2},{32,32}}</string>

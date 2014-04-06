@@ -15,7 +15,8 @@ class OwAICharacter : public OwCharacter
 public:
 	OwAICharacter(cocos2d::CCPoint position, 
 					const std::string& name, 
-					const std::string& spriteName = "testsprite",
+					const std::string& spriteBaseName = "chika",
+					const std::string& initialSpriteFrameName = "chika_front_2.png",
 					int id = 0);
 	~OwAICharacter();
 

@@ -4,47 +4,47 @@
 <dict>
 	<key>animations</key>
 	<dict>
-		<key>testsprite_walk_front</key>
+		<key>chika_walk_front</key>
 		<dict>
 			<key>delay</key>
 			<real>0.2</real>
 			<key>frames</key>
 			<array>
-				<string>testsprite_front_1</string>
-				<string>testsprite_front_3</string>
+				<string>chika_front_1.png</string>
+				<string>chika_front_3.png</string>
 			</array>
 		</dict>
 		
-		<key>testsprite_walk_left</key>
+		<key>chika_walk_left</key>
 		<dict>
 			<key>delay</key>
 			<real>0.2</real>
 			<key>frames</key>
 			<array>
-				<string>testsprite_left_1</string>
-				<string>testsprite_left_3</string>
+				<string>chika_left_1.png</string>
+				<string>chika_left_3.png</string>
 			</array>
 		</dict>
 		
-		<key>testsprite_walk_right</key>
+		<key>chika_walk_right</key>
 		<dict>
 			<key>delay</key>
 			<real>0.2</real>
 			<key>frames</key>
 			<array>
-				<string>testsprite_right_1</string>
-				<string>testsprite_right_3</string>
+				<string>chika_right_1.png</string>
+				<string>chika_right_3.png</string>
 			</array>
 		</dict>
 		
-		<key>testsprite_walk_back</key>
+		<key>chika_walk_back</key>
 		<dict>
 			<key>delay</key>
 			<real>0.2</real>
 			<key>frames</key>
 			<array>
-				<string>testsprite_back_1</string>
-				<string>testsprite_back_3</string>
+				<string>chika_back_1.png</string>
+				<string>chika_back_3.png</string>
 			</array>
 		</dict>
 		

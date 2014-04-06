@@ -4,10 +4,10 @@
     <dict>
         <key>frames</key>
         <dict>
-			<key>testsprite</key>
+            <key>chika_back_10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{32,32}}</string>
+                <string>{{2,2},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -17,11 +17,10 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-			
-            <key>testsprite_front_1</key>
+            <key>chika_back_11.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{32,32}}</string>
+                <string>{{36,2},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -31,10 +30,10 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>testsprite_front_2</key>
+            <key>chika_back_12.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{32,0},{32,32}}</string>
+                <string>{{70,2},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -44,10 +43,10 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>testsprite_front_3</key>
+            <key>chika_front_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{64,0},{32,32}}</string>
+                <string>{{104,2},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -57,10 +56,10 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>testsprite_left_1</key>
+            <key>chika_front_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,32},{32,32}}</string>
+                <string>{{138,2},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -70,10 +69,10 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>testsprite_left_2</key>
+            <key>chika_front_3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{32,32},{32,32}}</string>
+                <string>{{172,2},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -83,10 +82,10 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>testsprite_left_3</key>
+            <key>chika_left_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{64,32},{32,32}}</string>
+                <string>{{2,36},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -96,10 +95,10 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>testsprite_right_1</key>
+            <key>chika_left_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,64},{32,32}}</string>
+                <string>{{36,36},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -109,10 +108,10 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>testsprite_right_2</key>
+            <key>chika_left_3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{32,64},{32,32}}</string>
+                <string>{{70,36},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -122,10 +121,10 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>testsprite_right_3</key>
+            <key>chika_right_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{64,64},{32,32}}</string>
+                <string>{{104,36},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -135,10 +134,10 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>testsprite_back_1</key>
+            <key>chika_right_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,96},{32,32}}</string>
+                <string>{{138,36},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -148,10 +147,10 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>testsprite_back_2</key>
+            <key>chika_right_3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{32,96},{32,32}}</string>
+                <string>{{172,36},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -161,10 +160,309 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
-            <key>testsprite_back_3</key>
+            <key>laksa_back_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{64,96},{32,32}}</string>
+                <string>{{2,70},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>laksa_back_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{36,70},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>laksa_back_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{70,70},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>laksa_front_1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{104,70},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>laksa_front_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{138,70},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>laksa_front_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{172,70},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>laksa_left_1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,104},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>laksa_left_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{36,104},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>laksa_left_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{70,104},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>laksa_right_1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{104,104},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>laksa_right_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{138,104},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>laksa_right_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{172,104},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>prata_back_1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,138},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>prata_back_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{36,138},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>prata_back_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{70,138},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>prata_front_1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{104,138},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>prata_front_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{138,138},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>prata_front_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{172,138},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>prata_left_1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,172},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>prata_left_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{36,172},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>prata_left_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{70,172},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>prata_right_1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{104,172},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>prata_right_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{138,172},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>prata_right_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{172,172},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -182,9 +480,9 @@
             <key>realTextureFileName</key>
             <string>testsprite.png</string>
             <key>size</key>
-            <string>{96,128}</string>
+            <string>{206,206}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:59437a63c99b1763d3786985f0928041:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:6eb99ee70fdc3b0084e1c8518b4157c1:1/1$</string>
             <key>textureFileName</key>
             <string>testsprite.png</string>
         </dict>

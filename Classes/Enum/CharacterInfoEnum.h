@@ -9,6 +9,7 @@ enum CharacterInfoEnum {
     CLASS = 2,
     ARMOR = 3,
     WEAPON = 4,
+    AGE = 5,
 };
 
 #endif //__CHARACTER_INFO_ENUM_H__

@@ -94,7 +94,7 @@ bool OwCharacter::face( DirectionEnum type )
 
 	//Log::getInstance().log("OwCharacter", "face: " + spriteStr);
 	//m_sprite->initWithSpriteFrameName( ( m_spriteName + "_" + spriteStr + "_2" ).c_str() );
-	m_sprite->setDisplayFrame( CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName( (m_spriteName + "_" + spriteStr + "_2" ).c_str() ));
+	m_sprite->setDisplayFrame( CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName( (m_spriteName + "_" + spriteStr + "_2.png" ).c_str() ));
 	m_currentDirection = type;
 	return true;
 }

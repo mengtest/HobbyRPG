@@ -5,4 +5,5 @@ enum CharacterInfoEnum {
     CLASS = 2,
     ARMOR = 3,
     WEAPON = 4,
+    AGE = 5,
 };

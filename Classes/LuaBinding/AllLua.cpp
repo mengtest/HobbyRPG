@@ -1,6 +1,6 @@
 /*
 ** Lua binding: AllLua
-** Generated automatically by tolua++-1.0.92 on 03/31/14 22:04:01.
+** Generated automatically by tolua++-1.0.92 on 04/12/14 23:21:53.
 */
 
 #ifndef __cplusplus
@@ -33,6 +33,7 @@ TOLUA_API int  tolua_AllLua_open (lua_State* tolua_S);
 #include "..\Enum\ItemEnum.h"
 #include "..\Enum\ItemStatEnum.h"
 #include "..\Enum\StatsEnum.h"
+#include "..\Enum\CharacterInfoEnum.h"
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus
@@ -1578,6 +1579,40 @@ static int tolua_AllLua_Character_getStat00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: getInfo of class  Character */
+#ifndef TOLUA_DISABLE_tolua_AllLua_Character_getInfo00
+static int tolua_AllLua_Character_getInfo00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Character",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Character* self = (Character*)  tolua_tousertype(tolua_S,1,0);
+  CharacterInfoEnum type = ((CharacterInfoEnum) (int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getInfo'", NULL);
+#endif
+  {
+   const std::string tolua_ret = (const std::string)  self->getInfo(type);
+   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getInfo'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: getCurrentHP of class  Character */
 #ifndef TOLUA_DISABLE_tolua_AllLua_Character_getCurrentHP00
 static int tolua_AllLua_Character_getCurrentHP00(lua_State* tolua_S)
@@ -2053,6 +2088,7 @@ TOLUA_API int tolua_AllLua_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getArmor",tolua_AllLua_Character_getArmor00);
    tolua_function(tolua_S,"getRing",tolua_AllLua_Character_getRing00);
    tolua_function(tolua_S,"getStat",tolua_AllLua_Character_getStat00);
+   tolua_function(tolua_S,"getInfo",tolua_AllLua_Character_getInfo00);
    tolua_function(tolua_S,"getCurrentHP",tolua_AllLua_Character_getCurrentHP00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Player","Player","",NULL);
@@ -2098,6 +2134,12 @@ TOLUA_API int tolua_AllLua_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"MPOW",MPOW);
   tolua_constant(tolua_S,"ADEF",ADEF);
   tolua_constant(tolua_S,"MDEF",MDEF);
+  tolua_constant(tolua_S,"ALIAS",ALIAS);
+  tolua_constant(tolua_S,"SPRITE",SPRITE);
+  tolua_constant(tolua_S,"CLASS",CLASS);
+  tolua_constant(tolua_S,"ARMOR",ARMOR);
+  tolua_constant(tolua_S,"WEAPON",WEAPON);
+  tolua_constant(tolua_S,"AGE",AGE);
  tolua_endmodule(tolua_S);
  return 1;
 }

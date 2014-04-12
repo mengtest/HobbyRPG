@@ -122,6 +122,7 @@ class Character
 	ItemEnum getArmor();
 	ItemEnum getRing();
 	int getStat( StatsEnum type );
+	const std::string& getInfo( CharacterInfoEnum type );
 	int getCurrentHP();
 };
 

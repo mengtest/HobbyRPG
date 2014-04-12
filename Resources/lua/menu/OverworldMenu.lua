@@ -69,8 +69,12 @@ initItemCharPage = function( inventory_num )
 	local CHARACTER_BACK_Y = SCREEN_HEIGHT - CHARACTER_BACK_HEIGHT / 2 - DESC_HEIGHT;
 	local CHARACTER_HP_X = CHARACTER_BACK_X;
 	local CHARACTER_HP_Y = CHARACTER_BACK_Y;
+	local CHARACTER_NAME_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + 100;
+	local CHARACTER_NAME_Y = CHARACTER_HP_Y;
 	local CHARACTER_BACK_OFFSET = CHARACTER_BACK_HEIGHT;
-	
+	local CHARACTER_SPRITE_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + 50;
+	local CHARACTER_SPRITE_Y = CHARACTER_HP_Y;
+
 	local descButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
 	descButton:setContentSize(CCSizeMake(DESC_WIDTH, DESC_HEIGHT));
 	descButton:setPosition(ccp(DESC_WIDTH / 2, SCREEN_HEIGHT - DESC_HEIGHT / 2));
@@ -87,6 +91,8 @@ initItemCharPage = function( inventory_num )
 	gameMenuLayer:addChild(backButton);	
 	gameMenuLayer:addChild(backFont);
 
+	
+
 	local characterButtons = {} -- list of character buttons
 	local refreshables = {}
 	local refreshable_count = 0;
@@ -99,13 +105,19 @@ initItemCharPage = function( inventory_num )
 			gameMenuLayer:removeChild(refreshables[j], true);
 			j = j + 1;
 		end
-
+		
+		local k = 0;
 		refreshable_count = 0;
-		local charHP = CCLabelBMFont:create("HP: " .. Player:getInstance():getParty():getCharacterAtSlot(0):getCurrentHP() .. "/" .. Player:getInstance():getParty():getCharacterAtSlot(0):getStat(HP), FONT );	
-		charHP:setPosition(CHARACTER_HP_X, CHARACTER_HP_Y);
-		gameMenuLayer:addChild(charHP);
-		refreshables[refreshable_count] = charHP;
-		refreshable_count = refreshable_count + 1;
+		while k < PARTY_SIZE do
+			local charHP = CCLabelBMFont:create("HP: " .. Player:getInstance():getParty():getCharacterAtSlot(k):getCurrentHP() .. "/" .. Player:getInstance():getParty():getCharacterAtSlot(0):getStat(HP), FONT );	
+			charHP:setPosition(CHARACTER_HP_X, CHARACTER_HP_Y - CHARACTER_BACK_OFFSET * k);
+			charHP:setAnchorPoint(ccp(0, 0.5));
+			gameMenuLayer:addChild(charHP);
+			refreshables[refreshable_count] = charHP;
+			refreshable_count = refreshable_count + 1;
+			k = k + 1;
+		end
+		
 	end
 
 	while i < PARTY_SIZE do
@@ -113,9 +125,21 @@ initItemCharPage = function( inventory_num )
 		charBack:setContentSize(CCSizeMake(CHARACTER_BACK_WIDTH, CHARACTER_BACK_HEIGHT));
 		charBack:setPosition(ccp(CHARACTER_BACK_X , CHARACTER_BACK_Y - CHARACTER_BACK_OFFSET * i));
 		characterButtons[i] = charBack;
-
 		gameMenuLayer:addChild(charBack);	
 		
+		
+		local charName = CCLabelBMFont:create( "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(ALIAS) , FONT );
+		charName:setPosition(CHARACTER_NAME_X, CHARACTER_NAME_Y - CHARACTER_BACK_OFFSET * i)
+		charName:setAnchorPoint(ccp(0, 0.5));
+		gameMenuLayer:addChild(charName);
+
+		local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(SPRITE) .. ".png";
+		cclog(spriteName);
+		local charSprite = CCScale9Sprite:createWithSpriteFrameName( spriteName,  CCRectMake(0,0,0,0) );
+		charSprite:setContentSize(CCSizeMake(32, 32));
+		charSprite:setPosition(ccp(CHARACTER_SPRITE_X, CHARACTER_SPRITE_Y - CHARACTER_BACK_OFFSET * i));
+		gameMenuLayer:addChild(charSprite);
+
 		i = i + 1;
 	end
 

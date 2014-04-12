@@ -33,7 +33,7 @@ public:
 	// gettors
 	int getStat( StatsEnum type ) const;
 	const std::vector< int > & getAllStats() const;
-	std::string getInfo( CharacterInfoEnum type ) const { return m_info[0][type]; }
+	const std::string& getInfo( CharacterInfoEnum type ) const { return m_info[0][type]; }
 	const std::vector< std::string >& getAllInfo() const { return m_info[0]; }
 	inline int getCurrentHP() { return m_currentHP; }
 	inline ItemEnum getWeapon() { return m_weapon; }

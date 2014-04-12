@@ -122,9 +122,6 @@ bool OwManager::init(OverworldScene * scene, const string& tmxDir, int startX, i
 	m_scene->getGameLayer()->runAction(CCFollow::create(m_character->getSprite(), cocos2d::CCRect(0.0f, 0.0f, 1000.0f, 1000.0f)));
 
 	
-	// test code
-	Character * temp = new Character();
-	temp->init("chika");
 
 	// inventory test cases
 	Inventory * inv = Player::getInstance().getInventory();

@@ -19,7 +19,7 @@ Character::~Character()
 bool Character::init(const std::string& name)
 {
 	// load stats from csv
-	string path = CCFileUtils::sharedFileUtils()->fullPathForFilename("data/chika.csv");
+	string path = CCFileUtils::sharedFileUtils()->fullPathForFilename(("data/" + name + ".csv").c_str());
 	string errorMsg ( path + " cannot be found!" );
 	CCAssert( (CCFileUtils::sharedFileUtils()->isFileExist( path ) ) , errorMsg.c_str()  );
 	if ( !Common::openCSV(path, m_data) )
@@ -28,7 +28,7 @@ bool Character::init(const std::string& name)
 		return false;
 	}
 
-	path = CCFileUtils::sharedFileUtils()->fullPathForFilename("data/chika_info.csv");
+	path = CCFileUtils::sharedFileUtils()->fullPathForFilename(("data/" + name + "_info.csv").c_str());
 	errorMsg = path + " cannot be found!" ;
 	CCAssert( (CCFileUtils::sharedFileUtils()->isFileExist( path ) ) , errorMsg.c_str()  );
 	if ( !Common::openCSV(path, m_info) )

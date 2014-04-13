@@ -52,6 +52,11 @@ local function checkWithin(sprite, x, y, parent)
 	return rect:containsPoint( ccp(x,y) );
 end
 
+initEquipPage = function()
+
+end
+
+
 initItemCharPage = function( inventory_num )
 	local gameMenuLayer = CCLayer:create()
 	cclog("chosen: "..inventory_num)
@@ -166,9 +171,9 @@ initItemCharPage = function( inventory_num )
 				local func = ItemManager:getInstance():getItemStat( inventory_num, USE );
 				_G[func](i);
 				refresh();
-				i = i + 1;
 				return;
 			end
+			i = i + 1;
 		end
 	end
 
@@ -233,25 +238,27 @@ initItemPage = function()
 		if ( j < NUM_ITEMS ) then
 			local stacks = Player:getInstance():getInventory():getItemByIndex(j);
 			if ( stacks > 0 ) then
-				
-				local itemName = ItemManager:getInstance():getItemStat( j,NAME );
+				local itemType = ItemManager:getInstance():getItemStat( j, ITEM_TYPE );
+				if ( itemType == "Item" ) then
+					local itemName = ItemManager:getInstance():getItemStat( j,NAME );
 
-				local font_x = ITEM_WIDTH * (k % 2);
-				local font_y = -ITEM_HEIGHT * math.floor(k / 2);
+					local font_x = ITEM_WIDTH * (k % 2);
+					local font_y = -ITEM_HEIGHT * math.floor(k / 2);
 
-				local itemFont = CCLabelBMFont:create("" .. itemName, FONT );	
-				itemFont:setAnchorPoint(ccp(0, 0.5));
-				itemFont:setPosition(-ITEM_WIDTH / 2 + ITEM_WORD_OFFSET + font_x, font_y );
+					local itemFont = CCLabelBMFont:create("" .. itemName, FONT );	
+					itemFont:setAnchorPoint(ccp(0, 0.5));
+					itemFont:setPosition(-ITEM_WIDTH / 2 + ITEM_WORD_OFFSET + font_x, font_y );
 
-				local itemStack = CCLabelBMFont:create("x" .. stacks, FONT );
-				itemStack:setAnchorPoint(ccp(0, 0.5));
-				itemStack:setPosition( -ITEM_WIDTH / 2 + ITEM_STACK_OFFSET + font_x, font_y);
+					local itemStack = CCLabelBMFont:create("x" .. stacks, FONT );
+					itemStack:setAnchorPoint(ccp(0, 0.5));
+					itemStack:setPosition( -ITEM_WIDTH / 2 + ITEM_STACK_OFFSET + font_x, font_y);
 
-				itemListNode:addChild(itemFont);
-				itemListNode:addChild(itemStack);
-				--table.insert(inventoryIndexList, j);
-				inventoryIndexList[k] = j
-				k = k + 1;			
+					itemListNode:addChild(itemFont);
+					itemListNode:addChild(itemStack);
+					--table.insert(inventoryIndexList, j);
+					inventoryIndexList[k] = j
+					k = k + 1;			
+				end
 			end
 
 			j = j + 1;
@@ -457,6 +464,17 @@ initMenuPage = function()
 	gameMenuLayer:addChild(itemButton);	
 	gameMenuLayer:addChild(itemFont);
 
+
+	local equipButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
+	equipButton:setPosition(ccp(BUTTON_START_X, BUTTON_START_Y  - BUTTON_OFFSET));
+	equipButton:setContentSize(CCSizeMake(BUTTON_WIDTH, BUTTON_HEIGHT));
+
+	local equipFont = CCLabelBMFont:create("Equip", FONT );
+	equipFont:setPosition(ccp(BUTTON_START_X,BUTTON_START_Y - BUTTON_OFFSET ));
+
+	gameMenuLayer:addChild(equipButton);	
+	gameMenuLayer:addChild(equipFont);
+
 	local function processTouchBegan(x, y)
 	end
 
@@ -471,7 +489,11 @@ initMenuPage = function()
 		elseif checkWithin(itemButton, x, y ) then
 			removeSelf()
 			initItemPage()
+		elseif checkWithin(equipButton, x, y ) then
+			removeSelf()
+			initEquipPage();
 		end
+
 	end
 
 	local function onTouch(eventType, x, y)

@@ -40,9 +40,9 @@ bool Character::init(const std::string& name)
 	m_stats.resize(m_data[0].size());
 	setLevel(1);
 
-	//m_weapon = EMPTY;
-	//m_armor = EMPTY;
-	//m_ring = EMPTY;
+	m_weapon = EMPTY;
+	m_armor = EMPTY;
+	m_ring = EMPTY;
 
 	return true;
 }

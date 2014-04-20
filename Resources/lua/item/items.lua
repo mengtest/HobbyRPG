@@ -10,7 +10,7 @@ function use_plain_water(party_slot)
 	Player:getInstance():getInventory():removeItem(PLAIN_WATER);
 end
 
-function equip_armor(party_slot, item_bag, item_slot)
+function equip_armor(party_slot, item)
 	c = Player:getInstance():getParty():getCharacterAtSlot(party_slot);
 	i = Player:getInstance():getInventory();
 	lhs = i:getItemByIndex(item_bag, item_slot);
@@ -25,7 +25,7 @@ function equip_armor(party_slot, item_bag, item_slot)
 	end
 end
 
-function equip_weapon(party_slot, item_bag, item_slot)
+function equip_weapon(party_slot, item)
 	c = Player:getInstance():getParty():getCharacterAtSlot(party_slot);
 	i = Player:getInstance():getInventory();
 	lhs = i:getItemByIndex(item_bag, item_slot);

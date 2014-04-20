@@ -1,6 +1,6 @@
 /*
 ** Lua binding: AllLua
-** Generated automatically by tolua++-1.0.92 on 04/12/14 23:21:53.
+** Generated automatically by tolua++-1.0.92 on 04/18/14 15:21:32.
 */
 
 #ifndef __cplusplus
@@ -2110,6 +2110,7 @@ TOLUA_API int tolua_AllLua_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getItemByIndex",tolua_AllLua_Inventory_getItemByIndex00);
    tolua_function(tolua_S,"getInventorySize",tolua_AllLua_Inventory_getInventorySize00);
   tolua_endmodule(tolua_S);
+  tolua_constant(tolua_S,"EMPTY",EMPTY);
   tolua_constant(tolua_S,"PLAIN_WATER",PLAIN_WATER);
   tolua_constant(tolua_S,"POTION",POTION);
   tolua_constant(tolua_S,"HI_POTION",HI_POTION);

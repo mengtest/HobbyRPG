@@ -1,9 +1,25 @@
 Empty,null,1,null,null,null,null,null,Null
 Plain Water,Useless plain water,20,use_plain_water,Refreshing!,null,null,null,Item
-Potion,Heals for 10HP,5,use_potion,Healed for 10HP!,null,null,null,Item
-Hi-Potion,Heals for 50HP,5,use_potion,Healed for 50HP!,null,null,null,Item
+Chili,Heals for 10HP,5,use_chili,Healed for 10HP!,null,null,null,Item
+Dashi,Heals for 50HP,5,use_dashi,Healed for 50HP!,null,null,null,Item
+Item1,Item1,5,use_dashi,Healed for 50HP!,null,null,null,Item
+Item2,Item2,5,use_dashi,Healed for 50HP!,null,null,null,Item
+Item3,Item3,5,use_dashi,Healed for 50HP!,null,null,null,Item
+Item4,Item4,5,use_dashi,Healed for 50HP!,null,null,null,Item
+Item5,Item5,5,use_dashi,Healed for 50HP!,null,null,null,Item
+Item6,Item6,5,use_dashi,Healed for 50HP!,null,null,null,Item
 Sword,Just a normal sword,1,equip_weapon,Equipped Sword!,Weapon,Sword,null,Weapon
 Katana,Cuts bullets in half,1,equip_weapon,Equipped Katana!,Weapon,Sword,null,Weapon
 Spear,Long and sharp,1,equip_weapon,Equipped Spear!,Weapon,Spear,null,Weapon
-Hide Armor,Made of animal skin,1,equip_armor,Equipped Armor!,Armor,null,Light,Armor
-Chainmail,Just a normal chainmail,1,equip_armor,Equipped Armor!,Armor,null,Heavy,Armor
+Weapon1,Weapon1,1,equip_weapon,Equipped Weapon!,Weapon,Sword,null,Weapon
+Weapon2,Weapon2,1,equip_weapon,Equipped Weapon!,Weapon,Sword,null,Weapon
+Weapon3,Weapon3,1,equip_weapon,Equipped Weapon!,Weapon,Sword,null,Weapon
+Weapon4,Weapon4,1,equip_weapon,Equipped Weapon!,Weapon,Sword,null,Weapon
+Weapon5,Weapon5,1,equip_weapon,Equipped Weapon!,Weapon,Sword,null,Weapon
+Weapon6,Weapon6,1,equip_weapon,Equipped Weapon!,Weapon,Sword,null,Weapon
+Weapon7,Weapon7,1,equip_weapon,Equipped Weapon!,Weapon,Sword,null,Weapon
+Weapon8,Weapon8,1,equip_weapon,Equipped Weapon!,Weapon,Sword,null,Weapon
+Weapon9,Weapon9,1,equip_weapon,Equipped Weapon!,Weapon,Sword,null,Weapon
+T-Shirt,Prevents Public Indecency,99,equip_armor,Equipped Armor!,Armor,null,Light,Armor
+Hide Armor,Made of animal skin,99,equip_armor,Equipped Armor!,Armor,null,Light,Armor
+Chainmail,Just a normal chainmail,99,equip_armor,Equipped Armor!,Armor,null,Heavy,Armor

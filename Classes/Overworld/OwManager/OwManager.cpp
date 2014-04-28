@@ -125,24 +125,21 @@ bool OwManager::init(OverworldScene * scene, const string& tmxDir, int startX, i
 
 	// inventory test cases
 	Inventory * inv = Player::getInstance().getInventory();
-	inv->addItem(POTION);
+	inv->addItem(CHILI);
 	inv->addItem(PLAIN_WATER);
 	inv->addItem(PLAIN_WATER);
 	inv->addItem(PLAIN_WATER);
-	inv->addItem(POTION);
-	inv->addItem(POTION);
+	inv->addItem(CHILI);
+	inv->addItem(CHILI);
 	inv->addItem(PLAIN_WATER);
 	inv->addItem(SWORD);
 	inv->addItem(PLAIN_WATER);
-	inv->addItem(POTION);
-	inv->addItem(POTION);
-	inv->addItem(POTION);
+	inv->addItem(CHILI);
+	inv->addItem(CHILI);
+	inv->addItem(CHILI);
 
-	inv->addItem(POTION, 0);
 	inv->addItem(PLAIN_WATER, 4);
 	inv->addItem(SWORD); 
-	inv->addItem(PLAIN_WATER);
-	inv->addItem(PLAIN_WATER, 0);
 	inv->addItem(PLAIN_WATER, 4);
 
 
@@ -153,6 +150,11 @@ bool OwManager::init(OverworldScene * scene, const string& tmxDir, int startX, i
 	//temp->equipArmor(CHAINMAIL); //fail
 	//temp->equipWeapon(SWORD); // succeed
 
+	// add one of every time
+	for (  int i = 1; i < ItemEnum::NUM_ITEMS; ++i )
+	{
+		inv->addItem( (ItemEnum)i);
+	}
 
 	CCLuaEngine::defaultEngine()->executeGlobalFunction("createOverworldMenu");
 

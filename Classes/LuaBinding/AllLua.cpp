@@ -1,6 +1,6 @@
 /*
 ** Lua binding: AllLua
-** Generated automatically by tolua++-1.0.92 on 04/18/14 15:21:32.
+** Generated automatically by tolua++-1.0.92 on 04/23/14 23:00:25.
 */
 
 #ifndef __cplusplus
@@ -2112,11 +2112,27 @@ TOLUA_API int tolua_AllLua_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_constant(tolua_S,"EMPTY",EMPTY);
   tolua_constant(tolua_S,"PLAIN_WATER",PLAIN_WATER);
-  tolua_constant(tolua_S,"POTION",POTION);
-  tolua_constant(tolua_S,"HI_POTION",HI_POTION);
+  tolua_constant(tolua_S,"CHILI",CHILI);
+  tolua_constant(tolua_S,"DASHI",DASHI);
+  tolua_constant(tolua_S,"ITEM_1",ITEM_1);
+  tolua_constant(tolua_S,"ITEM_2",ITEM_2);
+  tolua_constant(tolua_S,"ITEM_3",ITEM_3);
+  tolua_constant(tolua_S,"ITEM_4",ITEM_4);
+  tolua_constant(tolua_S,"ITEM_5",ITEM_5);
+  tolua_constant(tolua_S,"ITEM_6",ITEM_6);
   tolua_constant(tolua_S,"SWORD",SWORD);
   tolua_constant(tolua_S,"KATANA",KATANA);
   tolua_constant(tolua_S,"SPEAR",SPEAR);
+  tolua_constant(tolua_S,"WEAPON1",WEAPON1);
+  tolua_constant(tolua_S,"WEAPON2",WEAPON2);
+  tolua_constant(tolua_S,"WEAPON3",WEAPON3);
+  tolua_constant(tolua_S,"WEAPON4",WEAPON4);
+  tolua_constant(tolua_S,"WEAPON5",WEAPON5);
+  tolua_constant(tolua_S,"WEAPON6",WEAPON6);
+  tolua_constant(tolua_S,"WEAPON7",WEAPON7);
+  tolua_constant(tolua_S,"WEAPON8",WEAPON8);
+  tolua_constant(tolua_S,"WEAPON9",WEAPON9);
+  tolua_constant(tolua_S,"T_SHIRT",T_SHIRT);
   tolua_constant(tolua_S,"HIDE_ARMOR",HIDE_ARMOR);
   tolua_constant(tolua_S,"CHAINMAIL",CHAINMAIL);
   tolua_constant(tolua_S,"NUM_ITEMS",NUM_ITEMS);

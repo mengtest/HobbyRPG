@@ -108,6 +108,7 @@ void Character::regulateHP()
 	}
 }
 
+
 bool Character::equipArmor(ItemEnum armor)
 {
 	if ( ItemManager::getInstance().getItemStat(armor, ARMOR_TYPE ).compare( getInfo(ARMOR)) <= 0 )

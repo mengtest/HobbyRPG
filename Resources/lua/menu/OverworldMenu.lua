@@ -58,6 +58,7 @@ initEquipCharPage = function(char_id)
 	local ITEM_START_Y = SCREEN_HEIGHT - DESC_HEIGHT - ITEM_HEIGHT / 2
 	local ITEM_COLS = 2;
 	local ITEM_MIN_ROWS = 5;
+	local ITEM_EXTRA_ROWS = 3;
 	local ITEM_WORD_OFFSET = 24
 	local ITEM_STACK_OFFSET = 200
 
@@ -90,9 +91,14 @@ initEquipCharPage = function(char_id)
 	local refreshable_count = 0;
 	local itemButtonList;
 	local inventoryIndexList;
+	local itemList_overshot_y = 0;
+	local itemListHeight = 0;
+	local itemListNode;
+	local current_list_position_y = ITEM_START_Y;
+	local total_items = -1;
 
 	local function refresh()
-		currentSelection = null;
+		currentSelection = null;	
 		local j = 0;
 		-- kill all refreshables;
 		while j < refreshable_count do
@@ -103,7 +109,6 @@ initEquipCharPage = function(char_id)
 		local equip_weapon = Player:getInstance():getParty():getCharacterAtSlot(char_id):getWeapon();
 		local equip_armor = Player:getInstance():getParty():getCharacterAtSlot(char_id):getArmor();
 		local equip_ring = Player:getInstance():getParty():getCharacterAtSlot(char_id):getRing();
-
 
 		refreshable_count = 0;
 		local weapon_name = CCLabelBMFont:create("Weapon: " .. ItemManager:getInstance():getItemStat(equip_weapon, NAME), FONT );
@@ -127,9 +132,7 @@ initEquipCharPage = function(char_id)
 		refreshables[refreshable_count] = ring_name;
 		refreshable_count = refreshable_count + 1;
 
-		local itemListNode = CCNode:create();
-		local itemListHeight = 0;
-		local itemList_overshot_y = 0;
+		itemListNode = CCNode:create();
 		itemButtonList = {} -- list of buttons
 		inventoryIndexList = {} -- corresponding inventory index for each button in itemButtonList
 		local max = Player:getInstance():getInventory():getInventorySize();
@@ -141,51 +144,100 @@ initEquipCharPage = function(char_id)
 		local k = 0; -- 
 		local j = PLAIN_WATER; -- enum iterator
 		
-		itemListNode:setPosition(ITEM_START_X, ITEM_START_Y );
-		while i < max do
+		local function addButton( x, y, width, height, text, stacks )
 			local itemBack = CCScale9Sprite:createWithSpriteFrameName("menu_background.png");
 			itemBack:setContentSize( CCSizeMake(ITEM_WIDTH, ITEM_HEIGHT) );
-			itemBack:setPosition( 0, ITEM_HEIGHT * -i );
-			itemListNode:addChild(itemBack);
+			itemBack:setPosition( x, y );
+		
+			local font_x = x;
+			local font_y = y;
 
+			local itemFont = CCLabelBMFont:create("" .. text, FONT );	
+			itemFont:setAnchorPoint(ccp(0, 0.5));
+			itemFont:setPosition(-width / 2 + ITEM_WORD_OFFSET + font_x, font_y );
+
+			if ( stacks ~= "" ) then 
+				local itemStack = CCLabelBMFont:create("x" .. stacks, FONT );
+				itemStack:setAnchorPoint(ccp(0, 0.5));
+				itemStack:setPosition( -width / 2 + ITEM_STACK_OFFSET + font_x, font_y);
+				itemListNode:addChild(itemStack);	
+			end
+
+			itemListNode:addChild(itemBack)
+			itemListNode:addChild(itemFont);
+		
+
+			return itemBack;
+		end
+
+		itemListNode:setPosition(ITEM_START_X, ITEM_START_Y );
+		while i < max do
 			if ( j < NUM_ITEMS ) then
 				local stacks = Player:getInstance():getInventory():getItemByIndex(j);
 				if ( stacks > 0 ) then
 					local itemType = ItemManager:getInstance():getItemStat( j, ITEM_TYPE );
 					if ( itemType ~= "Item" ) then
-						local itemName = ItemManager:getInstance():getItemStat( j,NAME );
-
-						local font_x = ITEM_WIDTH * (k % 2);
-						local font_y = -ITEM_HEIGHT * math.floor(k / 2);
-
-						local itemFont = CCLabelBMFont:create("" .. itemName, FONT );	
-						itemFont:setAnchorPoint(ccp(0, 0.5));
-						itemFont:setPosition(-ITEM_WIDTH / 2 + ITEM_WORD_OFFSET + font_x, font_y );
-
-						local itemStack = CCLabelBMFont:create("x" .. stacks, FONT );
-						itemStack:setAnchorPoint(ccp(0, 0.5));
-						itemStack:setPosition( -ITEM_WIDTH / 2 + ITEM_STACK_OFFSET + font_x, font_y);
-
-						itemListNode:addChild(itemFont);
-						itemListNode:addChild(itemStack);
+						local x = 0;
+						local y = -ITEM_HEIGHT * k
+						local itemName = ItemManager:getInstance():getItemStat( j, NAME );
+						local newButton = addButton( x, y, ITEM_WIDTH, ITEM_HEIGHT, itemName, stacks )
 						inventoryIndexList[k] = j
-						k = k + 1;			
+						--itemListHeight = itemListHeight + ITEM_HEIGHT / 2;
+						itemButtonList[k] = newButton;
+						k = k + 1;	
 					end
 				end
-
 				j = j + 1;
 			end
-			itemListHeight = itemListHeight + ITEM_HEIGHT / 2;
-			itemButtonList[i] = itemBack;
 			i = i + 1;	
 		end
-	
+
+		while k < ITEM_MIN_ROWS * 2 do
+			local x = 0;
+			local y = -ITEM_HEIGHT * k;
+			local newButton = addButton( x, y, ITEM_WIDTH, ITEM_HEIGHT, "", "" )
+			k = k + 1;
+		end
+
+		if total_items == -1 then -- fill up to the initial amount so that we don't have buttons 'magically' disappearing
+			total_items = k;
+		else
+			while k < total_items do
+				local x = 0;
+				local y = -ITEM_HEIGHT * k;
+				local newButton = addButton( x, y, ITEM_WIDTH, ITEM_HEIGHT, "", "" )
+				k = k + 1;
+			end
+		end
+
+		itemListHeight =  ITEM_HEIGHT * k;
+		itemListNode:setPositionY(current_list_position_y); -- set to old position if any
 		gameMenuLayer:addChild(itemListNode);
+
 		refreshables[refreshable_count] = itemListNode;
 		refreshable_count = refreshable_count + 1;
+
+		itemList_overshot_y = -( SCREEN_HEIGHT - BACK_HEIGHT - DESC_HEIGHT - itemListHeight ) ;
+		
+
 	end
 
 	refresh();
+
+	local slider = CCControlSlider:create("sprites/sliderTrack.png", "sprites/sliderTrack.png", "sprites/sliderThumb.png");
+	slider:setPosition(SLIDER_X, SLIDER_Y);
+	slider:setMinimumValue(0);
+	slider:setMaximumValue(1);
+	slider:setValue(0);
+	slider:setScale(0.5);
+	slider:setRotation(90);
+
+	local function sliderCallback()
+		current_list_position_y = ( slider:getValue()  ) * ( ITEM_START_Y + itemList_overshot_y) + ( 1 - slider:getValue() ) * ITEM_START_Y ;
+		itemListNode:setPositionY(current_list_position_y);
+	end
+	slider:addHandleOfControlEvent(sliderCallback, CCControlEventValueChanged);
+	gameMenuLayer:addChild(slider);	
 
 	local descButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
 	descButton:setContentSize(CCSizeMake(DESC_WIDTH, DESC_HEIGHT));
@@ -194,6 +246,8 @@ initEquipCharPage = function(char_id)
 	descFont:setPosition(ccp(DESC_WIDTH / 2, SCREEN_HEIGHT - DESC_HEIGHT / 2));
 	gameMenuLayer:addChild(descButton);
 	gameMenuLayer:addChild(descFont);
+	gameMenuLayer:reorderChild(descButton, 8); --reorder to prevent refresh() to overlap
+	gameMenuLayer:reorderChild(descFont, 9);	--reorder to prevent refresh() to overlap
 
 	local backButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
 	backButton:setContentSize(CCSizeMake(BACK_WIDTH, BACK_HEIGHT));
@@ -206,19 +260,28 @@ initEquipCharPage = function(char_id)
 	gameMenuLayer:reorderChild(backFont, 11);	--reorder to prevent refresh() to overlap
 	
 	-- ???? ---
-	local function equip_weapon(party_slot, item)
-		c = Player:getInstance():getParty():getCharacterAtSlot(party_slot);
-		i = Player:getInstance():getInventory();
-		rhs = c:getWeapon();
-	
-		if c:equipWeapon(item) == true then
+	local function equip(party_slot, item)
+		local c = Player:getInstance():getParty():getCharacterAtSlot(party_slot);
+		local i = Player:getInstance():getInventory();
+		local type = ItemManager:getInstance():getItemStat( item, ITEM_TYPE);
+
+		if ( type == "Weapon" ) then
+			local equipped = c:getWeapon();
+			c:equipWeapon(item);
 			i:removeItem(item);
-			if rhs ~= EMPTY then
-				i:addItem(rhs);
-			end
-			return 1;
+			i:addItem(equipped);
+		elseif (type == "Armor") then
+			local equipped = c:getArmor();
+			c:equipArmor(item);
+			i:removeItem(item);
+			i:addItem(equipped);
+		elseif ( type == "Ring") then
+			local equipped = c:getRing();
+			c:equipRing(item);
+			i:removeItem(item);
+			i:addItem(equipped);
 		else
-			return 0;
+			cclog("None!");
 		end
 	end
 
@@ -232,7 +295,7 @@ initEquipCharPage = function(char_id)
 				end
 
 				if currentSelection == v then
-					equip_weapon(char_id, inventoryIndexList[i]);
+					equip(char_id, inventoryIndexList[i]);
 					refresh();
 					return
 				end
@@ -578,66 +641,71 @@ initItemPage = function()
 	end
 
 	
-	local max = Player:getInstance():getInventory():getInventorySize();
-	if ( max < (ITEM_MIN_ROWS * 2) ) then
-		max = ITEM_MIN_ROWS * 2;
-	end
 
+	
+	local max = Player:getInstance():getInventory():getInventorySize();
 	local i = 0; -- main iterator
 	local k = 0; -- 
 	local j = PLAIN_WATER; -- enum iterator
 	local itemListNode = CCNode:create();
 	local itemListHeight = 0;
 
-	itemListNode:setPosition(ITEM_START_X, ITEM_START_Y );
-	while i < max do
-		local x = ITEM_WIDTH * (i % 2);
-		local y = -ITEM_HEIGHT * math.floor(i / 2);
-
+	local function addButton( x, y, width, height, text, stacks )
 		local itemBack = CCScale9Sprite:createWithSpriteFrameName("menu_background.png");
 		itemBack:setContentSize( CCSizeMake(ITEM_WIDTH, ITEM_HEIGHT) );
 		itemBack:setPosition( x, y );
-		itemListNode:addChild(itemBack)
-
 		
+		local font_x = x;
+		local font_y = y;
+
+		local itemFont = CCLabelBMFont:create("" .. text, FONT );	
+		itemFont:setAnchorPoint(ccp(0, 0.5));
+		itemFont:setPosition(-width / 2 + ITEM_WORD_OFFSET + font_x, font_y );
+
+		if ( stacks ~= "" ) then 
+			local itemStack = CCLabelBMFont:create("x" .. stacks, FONT );
+			itemStack:setAnchorPoint(ccp(0, 0.5));
+			itemStack:setPosition( -width / 2 + ITEM_STACK_OFFSET + font_x, font_y);
+			itemListNode:addChild(itemStack);	
+		end
+
+		itemListNode:addChild(itemBack)
+		itemListNode:addChild(itemFont);
+		
+
+		return itemBack;
+	end
+
+	itemListNode:setPosition(ITEM_START_X, ITEM_START_Y );
+	while i < max do
 		if ( j < NUM_ITEMS ) then
 			local stacks = Player:getInstance():getInventory():getItemByIndex(j);
 			if ( stacks > 0 ) then
 				local itemType = ItemManager:getInstance():getItemStat( j, ITEM_TYPE );
 				if ( itemType == "Item" ) then
-					local itemName = ItemManager:getInstance():getItemStat( j,NAME );
-
-					local font_x = ITEM_WIDTH * (k % 2);
-					local font_y = -ITEM_HEIGHT * math.floor(k / 2);
-
-					local itemFont = CCLabelBMFont:create("" .. itemName, FONT );	
-					itemFont:setAnchorPoint(ccp(0, 0.5));
-					itemFont:setPosition(-ITEM_WIDTH / 2 + ITEM_WORD_OFFSET + font_x, font_y );
-
-					local itemStack = CCLabelBMFont:create("x" .. stacks, FONT );
-					itemStack:setAnchorPoint(ccp(0, 0.5));
-					itemStack:setPosition( -ITEM_WIDTH / 2 + ITEM_STACK_OFFSET + font_x, font_y);
-
-					itemListNode:addChild(itemFont);
-					itemListNode:addChild(itemStack);
+					local x = ITEM_WIDTH * (k % 2);
+					local y = -ITEM_HEIGHT * math.floor(k / 2);
+					local itemName = ItemManager:getInstance():getItemStat( j, NAME );
+					local newButton = addButton( x, y, ITEM_WIDTH, ITEM_HEIGHT, itemName, stacks )
 					inventoryIndexList[k] = j
-					k = k + 1;			
+					--itemListHeight = itemListHeight + ITEM_HEIGHT / 2;
+					itemButtonList[k] = newButton;
+					k = k + 1;	
 				end
 			end
-
 			j = j + 1;
 		end
-
-			
-		
-		itemListHeight = itemListHeight + ITEM_HEIGHT / 2;
-
-		--table.insert(itemButtonList, itemBack)
-		itemButtonList[i] = itemBack;
 		i = i + 1;	
 	end
 
+	while k < ITEM_MIN_ROWS * 2 do
+		local x = ITEM_WIDTH * (k % 2);
+		local y = -ITEM_HEIGHT * math.floor(k / 2);
+		local newButton = addButton( x, y, ITEM_WIDTH, ITEM_HEIGHT, "", "" )
+		k = k + 1;
+	end
 
+	itemListHeight =  ITEM_HEIGHT / 2 * k;
 	gameMenuLayer:addChild(itemListNode);
 
 	local backButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));

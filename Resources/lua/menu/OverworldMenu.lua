@@ -55,12 +55,19 @@ initEquipCharPage = function(char_id)
 	local ITEM_WIDTH = 256
 	local ITEM_HEIGHT = 52.8
 	local ITEM_START_X = SCREEN_WIDTH * 3 / 4;
-	local ITEM_START_Y = SCREEN_HEIGHT - DESC_HEIGHT - ITEM_HEIGHT / 2
+	local ITEM_START_Y = SCREEN_HEIGHT - DESC_HEIGHT - ITEM_HEIGHT / 2 - ITEM_HEIGHT;
 	local ITEM_COLS = 2;
 	local ITEM_MIN_ROWS = 5;
 	local ITEM_EXTRA_ROWS = 3;
 	local ITEM_WORD_OFFSET = 24
 	local ITEM_STACK_OFFSET = 200
+
+	local FILTER_WIDTH = ITEM_WIDTH / 4;
+	local FILTER_HEIGHT = ITEM_HEIGHT;
+	local FILTER_START_X = ITEM_START_X - ITEM_WIDTH / 2 + FILTER_WIDTH / 2;
+	local FILTER_START_Y = SCREEN_HEIGHT - DESC_HEIGHT - ITEM_HEIGHT / 2;
+
+	local backBool = false;
 
 	local gameMenuLayer = CCLayer:create()
 
@@ -96,9 +103,13 @@ initEquipCharPage = function(char_id)
 	local itemListNode;
 	local current_list_position_y = ITEM_START_Y;
 	local total_items = -1;
+	local currentSelection = null;	
+	local currentFilter = null;
+	local filterList = {}
+	local prevRefreshType = "all";
 
-	local function refresh()
-		currentSelection = null;	
+	local function refresh(type)
+		prevRefreshType = type;
 		local j = 0;
 		-- kill all refreshables;
 		while j < refreshable_count do
@@ -177,14 +188,16 @@ initEquipCharPage = function(char_id)
 				if ( stacks > 0 ) then
 					local itemType = ItemManager:getInstance():getItemStat( j, ITEM_TYPE );
 					if ( itemType ~= "Item" ) then
-						local x = 0;
-						local y = -ITEM_HEIGHT * k
-						local itemName = ItemManager:getInstance():getItemStat( j, NAME );
-						local newButton = addButton( x, y, ITEM_WIDTH, ITEM_HEIGHT, itemName, stacks )
-						inventoryIndexList[k] = j
-						--itemListHeight = itemListHeight + ITEM_HEIGHT / 2;
-						itemButtonList[k] = newButton;
-						k = k + 1;	
+						if ( itemType == type or type == "all" ) then
+							local x = 0;
+							local y = -ITEM_HEIGHT * k
+							local itemName = ItemManager:getInstance():getItemStat( j, NAME );
+							local newButton = addButton( x, y, ITEM_WIDTH, ITEM_HEIGHT, itemName, stacks )
+							inventoryIndexList[k] = j
+							--itemListHeight = itemListHeight + ITEM_HEIGHT / 2;
+							itemButtonList[k] = newButton;
+							k = k + 1;	
+						end
 					end
 				end
 				j = j + 1;
@@ -222,7 +235,7 @@ initEquipCharPage = function(char_id)
 
 	end
 
-	refresh();
+	refresh("all");
 
 	local slider = CCControlSlider:create("sprites/sliderTrack.png", "sprites/sliderTrack.png", "sprites/sliderThumb.png");
 	slider:setPosition(SLIDER_X, SLIDER_Y);
@@ -238,6 +251,35 @@ initEquipCharPage = function(char_id)
 	end
 	slider:addHandleOfControlEvent(sliderCallback, CCControlEventValueChanged);
 	gameMenuLayer:addChild(slider);	
+
+	local filterAll = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
+	filterAll:setContentSize(CCSizeMake(FILTER_WIDTH, FILTER_HEIGHT));
+	filterAll:setPosition(ccp( FILTER_START_X, FILTER_START_Y ));
+	gameMenuLayer:addChild(filterAll);
+	gameMenuLayer:reorderChild(filterAll, 12); --reorder to prevent refresh() to overlap
+
+	local filterWeapon = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
+	filterWeapon:setContentSize(CCSizeMake(FILTER_WIDTH, FILTER_HEIGHT));
+	filterWeapon:setPosition(ccp( FILTER_START_X + FILTER_WIDTH, FILTER_START_Y ));
+	gameMenuLayer:addChild(filterWeapon);
+	gameMenuLayer:reorderChild(filterWeapon, 13); --reorder to prevent refresh() to overlap
+
+	local filterArmor = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
+	filterArmor:setContentSize(CCSizeMake(FILTER_WIDTH, FILTER_HEIGHT));
+	filterArmor:setPosition(ccp( FILTER_START_X + FILTER_WIDTH * 2, FILTER_START_Y));
+	gameMenuLayer:addChild(filterArmor);
+	gameMenuLayer:reorderChild(filterArmor, 14); --reorder to prevent refresh() to overlap
+
+	local filterRing = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
+	filterRing:setContentSize(CCSizeMake(FILTER_WIDTH, FILTER_HEIGHT));
+	filterRing:setPosition(ccp( FILTER_START_X + FILTER_WIDTH * 3, FILTER_START_Y ));
+	gameMenuLayer:addChild(filterRing);
+	gameMenuLayer:reorderChild(filterRing, 15); --reorder to prevent refresh() to overlap
+
+	filterList[0] = filterAll;
+	filterList[1] = filterWeapon;
+	filterList[2] = filterArmor;
+	filterList[3] = filterRing;
 
 	local descButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
 	descButton:setContentSize(CCSizeMake(DESC_WIDTH, DESC_HEIGHT));
@@ -286,7 +328,15 @@ initEquipCharPage = function(char_id)
 	end
 
 	local function processTouchBegan(x, y)
+		if checkWithin(backButton, x, y) then
+			backButton:initWithSpriteFrameName("menu_background_selected.png");
+			backButton:setContentSize( CCSizeMake( BACK_WIDTH, BACK_HEIGHT) );
+			backBool = true;
+			return;
+		end
+		
 		local i = 0;
+		-- buttons
 		for k, v in pairs(itemButtonList) do
 			if checkWithin( v, x, y, v:getParent() ) then
 				if currentSelection ~= null then 
@@ -296,7 +346,8 @@ initEquipCharPage = function(char_id)
 
 				if currentSelection == v then
 					equip(char_id, inventoryIndexList[i]);
-					refresh();
+					refresh(prevRefreshType);
+					currentSelection = null;
 					return
 				end
 
@@ -309,20 +360,57 @@ initEquipCharPage = function(char_id)
 				currentSelection = v;
 				return;
 			end
-
 			i = i + 1;
 		end
+
+		-- filters
+		local j = 0; --lazy method
+		for k, v in pairs(filterList) do
+			if checkWithin( v, x, y, v:getParent() ) then
+				if filterSelection ~= null then 
+					filterSelection:initWithSpriteFrameName("menu_background.png");
+					filterSelection:setContentSize( CCSizeMake( FILTER_WIDTH, FILTER_HEIGHT) );
+				end
+
+				if filterSelection == v then
+					if ( j == 0 ) then -- show all 
+						refresh("all");
+					elseif (j == 1 ) then -- filter weapon
+						refresh("Weapon");
+					elseif ( j == 2 ) then -- filter armor
+						refresh("Armor");
+					elseif ( j == 3 ) then -- filter ring
+						refresh("Ring");
+					end
+					return
+				end
+
+				v:initWithSpriteFrameName("menu_background_selected.png");
+				v:setContentSize( CCSizeMake( FILTER_WIDTH, FILTER_HEIGHT) );
+				filterSelection = v;
+				return;
+			end
+			j = j+1
+		end
+
+
+		
 	end
 
 	local function processTouchMoved(x, y)
 	end
 
 	local function processTouchEnded(x, y)
-		if checkWithin(backButton, x, y) then
+		if checkWithin(backButton, x, y) and backBool == true then
 			removeSelf()
 			initEquipPage();
 			return;
 		end
+
+		backButton:initWithSpriteFrameName("menu_background.png");
+		backButton:setContentSize( CCSizeMake( BACK_WIDTH, BACK_HEIGHT) );
+		backBool = false;
+		
 	end
 
 	local function onTouch(eventType, x, y)
@@ -344,10 +432,9 @@ initEquipCharPage = function(char_id)
 	OwManager:getInstance():addChildToUILayer(gameMenuLayer);
 end
 
-
 initEquipPage = function()
 	local gameMenuLayer = CCLayer:create()
-
+	
 	local function removeSelf()
 		gameMenuLayer:unregisterScriptTouchHandler()
 		OwManager:getInstance():removeChildFromUILayer(gameMenuLayer)
@@ -366,6 +453,9 @@ initEquipPage = function()
 	local CHARACTER_BACK_OFFSET = CHARACTER_BACK_HEIGHT;
 	local CHARACTER_SPRITE_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + 50;
 	local CHARACTER_SPRITE_Y = CHARACTER_HP_Y;
+
+	local backBool = false;
+	local currentSelection;
 
 	local descButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
 	descButton:setContentSize(CCSizeMake(DESC_WIDTH, DESC_HEIGHT));
@@ -436,26 +526,53 @@ initEquipPage = function()
 	refresh();
 
 	local function processTouchBegan(x, y)
-	end
-
-	local function processTouchMoved(x, y)
-	end
-
-	local function processTouchEnded(x, y)
 		if checkWithin(backButton, x, y) then
-			removeSelf();
-			initMenuPage();
+			backButton:initWithSpriteFrameName("menu_background_selected.png");
+			backButton:setContentSize( CCSizeMake( BACK_WIDTH, BACK_HEIGHT) );
+			backBool = true;
 			return;
 		end
 
 		local i = 0;
 		for k, v in pairs(characterButtons) do
 			if checkWithin( v, x, y ) then
-				removeSelf();
-				initEquipCharPage(i)
+				if currentSelection ~= null then 
+					currentSelection:initWithSpriteFrameName("menu_background.png");
+					currentSelection:setContentSize( CCSizeMake( CHARACTER_BACK_WIDTH, CHARACTER_BACK_HEIGHT) );
+				end
+
+				if currentSelection == v then
+					removeSelf();
+					initEquipCharPage(i)
+					currentSelection = null;
+					return
+				end
+
+				v:initWithSpriteFrameName("menu_background_selected.png");
+				v:setContentSize( CCSizeMake( CHARACTER_BACK_WIDTH, CHARACTER_BACK_HEIGHT) );
+				currentSelection = v;
+				return;
+				
 			end
 			i = i + 1;
 		end
+	end
+
+	local function processTouchMoved(x, y)
+	end
+
+	local function processTouchEnded(x, y)
+		if checkWithin(backButton, x, y) and backBool == true then
+			removeSelf();
+			initMenuPage();
+			return;
+		end
+
+		
+
+		backButton:initWithSpriteFrameName("menu_background.png");
+		backButton:setContentSize( CCSizeMake( BACK_WIDTH, BACK_HEIGHT) );
+		backBool = false;
 	end
 
 	local function onTouch(eventType, x, y)
@@ -476,7 +593,6 @@ initEquipPage = function()
 
 	OwManager:getInstance():addChildToUILayer(gameMenuLayer);
 end
-
 
 initItemCharPage = function( inventory_num )
 	local gameMenuLayer = CCLayer:create()
@@ -500,6 +616,8 @@ initItemCharPage = function( inventory_num )
 	local CHARACTER_SPRITE_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + 50;
 	local CHARACTER_SPRITE_Y = CHARACTER_HP_Y;
 
+	local backBool = false;
+
 	local descButton = CCScale9Sprite:createWithSpriteFrameName("menu_background.png", CCRectMake(32,32,32,32));
 	descButton:setContentSize(CCSizeMake(DESC_WIDTH, DESC_HEIGHT));
 	descButton:setPosition(ccp(DESC_WIDTH / 2, SCREEN_HEIGHT - DESC_HEIGHT / 2));
@@ -570,17 +688,23 @@ initItemCharPage = function( inventory_num )
 	refresh();
 
 	local function processTouchBegan(x, y)
+		if checkWithin(backButton, x, y) then
+			backButton:initWithSpriteFrameName("menu_background_selected.png");
+			backButton:setContentSize( CCSizeMake( BACK_WIDTH, BACK_HEIGHT) );
+			backBool = true;
+			return;
+		end
 	end
 
 	local function processTouchMoved(x, y)
 	end
 
 	local function processTouchEnded(x, y)
-		if checkWithin(backButton, x, y) then
+		if checkWithin(backButton, x, y)  and backBool == true then
 			OwManager:getInstance():unpause()
 			gameMenuLayer:unregisterScriptTouchHandler()
 			OwManager:getInstance():removeChildFromUILayer(gameMenuLayer)
-			initMenuPage();
+			initItemPage();
 			return;
 		end
 
@@ -594,6 +718,10 @@ initItemCharPage = function( inventory_num )
 			end
 			i = i + 1;
 		end
+
+		backButton:initWithSpriteFrameName("menu_background.png");
+		backButton:setContentSize( CCSizeMake( BACK_WIDTH, BACK_HEIGHT) );
+		backBool = false;
 	end
 
 	local function onTouch(eventType, x, y)
@@ -629,6 +757,8 @@ initItemPage = function()
 	local ITEM_WORD_OFFSET = 24
 	local ITEM_STACK_START_Y = ITEM_START_Y;
 	local ITEM_STACK_OFFSET = 200
+
+	local backBool = false;
 
 	local itemList_overshot_y = 0;
 	local itemButtonList = {} -- list of buttons
@@ -755,6 +885,13 @@ initItemPage = function()
 	gameMenuLayer:addChild(slider);	
 	
 	local function processTouchBegan(x, y)
+		if checkWithin(backButton, x, y) then
+			backButton:initWithSpriteFrameName("menu_background_selected.png");
+			backButton:setContentSize( CCSizeMake( BACK_WIDTH, BACK_HEIGHT) );
+			backBool = true;
+			return;
+		end
+
 		local i = 0;
 		for k, v in pairs(itemButtonList) do
 			if checkWithin( v, x, y, v:getParent() ) then
@@ -789,7 +926,7 @@ initItemPage = function()
 
 	local function processTouchEnded(x, y)
 		
-		if checkWithin(backButton, x, y) then
+		if checkWithin(backButton, x, y) and backBool == true then
 			OwManager:getInstance():unpause()
 			gameMenuLayer:unregisterScriptTouchHandler()
 			OwManager:getInstance():removeChildFromUILayer(gameMenuLayer)
@@ -797,8 +934,9 @@ initItemPage = function()
 			return;
 		end
 		
-		local i = 0 
-		
+		backButton:initWithSpriteFrameName("menu_background.png");
+		backButton:setContentSize( CCSizeMake( BACK_WIDTH, BACK_HEIGHT) );
+		backBool = false;
 
 
 	end
@@ -876,6 +1014,7 @@ initMenuPage = function()
 	local BUTTON_START_Y = SCREEN_HEIGHT - BUTTON_HEIGHT / 2;
 	local BUTTON_OFFSET = BUTTON_HEIGHT;
 
+	local backBool = true;
 	local gameMenuLayer = CCLayer:create()
 	
 	local function removeSelf()
@@ -913,13 +1052,19 @@ initMenuPage = function()
 	gameMenuLayer:addChild(equipFont);
 
 	local function processTouchBegan(x, y)
+		if checkWithin(backButton, x, y) then
+			backButton:initWithSpriteFrameName("menu_background_selected.png");
+			backButton:setContentSize( CCSizeMake( BACK_WIDTH, BACK_HEIGHT) );
+			backBool = true;
+			return;
+		end
 	end
 
 	local function processTouchMoved(x, y)
 	end
 
 	local function processTouchEnded(x, y)
-		if checkWithin(backButton, x, y) then
+		if checkWithin(backButton, x, y) and backBool == true then
 			OwManager:getInstance():unpause()
 			removeSelf()
 			initEntryPage()
@@ -930,6 +1075,10 @@ initMenuPage = function()
 			removeSelf()
 			initEquipPage();
 		end
+
+		backButton:initWithSpriteFrameName("menu_background.png");
+		backButton:setContentSize( CCSizeMake( BACK_WIDTH, BACK_HEIGHT) );
+		backBool = false;
 
 	end
 
@@ -951,8 +1100,6 @@ initMenuPage = function()
 
 	OwManager:getInstance():addChildToUILayer(gameMenuLayer);
 end
-
-
 
 function createOverworldMenu()
 	initEntryPage()

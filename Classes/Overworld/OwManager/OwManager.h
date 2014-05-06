@@ -61,6 +61,7 @@ public:
 	void checkExit();
 	void gotoWorld( int origin_node );
 	void gotoOverworld(const std::string& name, int x, int y);
+	void gotoBattle();
 
 	void pause();
 	void unpause();

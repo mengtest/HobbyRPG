@@ -3,27 +3,23 @@
 #include "..\OwPlayerController\OwPlayerController.h"
 #include "..\OwEntities\OwAICharacter.h"
 #include "..\OwTiledMapUserData\OwTiledMapUserData.h"
-
 #include "..\OwDialogUI\OwDialogUI.h"
 #include "..\OwControlUI\OwControlUITypeB.h"
 #include "..\OwAICommands\OwAIMove.h"
+
 #include "..\..\Events\EventBase.h"
-
 #include "..\..\World\WorldScene.h"
-
 #include "..\..\Item\ItemManager.h"
 #include "..\..\Inventory\Inventory.h"
 #include "..\..\Enum\ItemEnum.h"
-
 #include "..\..\Config\Config.h"
-
 #include "..\..\Common\Common.h"
-
 #include "..\..\AI\AIHeaders.h"
+#include "..\..\Battle\BattleScene.h"
 
 #include "CCLuaEngine.h"
 
-#include "Player\Player.h"
+#include "..\..\Player\Player.h"
 #include "..\OverworldScene.h"
 #include "..\..\Events\EventManager.h"
 #include "..\..\Character\Character.h"
@@ -72,7 +68,6 @@ void OwManager::destroy()
 
 }
 
-static cocos2d::extension::CCControlSlider * slider;
 bool OwManager::init(OverworldScene * scene, const string& tmxDir, int startX, int startY)
 {
 	if ( m_isInit )
@@ -459,6 +454,13 @@ void OwManager::gotoOverworld(const std::string& name, int x, int y)
 {
 	CCLOG("[OwManager][gotoOverworld] going to: %s at X: %d, Y: %d", name.c_str(), x, y );
 	CCDirector::sharedDirector()->replaceScene( OverworldScene::scene(name, x, y) );
+}
+
+void OwManager::gotoBattle()
+{
+	CCLOG("[OwManager][gotoBattle] going to Battle!");
+	Player::getInstance().m_currentScene = m_scene;
+	CCDirector::sharedDirector()->replaceScene( BattleScene::scene() );
 }
 
 void OwManager::pause()

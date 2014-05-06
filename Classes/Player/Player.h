@@ -6,6 +6,7 @@
 class Inventory;
 class Party;
 class Character;
+class OverworldScene;
 class Player
 {
 public:
@@ -13,6 +14,8 @@ public:
 	inline Inventory * getInventory() { return m_inventory; }
 	inline Party * getParty() { return m_party; }
 	inline Character * getCharacter(const char * name ) { return m_characterMap.find(name)->second; }
+
+	OverworldScene * m_currentScene;
 
 private:
 	// Singleton Stuff

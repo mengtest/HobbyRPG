@@ -100,6 +100,12 @@
     <Filter Include="Lua\menu">
       <UniqueIdentifier>{caaad21c-89e0-4245-b827-407f9f8997d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Battle">
+      <UniqueIdentifier>{8d487ea6-f027-4ba1-9a58-7d8df0abab6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Battle\BattleManager">
+      <UniqueIdentifier>{1542646b-67c8-4263-b6f3-5caee6e3ddac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -215,6 +221,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\LuaBinding\AllLua.cpp">
       <Filter>Classes\LuaBinding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Battle\BattleManager\BattleManager.cpp">
+      <Filter>Classes\Battle\BattleManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Battle\BattleScene.cpp">
+      <Filter>Classes\Battle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -355,6 +367,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\LuaBinding\AllLua.h">
       <Filter>Classes\LuaBinding</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Battle\BattleManager\BattleManager.h">
+      <Filter>Classes\Battle\BattleManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Battle\BattleScene.h">
+      <Filter>Classes\Battle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

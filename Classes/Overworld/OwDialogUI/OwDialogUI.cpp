@@ -8,25 +8,39 @@ OwDialogUI::OwDialogUI()
 {
 	m_scrollTimer = m_scrollDuration = 0.1f;
 	m_currentTextIndex = 0;
+	m_label = 0;
+	m_sprite = 0;
+	m_stringSize = 0;
 }
 
 bool OwDialogUI::load( const std::string& backgroundTexture )
 {
+	if ( NULL == CCEGLView::sharedOpenGLView() ) {
+		CCLOG("[OwDialogUI][load][error]: CCEGLView::sharedOpenGLView() is NULL" );
+		return false;
+	}
+
 	float screenWidth = CCEGLView::sharedOpenGLView()->getDesignResolutionSize().width;
 	float screenHeight = CCEGLView::sharedOpenGLView()->getDesignResolutionSize().height;
 	m_sprite = cocos2d::extension::CCScale9Sprite::createWithSpriteFrameName(backgroundTexture.c_str(), CCRectMake(32, 32, 32, 32));
-	if ( !m_sprite )
-	{
-		CCLOG("[OwDialogUI][load]: loading '%s' failed", backgroundTexture.c_str());
+	if ( !m_sprite ) {
+		CCLOG("[OwDialogUI][load][error]: loading '%s' failed", backgroundTexture.c_str());
 		return false;
 	}
+
+	//m_label = CCLabelTTF::create("Hello, welcome to our town!", "fonts/Marker Felt.ttf", 24,CCSizeMake(screenWidth, screenHeight * 0.3f), kCCTextAlignmentLeft);
+	m_label = CCLabelBMFont::create("Hello, welcome to our town!", "fonts/testfont.fnt");
+	if ( !m_label ) {
+		CCLOG("[OwDialogUI][load][error]: loading m_label failed");
+		return false;
+	}
+
+
 	m_sprite->setContentSize(CCSizeMake(screenWidth, screenHeight * 0.3f));
 	m_sprite->setAnchorPoint(ccp(0.f, 1.f));
 	m_sprite->setPosition(ccp(Common::getNormalizedPositionX(0.0f), Common::getNormalizedPositionY(1.f)));		
 	m_sprite->setVisible(false);
 
-	//m_label = CCLabelTTF::create("Hello, welcome to our town!", "fonts/Marker Felt.ttf", 24,CCSizeMake(screenWidth, screenHeight * 0.3f), kCCTextAlignmentLeft);
-	m_label = CCLabelBMFont::create("Hello, welcome to our town!", "fonts/testfont.fnt");
 	float offsetX = Common::getNormalizedPositionX(0.02f);
 	float offsetY = Common::getNormalizedPositionX(0.015f);
 	m_label->setScale(0.9f);
@@ -49,16 +63,17 @@ void OwDialogUI::init(const std::string& text) {
 	CCLOG("[OwDialogUI][init]: Init!");
 	
 	m_bIsDone = false;
-	
-	m_sprite->setVisible(true);
+	if ( NULL != m_sprite ) {
+		m_sprite->setVisible(true);
+	} else {
+		CCLOG("[OwDialogUI][init][error]: m_sprite is NULL");
+	}
 
 	prepareText(text);
-
 	hideAllLetters();
 }
 
-
-
+//TODO DEFEND
 void OwDialogUI::update( float dt ) { 
 	if ( getIsDone() ) 
 		return; 
@@ -91,8 +106,9 @@ void OwDialogUI::update( float dt ) {
 
 
 void OwDialogUI::processTouchBegan() { 
-	if ( getIsDone() ) 
+	if ( getIsDone() ) {
 		return; 
+	}
 
 	CCLOG("[OwDialogUI][processTouchBegan]: processTouchBegan!");
 
@@ -125,6 +141,11 @@ void OwDialogUI::processTouchBegan() {
 
 void OwDialogUI::hideAllLetters()
 {
+	if ( !m_label ) {
+		CCLOG("[OwDialogUI][hideAllLetters]: m_label is null!");
+		return;
+	}
+
 	CCObject* it = NULL;
 	CCARRAY_FOREACH(m_label->getChildren(), it)
 	{
@@ -136,13 +157,16 @@ void OwDialogUI::hideAllLetters()
 
 void OwDialogUI::showAllLetters()
 {
-	CCObject* it = NULL;
+	if ( !m_label ) {
+		CCLOG("[OwDialogUI][showAllLetters]: m_label is null!");
+		return;
+	}
 
+	CCObject* it = NULL;
 	for ( int i = 0; i < this->m_stringSize; ++i )
 	{
 		// \r ‚Æ \n –³Ž‹‚µ‚Ü‚·i‚µ‚È‚¯‚ê‚Î•s‹ï‡‚ª‚ ‚éj
-		if ( m_label->getString()[i] == '\n' )
-		{
+		if ( m_label->getString()[i] == '\n' ) {
 			++i;
 		}
 
@@ -152,6 +176,11 @@ void OwDialogUI::showAllLetters()
 
 void OwDialogUI::prepareText(const std::string& text)
 {
+	if ( !m_label ) {
+		CCLOG("[OwDialogUI][prepareText]: m_label is null!");
+		return;
+	}
+
 	m_label->setString(text.c_str());
 	m_stringSize = text.size();
 	m_bIsScrolling = true;

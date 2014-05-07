@@ -31,6 +31,7 @@ USING_NS_CC_EXT;
 
 OwManager* OwManager::instance = 0;
 
+
 OwManager::OwManager()
 	: m_isInit(false), 
 	  m_scene(0),
@@ -43,7 +44,9 @@ OwManager::OwManager()
 	 m_npcCharacter(0),
 	 m_character(0),
 	 m_eventManager(0),
-	 m_isPaused(false)
+	 m_isPaused(false),
+	 m_dialog(0),
+	 m_stateMachine(0)
 {
 }
 
@@ -81,31 +84,31 @@ bool OwManager::init(OverworldScene * scene, const string& tmxDir, int startX, i
 
 	if ( !loadTileMap( tmxDir ) )
 	{
-		CCLOG("[OwManager][init]: loadTileMap() failed!");
+		CCLOG("[OwManager][init][error]: loadTileMap() failed!");
 		return false;
 	}
 
 	if ( !loadDialog() )
 	{
-		CCLOG("[OwManager][init]: loadDialog() failed!");
+		CCLOG("[OwManager][init][error]: loadDialog() failed!");
 		return false;
 	}
 
 	if ( !loadPlayer(startX, startY) )
 	{
-		CCLOG("[OwManager][init]: loadPlayer() failed!");
+		CCLOG("[OwManager][init][error]: loadPlayer() failed!");
 		return false;
 	}
 
 	if ( !loadEntities() )
 	{
-		CCLOG("[OwManager][init]: loadEntities() failed!");
+		CCLOG("[OwManager][init][error]: loadEntities() failed!");
 		return false;
 	}
 
 	if ( !loadFSM() )
 	{
-		CCLOG("[OwManager][init]: loadFSM() failed!");
+		CCLOG("[OwManager][init][error]: loadFSM() failed!");
 		return false;
 	}
 
@@ -187,7 +190,9 @@ void OwManager::release()
 
 void OwManager::update(float dt)
 {
-	m_stateMachine->OnUpdate(dt);	
+	if ( m_stateMachine ) {
+		m_stateMachine->OnUpdate(dt);	
+	}
 }
  
 bool OwManager::loadEntities()
@@ -202,41 +207,64 @@ bool OwManager::loadEntities()
 	CCARRAY_FOREACH(objectGroup->getObjects(), it)
 	{
 		CCDictionary * its = dynamic_cast<CCDictionary*>(it);
-		CCString * name = (CCString*)its->objectForKey("name");
-		if (name && name->m_sString == "npc") // it's an npc
-        {
-            // load npc logic
-			// spawn points
-			int x = ((CCString)*its->valueForKey("x")).intValue();
-			int y = ((CCString)*its->valueForKey("y")).intValue();
+		if ( its ) 
+		{
+			CCString * name = (CCString*)its->objectForKey("name");
+			if (name && name->m_sString == "npc") // it's an npc
+			{
+				// load npc logic
+				// spawn points
+				int x = ((CCString)*its->valueForKey("x")).intValue();
+				int y = ((CCString)*its->valueForKey("y")).intValue();
 
-			this->addAICharacter(ccp(x,y), 
-								((CCString*)its->objectForKey("namae"))->m_sString, 
-								((CCString*)its->objectForKey("sprite"))->m_sString,
-								((CCString*)its->objectForKey("initial_sprite"))->m_sString ); // TODO: expose this to tmx?
+				this->addAICharacter(ccp(x,y), 
+									((CCString*)its->objectForKey("namae"))->m_sString, 
+									((CCString*)its->objectForKey("sprite"))->m_sString,
+									((CCString*)its->objectForKey("initial_sprite"))->m_sString ); // TODO: expose this to tmx?
 
-        }
+			}
+		}
 	}
 
 	return true;
 	
 }
 
+// TODO: NEEDS TO MOVE TO STATES?
 bool OwManager::processTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+	if ( !m_controlUI )	{
+		CCLOG("[OwManager][processTouchBegan][error]: m_controlUI is null");
+		return false;
+	}
+
+	if ( !m_dialog )	{
+		CCLOG("[OwManager][processTouchBegan][error]: m_dialog is null");
+		return false;
+	}
+
 	m_controlUI->processTouchBegin(pTouch, pEvent);
 	m_dialog->processTouchBegan();
     return true;
 }
   
+// TODO: NEEDS TO MOVE TO STATES?
 void OwManager::processTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-
+	if ( !m_controlUI )	{
+		CCLOG("[OwManager][processTouchEnded][error]: m_controlUI is null");
+		return;
+	}
 	m_controlUI->processTouchEnded(pTouch, pEvent);
 }
 
+// TODO: NEEDS TO MOVE TO STATES?
 void OwManager::processTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
+	if ( !m_controlUI )	{
+		CCLOG("[OwManager][processTouchMoved][error]: m_controlUI is null");
+		return;
+	}
 	m_controlUI->processTouchMoved(pTouch, pEvent);
 }
 
@@ -263,6 +291,12 @@ OwAICharacter * OwManager::addAICharacter(CCPoint position, const string& name, 
 
 void OwManager::addEvent( EventBase * event )
 {
+	if ( !m_eventManager )
+	{
+		CCLOG("[OwManager][addEvent][error]: m_eventManager is null");
+		return;
+	}
+
 	m_eventManager->addEvent(event);
 }
 
@@ -279,22 +313,60 @@ OwAICharacter* OwManager::getAICharacterByName(const string& name)
   
 void OwManager::addChildToGameLayer( cocos2d::CCNode * obj )
 {
-    m_scene->getGameLayer()->addChild(obj);
+	if ( !m_scene ) { 
+		CCLOG("[OwManager][addChildToGameLayer][error]: m_scene is null");
+		return;
+	}
+
+	CCLayer * gameLayer = m_scene->getGameLayer();
+	if ( !gameLayer ) { 
+		CCLOG("[OwManager][addChildToGameLayer][error]: gameLayer is null");
+		return;
+	}
+   gameLayer->addChild(obj);
 }
 
 void OwManager::addChildToUILayer( cocos2d::CCNode * obj )
 {
-    m_scene->getUILayer()->addChild(obj); 
+	if ( !m_scene ) { 
+		CCLOG("[OwManager][addChildToUILayer][error]: m_scene is null");
+		return;
+	}
+	CCLayer * uiLayer = m_scene->getUILayer();
+	if ( !uiLayer ) { 
+		CCLOG("[OwManager][addChildToUILayer][error]: uiLayer is null");
+		return;
+	}
+   uiLayer->addChild(obj);
 }
 
 void OwManager::removeChildFromGameLayer(cocos2d::CCNode * obj )
 {
-    m_scene->getGameLayer()->removeChild(obj);
+	if ( !m_scene ) { 
+		CCLOG("[OwManager][removeChildFromGameLayer][error]: m_scene is null");
+		return;
+	}
+    CCLayer * gameLayer = m_scene->getGameLayer();
+	if ( !gameLayer ) { 
+		CCLOG("[OwManager][removeChildFromGameLayer][error]: gameLayer is null");
+		return;
+	}
+	gameLayer->removeChild(obj);
 }
 
 void OwManager::removeChildFromUILayer( cocos2d::CCNode * obj )
 {
-    m_scene->getUILayer()->removeChild(obj); 
+	if ( !m_scene ) { 
+		CCLOG("[OwManager][removeChildFromUILayer][error]: m_scene is null");
+		return;
+	}
+
+   CCLayer * uiLayer = m_scene->getUILayer();
+	if ( !uiLayer ) { 
+		CCLOG("[OwManager][removeChildFromUILayer][error]: uiLayer is null");
+		return;
+	}
+   uiLayer->removeChild(obj);
 }
     
 bool OwManager::loadTileMap(const string& tmxDir)
@@ -310,7 +382,11 @@ bool OwManager::loadTileMap(const string& tmxDir)
 
 	//Metaは見たくないです.
 	m_metaLayer = m_tiledMap->layerNamed("Meta");
-	m_tiledMap->layerNamed("Meta")->setVisible(Config::getInstance().isDebug()); 
+	if ( !m_metaLayer ) 	{
+		CCLOG("[OwManager][loadTileMap][error]: m_metaLayer is null");
+		return false;
+	}
+	m_metaLayer->setVisible(Config::getInstance().isDebug()); 
 
 	// Init user data map
 	// ユーザーデーターを作成します
@@ -319,12 +395,14 @@ bool OwManager::loadTileMap(const string& tmxDir)
 
 	m_objectGroup = getTiledMap()->objectGroupNamed("Objects");
 	if(m_objectGroup == NULL){
-		CCLOG("tile map has no Objects layer");
+		CCLOG("[OwManager][loadTileMap][error]: tile map has no Objects layer");
+		return false;
 	}
 
 	m_exitGroup = getTiledMap()->objectGroupNamed("Exits");
 	if(m_exitGroup == NULL){
-		CCLOG("tile map has no Exit layer");
+		CCLOG("[OwManager][loadTileMap][error]: tile map has no Exit layer");
+		return false;
 	}
 
 	m_scene->getGameLayer()->addChild(getTiledMap());
@@ -347,8 +425,28 @@ bool OwManager::loadDialog()
 
 bool OwManager::loadPlayer(int x, int y)
 {
+	if ( !m_scene ) { 
+		CCLOG("[OwManager][loadPlayer][error]: m_scene is null");
+		return false;
+	}
+
+	if ( !m_scene->getUILayer() ) { 
+		CCLOG("[OwManager][loadPlayer][error]: m_scene->getUILayer() is null");
+		return false;
+	}
+
 	CCTMXObjectGroup * objectGroup = getTiledMap()->objectGroupNamed("Objects");
 	CCDictionary *spawnPoint = objectGroup->objectNamed("player_spawn");
+
+	if ( !objectGroup ) {
+		CCLOG("[OwManager][loadPlayer][error]: objectGroup is null");
+		return false;
+	}
+
+	if ( !spawnPoint ) {
+		CCLOG("[OwManager][loadPlayer][error]: spawnPoint is null");
+		return false;
+	}
  
 	//int tx = ((CCString)*spawnPoint->valueForKey("x")).intValue();
 	//int ty = ((CCString)*spawnPoint->valueForKey("y")).intValue();
@@ -359,6 +457,7 @@ bool OwManager::loadPlayer(int x, int y)
 	m_character = addAICharacter(ccp(x,y), "Player", "chika", "chika_front_2.png");
 	if ( m_character == 0 )
 	{
+		CCLOG("[OwManager][loadPlayer][error]: m_character is null");
 		return false;
 	}
 
@@ -367,8 +466,8 @@ bool OwManager::loadPlayer(int x, int y)
 
 	m_controlUI = new OwControlUITypeB(m_controller);
 	
-	if ( !m_controlUI->onInit() )
-	{
+	if ( !m_controlUI->onInit() ) {
+		CCLOG("[OwManager][loadPlayer][error]: m_controlUI failed to init");
 		return false;
 	}
 
@@ -418,6 +517,7 @@ void OwManager::checkExit()
 	CCTMXObjectGroup * exits = OwManager::getInstance()->getExitGroup();
 
 	if ( exits == NULL ) {
+		CCLOG("[OwManager][checkExit][error]: exits is null");
 		return;
 	}
 

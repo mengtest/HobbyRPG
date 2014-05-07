@@ -15,19 +15,23 @@ void OwManager::NORMAL_UPDATE(float dt)
 		(*beg).second->update(dt);
 	}
 
-	m_controller->update(dt);
-	m_dialog->update(dt);
-	m_controlUI->onUpdate(dt);
+	if ( m_controller )
+		m_controller->update(dt);
+	if ( m_dialog ) 
+		m_dialog->update(dt);
+	if (m_controlUI )
+		m_controlUI->onUpdate(dt);
 }
 
 bool OwManager::NORMAL_TO_EVENT()
 {
-	if ( m_eventManager )
+	if ( !m_eventManager )
 	{
-		return !m_eventManager->isEmpty();
+		CCLOG("[OwManager][EVENT_TO_NORMAL][error]: m_eventManager is null");
+		return false;
 	}
 
-	return false;
+	return !m_eventManager->isEmpty();
 }
 
 bool OwManager::NORMAL_TO_PAUSE()

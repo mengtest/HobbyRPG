@@ -27,12 +27,14 @@ void OwAIMove::update(float dt)
 
 bool OwAIMove::isDone()
 {
-	if ( m_nStepsCount >= m_nSteps && !m_controller->isMoving() ) 
+	if ( m_controller) 
 	{
-		//Log::getInstance().log("OwAIMove", "Stop Moving Left");
-		m_nStepsCount = 0;
-		return true;
+		if ( m_nStepsCount >= m_nSteps && !m_controller->isMoving() ) 
+		{
+			//Log::getInstance().log("OwAIMove", "Stop Moving Left");
+			m_nStepsCount = 0;
+			return true;
+		}
 	}
-
 	return false;
 }

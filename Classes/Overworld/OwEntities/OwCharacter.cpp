@@ -29,6 +29,11 @@ void OwCharacter::update(float dt)
 
 void OwCharacter::updateMovement(float dt)
 {
+	if ( !m_sprite ) {
+		CCLOG("[OwCharacter][updateMovement][error]: m_sprite is null!");
+		return;
+	}
+
 	if ( m_bIsMoving ) // movement state
 	{
 		m_moveTime += dt;
@@ -51,6 +56,11 @@ void OwCharacter::updateMovement(float dt)
 
 void OwCharacter::stopAnimations()
 {
+	if ( !m_sprite ) {
+		CCLOG("[OwCharacter][stopAnimations][error]: m_sprite is null!");
+		return;
+	}
+
 	// ƒAƒjƒƒVƒ‡ƒ“‚ðŽ~‚Ü‚ê
 	if ( m_action )
 	{
@@ -75,6 +85,11 @@ bool OwCharacter::stop( DirectionEnum type )
 
 bool OwCharacter::face( DirectionEnum type )
 {
+	if ( !m_sprite ) {
+		CCLOG("[OwCharacter][face][error]: m_sprite is null!");
+		return false;
+	}
+
 	string spriteStr;
 	switch ( type )
 	{
@@ -101,6 +116,11 @@ bool OwCharacter::face( DirectionEnum type )
 
 bool OwCharacter::move( DirectionEnum type )
 {
+	if ( !m_sprite ) {
+		CCLOG("[OwCharacter][move][error]: m_sprite is null!");
+		return false;
+	}
+
 	if ( m_bIsMoving ) { 
 		return false;
 	}
@@ -128,7 +148,11 @@ bool OwCharacter::move( DirectionEnum type )
 	}
 
 	OwManager * mgr = OwManager::getInstance();
-	
+	if ( !mgr ) {
+		CCLOG("[OwCharacter][move][error]: mgr is null!");
+		return false;
+	}
+
 	// Predicted position (move 1 tile left)
 	CCPoint prediction( getTileCenter( ccp(getPosition().x + x * mgr->getTiledMap()->getTileSize().width, 
 										   getPosition().y + y * mgr->getTiledMap()->getTileSize().height)));
@@ -149,7 +173,16 @@ bool OwCharacter::move( DirectionEnum type )
 	// Animate!
 	stopAnimations();
 	CCAnimation * animation = CCAnimationCache::sharedAnimationCache()->animationByName(( m_spriteName + "_walk_" + spriteStr).c_str());  
+	if ( !animation ) {
+		CCLOG("[OwCharacter][move][error]: animation is null!");
+		return false;
+	}
+
 	m_action = CCRepeatForever::create(CCAnimate::create(animation)); 
+	if ( !m_action ) {
+		CCLOG("[OwCharacter][move][error]: m_action is null!");
+		return false;
+	}
 	m_sprite->runAction(m_action);
 	
 	

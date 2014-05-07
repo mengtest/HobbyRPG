@@ -106,6 +106,9 @@
     <Filter Include="Classes\Battle\BattleManager">
       <UniqueIdentifier>{1542646b-67c8-4263-b6f3-5caee6e3ddac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Battle\BattleCharacter">
+      <UniqueIdentifier>{ec37737d-b968-43dd-8a56-527fae5c6aae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

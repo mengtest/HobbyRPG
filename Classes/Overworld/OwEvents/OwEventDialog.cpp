@@ -20,7 +20,18 @@ OwEventDialog::OwEventDialog(const std::string& text, OwEntityBase * lhs, OwEnti
 
 void OwEventDialog::addPage(const std::string& text)
 {
-	OwManager::getInstance()->getDialog()->addPage(text);
+	OwManager * mgr = OwManager::getInstance();
+	if ( !mgr ) {
+		CCLOG("[OwEventDialog][addPage][error]: mgr is null!");
+		return;
+	}
+
+	if ( !mgr->getDialog() ) {
+		CCLOG("[OwEventDialog][addPage][error]: mgr->getDialog() is null!");
+		return;
+	}
+
+	mgr->getDialog()->addPage(text);
 }
 
 void OwEventDialog::update(float dt)
@@ -30,8 +41,19 @@ void OwEventDialog::update(float dt)
 
 void OwEventDialog::init()
 {
+	OwManager * mgr = OwManager::getInstance();
+	if ( !mgr ) {
+		CCLOG("[OwEventDialog][init][error]: mgr is null!");
+		return;
+	}
+
+	if ( !mgr->getDialog() ) {
+		CCLOG("[OwEventDialog][init][error]: mgr->getDialog() is null!");
+		return;
+	}
+
 	CCLOG("[OwEventDialog][init]: Initialized!");
-	OwManager::getInstance()->getDialog()->init(m_text.c_str());
+	mgr->getDialog()->init(m_text.c_str());
 
 	if ( m_lhs )
 		m_lhs->callback("pause",0);
@@ -50,5 +72,16 @@ void OwEventDialog::free()
 
 bool OwEventDialog::isDone()
 {
-	return OwManager::getInstance()->getDialog()->getIsDone();
+	OwManager * mgr = OwManager::getInstance();
+	if ( !mgr ) {
+		CCLOG("[OwEventDialog][init][error]: mgr is null!");
+		return false;
+	}
+
+	if ( !mgr->getDialog() ) {
+		CCLOG("[OwEventDialog][init][error]: mgr->getDialog() is null!");
+		return false;
+	}
+
+	return mgr->getDialog()->getIsDone();
 }

@@ -15,6 +15,8 @@ public:
 	inline Party * getParty() { return m_party; }
 	inline Character * getCharacter(const char * name ) { return m_characterMap.find(name)->second; }
 
+	//inline void setCurrentOverworldScene( OverworldScene * scene ) { 
+	//inline OverworldScene * getCurrentOverworldScene()
 	OverworldScene * m_currentScene;
 
 private:

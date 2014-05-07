@@ -51,7 +51,10 @@ void OverworldScene::onEnter()
 {
 	CCLayer::onEnter();
 	OwManager * mgr = OwManager::getInstance();
-
+	if ( !mgr ) {
+		CCLOG("[OverworldScene][onEnter][error]: mgr is null!");
+		return;
+	}
   
 	// Misc //
 	this->setTouchEnabled(true);
@@ -60,11 +63,13 @@ void OverworldScene::onEnter()
 	// Init Layers //
 	m_gameLayer = CCLayer::create();
 	if ( !m_gameLayer->init() ) {
+		CCLOG("[OverworldScene][onEnter][error]: m_gameLayer failed to init!");
 		return;
 	}
 
 	m_uiLayer = CCLayer::create();
 	if ( !m_uiLayer->init() ) {
+		CCLOG("[OverworldScene][onEnter][error]: m_uiLayer failed to init!");
 		return;
 	}
 
@@ -88,7 +93,13 @@ void OverworldScene::onExit()
 {
 	CCLayer::onExit();
 	this->removeAllChildren();
-	OwManager::getInstance()->release();
+	
+	OwManager * mgr = OwManager::getInstance();
+	if ( !mgr ) {
+		CCLOG("[OverworldScene][onExit][error]: mgr is null!");
+		return;
+	}
+	mgr->release();
 }
 
 
@@ -98,25 +109,53 @@ void OverworldScene::registerWithTouchDispatcher() {
  
 bool OverworldScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
-	m_uiLayer->ccTouchBegan(pTouch, pEvent);
-	OwManager::getInstance()->processTouchBegan(pTouch, pEvent);
-    return true;
+	bool ret = false;
+	if ( m_uiLayer ) {
+		ret = m_uiLayer->ccTouchBegan(pTouch, pEvent);
+	} else {
+		CCLOG("[OverworldScene][ccTouchBegan][error]: m_uiLayer is null!");
+	}
+
+	OwManager * mgr = OwManager::getInstance();
+	if ( mgr ) {
+		ret = mgr->processTouchBegan(pTouch, pEvent);
+	} else {
+		CCLOG("[OverworldScene][ccTouchBegan][error]: mgr is null!");
+	}
+
+    return ret;
 }
   
 void OverworldScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-	OwManager::getInstance()->processTouchEnded(pTouch, pEvent);
+	OwManager * mgr = OwManager::getInstance();
+	if ( mgr ) {
+		mgr->processTouchEnded(pTouch, pEvent);
+	} else {
+		CCLOG("[OverworldScene][ccTouchEnded][error]: mgr is null!");
+	}
+
 
 }
 
 void OverworldScene::ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
-	OwManager::getInstance()->processTouchMoved(pTouch, pEvent);
+	OwManager * mgr = OwManager::getInstance();
+	if ( mgr ) {
+		mgr->processTouchMoved(pTouch, pEvent);
+	} else {
+		CCLOG("[OverworldScene][ccTouchMoved][error]: mgr is null!");
+	}
 }
 
 void OverworldScene::setViewPointCenter(CCPoint position)
 {
 	OwManager * mgr = OwManager::getInstance();
+	if ( !mgr ) {
+		CCLOG("[OverworldScene][setViewPointCenter][error]: mgr is null!");
+		return;
+	}
+
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
  
 	int x1 = MAX(position.x, winSize.width/2);
@@ -127,6 +166,11 @@ void OverworldScene::setViewPointCenter(CCPoint position)
  
     CCPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
     CCPoint viewPoint = ccpSub(centerOfView, actualPosition);
+
+	if ( !m_gameLayer ) {
+		CCLOG("[OverworldScene][setViewPointCenter][error]: m_gameLayer is null!");
+		return;
+	}
     m_gameLayer->setPosition(viewPoint);
 	
 }

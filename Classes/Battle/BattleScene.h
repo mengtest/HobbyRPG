@@ -31,6 +31,7 @@ public:
 
 	inline cocos2d::CCLayer * getGameLayer() { return m_gameLayer; }
 	inline cocos2d::CCLayer * getUILayer() { return m_uiLayer; }
+
 private:
 	CustomActionManager* m_customActionManager;
 	cocos2d::CCLayer * m_gameLayer;

@@ -1,6 +1,9 @@
 #include "BattleManager.h"
 #include "../BattleScene.h"
 
+#include "..\..\GameMaster\GameMaster.h"
+#include "..\..\Overworld\OverworldScene.h"
+
 USING_NS_CC;
 using namespace std;
 //USING_NS_CC_EXT;
@@ -67,6 +70,7 @@ void BattleManager::update(float dt)
 
 bool BattleManager::processTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+	gotoOverworld();
     return true;
 }
   
@@ -99,3 +103,8 @@ void BattleManager::removeChildFromUILayer( cocos2d::CCNode * obj )
     m_scene->getUILayer()->removeChild(obj); 
 }
     
+void BattleManager::gotoOverworld()
+{
+	CCDirector::sharedDirector()->popScene();
+
+}

@@ -4,6 +4,7 @@
 #include "CustomActionManager\CustomActionManager.h"
 #include "BattleManager\BattleManager.h"
 #include "BattleScene.h"
+#include "..\GameMaster\GameMaster.h"
 
 USING_NS_CC;
 
@@ -37,7 +38,6 @@ void BattleScene::onEnter()
 {
 	CCLayer::onEnter();
 	BattleManager * mgr = BattleManager::getInstance();
-
   
 	// Misc //
 	this->setTouchEnabled(true);
@@ -107,3 +107,4 @@ void BattleScene::update(float dt)
 	m_customActionManager->stepUpdate(dt);
 
 }
+

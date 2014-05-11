@@ -109,6 +109,12 @@
     <Filter Include="Classes\Battle\BattleCharacter">
       <UniqueIdentifier>{ec37737d-b968-43dd-8a56-527fae5c6aae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GameMaster">
+      <UniqueIdentifier>{bf76011c-16b1-42ee-93ac-c5fefce6f9df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Transition">
+      <UniqueIdentifier>{fa32708d-7f35-4acb-8ea7-c86a6ad48a5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -230,6 +236,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Battle\BattleScene.cpp">
       <Filter>Classes\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMaster\GameMaster.cpp">
+      <Filter>Classes\GameMaster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Transition\TransitionScene.cpp">
+      <Filter>Classes\Transition</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -376,6 +388,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Battle\BattleScene.h">
       <Filter>Classes\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMaster\GameMaster.h">
+      <Filter>Classes\GameMaster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Overworld\OwManager\OverworldData.h">
+      <Filter>Classes\Overworld\OwManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Transition\TransitionScene.h">
+      <Filter>Classes\Transition</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -137,6 +137,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile Include="..\Classes\Config\ConfigReader.cpp" />
     <ClCompile Include="..\Classes\CustomActionManager\CustomActionManager.cpp" />
     <ClCompile Include="..\Classes\Events\EventManager.cpp" />
+    <ClCompile Include="..\Classes\GameMaster\GameMaster.cpp" />
     <ClCompile Include="..\Classes\Graph\Graph2D.cpp" />
     <ClCompile Include="..\Classes\Inventory\Inventory.cpp" />
     <ClCompile Include="..\Classes\Item\ItemManager.cpp" />
@@ -159,6 +160,9 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile Include="..\Classes\Overworld\OwTiledMapUserData\OwTiledMapUserData.cpp" />
     <ClCompile Include="..\Classes\Party\Party.cpp" />
     <ClCompile Include="..\Classes\Player\Player.cpp" />
+    <ClCompile Include="..\Classes\Transition\TransitionScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\Classes\World\WorldDialogUI\WorldDialogUI.cpp" />
     <ClCompile Include="..\Classes\World\WorldEvents\WorldEventDialog.cpp" />
     <ClCompile Include="..\Classes\World\WorldGraphGenerator\WorldGraphGenerator.cpp" />
@@ -190,6 +194,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\Enum\StatsEnum.h" />
     <ClInclude Include="..\Classes\Events\EventBase.h" />
     <ClInclude Include="..\Classes\Events\EventManager.h" />
+    <ClInclude Include="..\Classes\GameMaster\GameMaster.h" />
     <ClInclude Include="..\Classes\Graph\Graph2D.h" />
     <ClInclude Include="..\Classes\Graph\GraphNode.h" />
     <ClInclude Include="..\Classes\Inventory\Inventory.h" />
@@ -206,11 +211,13 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\Overworld\OwEntities\OwEntityBase.h" />
     <ClInclude Include="..\Classes\Overworld\OwEvents\OwEventDelay.h" />
     <ClInclude Include="..\Classes\Overworld\OwEvents\OwEventDialog.h" />
+    <ClInclude Include="..\Classes\Overworld\OwManager\OverworldData.h" />
     <ClInclude Include="..\Classes\Overworld\OwManager\OwManager.h" />
     <ClInclude Include="..\Classes\Overworld\OwPlayerController\OwPlayerController.h" />
     <ClInclude Include="..\Classes\Overworld\OwTiledMapUserData\OwTiledMapUserData.h" />
     <ClInclude Include="..\Classes\Party\Party.h" />
     <ClInclude Include="..\Classes\Player\Player.h" />
+    <ClInclude Include="..\Classes\Transition\TransitionScene.h" />
     <ClInclude Include="..\Classes\World\WorldDialogUI\WorldDialogUI.h" />
     <ClInclude Include="..\Classes\World\WorldEvents\WorldEventDialog.h" />
     <ClInclude Include="..\Classes\World\WorldGraphGenerator\WorldGraphGenerator.h" />

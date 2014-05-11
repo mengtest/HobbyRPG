@@ -23,6 +23,8 @@
 #include "..\OverworldScene.h"
 #include "..\..\Events\EventManager.h"
 #include "..\..\Character\Character.h"
+#include "..\..\GameMaster\GameMaster.h"
+#include "..\..\Transition\TransitionScene.h"
 
 
 USING_NS_CC;
@@ -30,7 +32,6 @@ using namespace std;
 USING_NS_CC_EXT;
 
 OwManager* OwManager::instance = 0;
-
 
 OwManager::OwManager()
 	: m_isInit(false), 
@@ -48,6 +49,9 @@ OwManager::OwManager()
 	 m_dialog(0),
 	 m_stateMachine(0)
 {
+	m_overworldData.mapName = "testmap";
+	m_overworldData.x = 10;
+	m_overworldData.y = 17;
 }
 
 OwManager * OwManager::getInstance()
@@ -71,7 +75,7 @@ void OwManager::destroy()
 
 }
 
-bool OwManager::init(OverworldScene * scene, const string& tmxDir, int startX, int startY)
+bool OwManager::init(OverworldScene * scene)
 {
 	if ( m_isInit )
 	{
@@ -82,7 +86,9 @@ bool OwManager::init(OverworldScene * scene, const string& tmxDir, int startX, i
 	m_scene = scene;
 	m_isInit = true;
 
-	if ( !loadTileMap( tmxDir ) )
+	
+
+	if ( !loadTileMap( m_overworldData.mapName ) )
 	{
 		CCLOG("[OwManager][init][error]: loadTileMap() failed!");
 		return false;
@@ -94,7 +100,7 @@ bool OwManager::init(OverworldScene * scene, const string& tmxDir, int startX, i
 		return false;
 	}
 
-	if ( !loadPlayer(startX, startY) )
+	if ( !loadPlayer(m_overworldData.x, m_overworldData.y) )
 	{
 		CCLOG("[OwManager][init][error]: loadPlayer() failed!");
 		return false;
@@ -122,7 +128,7 @@ bool OwManager::init(OverworldScene * scene, const string& tmxDir, int startX, i
 	
 
 	// inventory test cases
-	Inventory * inv = Player::getInstance().getInventory();
+	/*Inventory * inv = Player::getInstance().getInventory();
 	inv->addItem(CHILI);
 	inv->addItem(PLAIN_WATER);
 	inv->addItem(PLAIN_WATER);
@@ -143,16 +149,17 @@ bool OwManager::init(OverworldScene * scene, const string& tmxDir, int startX, i
 
 
 	inv->outputInventory();
+	*/
 	
 	//temp->equipArmor(PLAIN_WATER); //fail
 	//temp->equipArmor(CHAINMAIL); //fail
 	//temp->equipWeapon(SWORD); // succeed
 
 	// add one of every time
-	for (  int i = 1; i < ItemEnum::NUM_ITEMS; ++i )
+	/*for (  int i = 1; i < ItemEnum::NUM_ITEMS; ++i )
 	{
 		inv->addItem( (ItemEnum)i);
-	}
+	}*/
 
 	CCLuaEngine::defaultEngine()->executeGlobalFunction("createOverworldMenu");
 
@@ -170,7 +177,7 @@ void OwManager::release()
 
 	m_isInit = false;
 
-	CC_SAFE_DELETE( m_tiledMap );
+	CC_SAFE_DELETE(m_tiledMap);
 	CC_SAFE_DELETE(m_tiledMapUserData );
 	CC_SAFE_DELETE(m_controlUI);
 	CC_SAFE_DELETE(m_dialog);
@@ -373,7 +380,7 @@ bool OwManager::loadTileMap(const string& tmxDir)
 {
 	// TileMap‚Íì¬‚µ‚Ü‚·
 	m_tiledMap = new CCTMXTiledMap();
-    if ( !m_tiledMap->initWithTMXFile(tmxDir.c_str()) )
+    if ( !m_tiledMap->initWithTMXFile( ("maps//" + tmxDir + ".tmx").c_str() ))
 	{
 		CCLOG("tile map '%s' failed to load", tmxDir.c_str());
 		return false;
@@ -544,6 +551,14 @@ void OwManager::checkExit()
 	//CCDirector::sharedDirector()->replaceScene(WorldScene::scene() );
 }
 
+void OwManager::tickBattle()
+{
+	CCLOG("[OwManager][tickBattle] ticking battle" );
+	gotoBattle();
+}
+
+
+// TODO: should shift all these goto functions to GameMaster
 void OwManager::gotoWorld(int origin_node)
 {
 	CCLOG("[OwManager][gotoWorld] called at origin_node: %d", origin_node );
@@ -553,14 +568,23 @@ void OwManager::gotoWorld(int origin_node)
 void OwManager::gotoOverworld(const std::string& name, int x, int y)
 {
 	CCLOG("[OwManager][gotoOverworld] going to: %s at X: %d, Y: %d", name.c_str(), x, y );
-	CCDirector::sharedDirector()->replaceScene( OverworldScene::scene(name, x, y) );
+
+	OverworldData data;
+	data.mapName = name;
+	data.x = x;
+	data.y = y;
+
+	setOverworldData(data);
+	//wait for transition class
+	CCDirector::sharedDirector()->replaceScene( TransitionScene< OverworldScene >::scene() );
 }
 
 void OwManager::gotoBattle()
 {
 	CCLOG("[OwManager][gotoBattle] going to Battle!");
-	Player::getInstance().m_currentScene = m_scene;
-	CCDirector::sharedDirector()->replaceScene( BattleScene::scene() );
+
+	//GameMaster::getInstance().setCurrentOverworldScene(m_scene);
+	//CCDirector::sharedDirector()->pushScene( BattleScene::scene() );
 }
 
 void OwManager::pause()

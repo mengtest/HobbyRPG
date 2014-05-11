@@ -284,7 +284,7 @@ void WorldManager::processTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent 
 void WorldManager::gotoOverworld(std::string t_where)
 {
 	CCLOG("[WorldManager][gotoOverworld] called at location: %s", t_where.c_str() );
-	CCDirector::sharedDirector()->replaceScene(OverworldScene::scene(t_where.c_str(), 10, 17) );
+	//CCDirector::sharedDirector()->replaceScene(OverworldScene::scene(t_where.c_str(), 10, 17) );
 }
 
 void WorldManager::processNodeData(GraphNode& node)

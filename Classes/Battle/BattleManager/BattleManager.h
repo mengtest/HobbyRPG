@@ -37,6 +37,7 @@ public:
 	void processTouchEnded(cocos2d::CCTouch *touch, cocos2d::CCEvent *event);
 	void processTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
 	
+	void gotoOverworld();
 private:
 	bool m_isInit;
 	

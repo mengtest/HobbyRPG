@@ -7,19 +7,11 @@
 #include "OwManager\OwManager.h"
 #include "UI/cInGameUI.h"
 
-
 USING_NS_CC;
 
 
-std::string OverworldScene::m_mapName = "";
-int OverworldScene::m_startX = 0;
-int OverworldScene::m_startY = 0;
-
-CCScene* OverworldScene::scene(std::string mapFilename, int x, int y)
+CCScene* OverworldScene::scene()
 {
-	m_mapName = mapFilename;
-	m_startX = x;
-	m_startY = y;
 
     // 'scene' is an autorelease object
     CCScene *scene = CCScene::create();
@@ -43,17 +35,10 @@ bool OverworldScene::init()
     }
 
 	
-
-    return true;
-}
-
-void OverworldScene::onEnter()
-{
-	CCLayer::onEnter();
 	OwManager * mgr = OwManager::getInstance();
 	if ( !mgr ) {
 		CCLOG("[OverworldScene][onEnter][error]: mgr is null!");
-		return;
+		return false;
 	}
   
 	// Misc //
@@ -64,13 +49,13 @@ void OverworldScene::onEnter()
 	m_gameLayer = CCLayer::create();
 	if ( !m_gameLayer->init() ) {
 		CCLOG("[OverworldScene][onEnter][error]: m_gameLayer failed to init!");
-		return;
+		return false;
 	}
 
 	m_uiLayer = CCLayer::create();
 	if ( !m_uiLayer->init() ) {
 		CCLOG("[OverworldScene][onEnter][error]: m_uiLayer failed to init!");
-		return;
+		return false;
 	}
 
 	m_customActionManager = new CustomActionManager();
@@ -80,11 +65,16 @@ void OverworldScene::onEnter()
 	this->addChild(m_uiLayer);
 
 	// Init Manager //
-	mgr->init(this, "maps//" + m_mapName + ".tmx", m_startX, m_startY);
+	mgr->init(this);
 
-	//ui = new cInGameUI();
-	//ui->init(this);
-	//m_uiLayer->addChild(ui);
+
+    return true;
+}
+
+void OverworldScene::onEnter()
+{
+
+	CCLayer::onEnter();	
 
 
 }
@@ -92,6 +82,10 @@ void OverworldScene::onEnter()
 void OverworldScene::onExit()
 {
 	CCLayer::onExit();
+}
+
+OverworldScene::~OverworldScene()
+{
 	this->removeAllChildren();
 	
 	OwManager * mgr = OwManager::getInstance();
@@ -101,7 +95,6 @@ void OverworldScene::onExit()
 	}
 	mgr->release();
 }
-
 
 void OverworldScene::registerWithTouchDispatcher() {
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, false);

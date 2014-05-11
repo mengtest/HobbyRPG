@@ -67,6 +67,7 @@ void OwPlayerController::update(float dt)
 
 	if ( !this->m_character->isMoving() ) {
 		doExitCheck();
+		doBattleCheck();
 	}
 }
 
@@ -107,6 +108,7 @@ void OwPlayerController::moveUp()
 		return;
 	move(UP);
 	m_bCheckExit = true;
+	m_bCheckBattle = true;
 }
 
 void OwPlayerController::moveDown()
@@ -115,6 +117,7 @@ void OwPlayerController::moveDown()
 		return;
 	move(DOWN);
 	m_bCheckExit = true;
+	m_bCheckBattle = true;
 }
 
 void OwPlayerController::moveLeft()
@@ -123,6 +126,7 @@ void OwPlayerController::moveLeft()
 		return;
 	move(LEFT);
 	m_bCheckExit = true;
+	m_bCheckBattle = true;
 }
 
 void OwPlayerController::moveRight()
@@ -131,6 +135,7 @@ void OwPlayerController::moveRight()
 		return;
 	move(RIGHT);
 	m_bCheckExit = true;
+	m_bCheckBattle = true;
 }
 
 void OwPlayerController::doExitCheck()
@@ -140,4 +145,14 @@ void OwPlayerController::doExitCheck()
 	
 	OwManager::getInstance()->checkExit();
 	m_bCheckExit = false;
+}
+
+void OwPlayerController::doBattleCheck()
+{
+	if ( !m_bCheckBattle ) 
+		return;
+	
+	OwManager::getInstance()->tickBattle();
+	m_bCheckBattle = false;
+
 }

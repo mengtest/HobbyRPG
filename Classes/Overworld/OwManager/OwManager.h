@@ -7,6 +7,7 @@
 #include <map>
 
 #include "../../AI/AIHeaders.h"
+#include "OverworldData.h"
 
 class OwDialogUI;
 class OwTiledMapUserData;
@@ -31,7 +32,7 @@ public:
 	static OwManager * getInstance();
 	static void destroy(); // MUST call this first AFTER using
 	
-	bool init( OverworldScene * scene, const std::string& tmxDir, int startX, int startY );  // MUST call this first BEFORE using
+	bool init( OverworldScene * scene );  // MUST call this first BEFORE using
 	void release();
 	void update(float dt);
 	
@@ -59,6 +60,7 @@ public:
 	void callback( const std::string& msg, void * data  );
 
 	void checkExit();
+	void tickBattle();
 	void gotoWorld( int origin_node );
 	void gotoOverworld(const std::string& name, int x, int y);
 	void gotoBattle();
@@ -67,7 +69,12 @@ public:
 	void unpause();
 
 	void resetMenuLUA();
+
+	inline void setOverworldData ( OverworldData data ) { m_overworldData = data; }
+	inline OverworldData getOverworldData() { return m_overworldData; }
 private:
+	OverworldData m_overworldData;
+	
 	bool m_isInit;
 
 	bool loadEntities();
@@ -75,8 +82,6 @@ private:
 	bool loadPlayer(int startX, int startY);
 	bool loadFSM();
 	bool loadDialog();
-
-	bool isPlayerOnExit();
 	
 	OwManager() ;
 	~OwManager() {}

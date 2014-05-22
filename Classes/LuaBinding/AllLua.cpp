@@ -1,6 +1,6 @@
 /*
 ** Lua binding: AllLua
-** Generated automatically by tolua++-1.0.92 on 05/01/14 23:29:05.
+** Generated automatically by tolua++-1.0.92 on 05/20/14 21:42:20.
 */
 
 #ifndef __cplusplus
@@ -21,6 +21,8 @@ TOLUA_API int  tolua_AllLua_open (lua_State* tolua_S);
 #include "..\Overworld\OwAICommands\OwAIMove.h"
 #include "..\Overworld\OwEvents\OwEventDelay.h"
 #include "..\Overworld\OwEvents\OwEventDialog.h"
+#include "..\Battle\BattleManager\BattleManager.h"
+#include "..\Battle\BattleCharacter\BattleCharacter.h"
 #include "..\Enum\DirectionEnum.h"
 #include "..\Common\Common.h"
 #include "..\Character\Character.h"
@@ -71,25 +73,28 @@ static int tolua_collect_OwEventDialog (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"OwEventDelay");
+ tolua_usertype(tolua_S,"CCPoint");
  tolua_usertype(tolua_S,"ItemManager");
  tolua_usertype(tolua_S,"OwManager");
  tolua_usertype(tolua_S,"Character");
  tolua_usertype(tolua_S,"OwAICommand");
  tolua_usertype(tolua_S,"CCNode");
- tolua_usertype(tolua_S,"OwCharacter");
+ tolua_usertype(tolua_S,"BattleManager");
  tolua_usertype(tolua_S,"OwEntityBase");
  tolua_usertype(tolua_S,"WorldEventDialog");
  tolua_usertype(tolua_S,"Common");
- tolua_usertype(tolua_S,"std::vector<std::string>");
+ tolua_usertype(tolua_S,"Inventory");
+ tolua_usertype(tolua_S,"Party");
+ tolua_usertype(tolua_S,"BattleCharacter");
  tolua_usertype(tolua_S,"EventBase");
+ tolua_usertype(tolua_S,"Player");
  tolua_usertype(tolua_S,"OwAIMove");
  tolua_usertype(tolua_S,"WorldManager");
  tolua_usertype(tolua_S,"OwEventDialog");
- tolua_usertype(tolua_S,"Inventory");
- tolua_usertype(tolua_S,"Party");
- tolua_usertype(tolua_S,"Player");
+ tolua_usertype(tolua_S,"OwEventDelay");
  tolua_usertype(tolua_S,"OwAICharacter");
+ tolua_usertype(tolua_S,"std::vector<std::string>");
+ tolua_usertype(tolua_S,"OwCharacter");
 }
 
 /* method: getInstance of class  ItemManager */
@@ -754,6 +759,204 @@ static int tolua_AllLua_OwManager_resetMenuLUA00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'resetMenuLUA'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getInstance of class  BattleManager */
+#ifndef TOLUA_DISABLE_tolua_AllLua_BattleManager_getInstance00
+static int tolua_AllLua_BattleManager_getInstance00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"BattleManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   BattleManager* tolua_ret = (BattleManager*)  BattleManager::getInstance();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"BattleManager");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getInstance'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addChildToGameLayer of class  BattleManager */
+#ifndef TOLUA_DISABLE_tolua_AllLua_BattleManager_addChildToGameLayer00
+static int tolua_AllLua_BattleManager_addChildToGameLayer00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"BattleManager",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"CCNode",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  BattleManager* self = (BattleManager*)  tolua_tousertype(tolua_S,1,0);
+  CCNode* obj = ((CCNode*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addChildToGameLayer'", NULL);
+#endif
+  {
+   self->addChildToGameLayer(obj);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'addChildToGameLayer'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addChildToUILayer of class  BattleManager */
+#ifndef TOLUA_DISABLE_tolua_AllLua_BattleManager_addChildToUILayer00
+static int tolua_AllLua_BattleManager_addChildToUILayer00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"BattleManager",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"CCNode",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  BattleManager* self = (BattleManager*)  tolua_tousertype(tolua_S,1,0);
+  CCNode* obj = ((CCNode*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addChildToUILayer'", NULL);
+#endif
+  {
+   self->addChildToUILayer(obj);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'addChildToUILayer'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removeChildFromGameLayer of class  BattleManager */
+#ifndef TOLUA_DISABLE_tolua_AllLua_BattleManager_removeChildFromGameLayer00
+static int tolua_AllLua_BattleManager_removeChildFromGameLayer00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"BattleManager",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"CCNode",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  BattleManager* self = (BattleManager*)  tolua_tousertype(tolua_S,1,0);
+  CCNode* obj = ((CCNode*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeChildFromGameLayer'", NULL);
+#endif
+  {
+   self->removeChildFromGameLayer(obj);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'removeChildFromGameLayer'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: removeChildFromUILayer of class  BattleManager */
+#ifndef TOLUA_DISABLE_tolua_AllLua_BattleManager_removeChildFromUILayer00
+static int tolua_AllLua_BattleManager_removeChildFromUILayer00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"BattleManager",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"CCNode",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  BattleManager* self = (BattleManager*)  tolua_tousertype(tolua_S,1,0);
+  CCNode* obj = ((CCNode*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeChildFromUILayer'", NULL);
+#endif
+  {
+   self->removeChildFromUILayer(obj);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'removeChildFromUILayer'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: addBattleCharacter of class  BattleManager */
+#ifndef TOLUA_DISABLE_tolua_AllLua_BattleManager_addBattleCharacter00
+static int tolua_AllLua_BattleManager_addBattleCharacter00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"BattleManager",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"CCPoint",0,&tolua_err)) ||
+     !tolua_isusertype(tolua_S,3,"Character",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  BattleManager* self = (BattleManager*)  tolua_tousertype(tolua_S,1,0);
+  CCPoint position = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
+  Character* character = ((Character*)  tolua_tousertype(tolua_S,3,0));
+  DirectionEnum direction = ((DirectionEnum) (int)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addBattleCharacter'", NULL);
+#endif
+  {
+   BattleCharacter* tolua_ret = (BattleCharacter*)  self->addBattleCharacter(position,character,direction);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"BattleCharacter");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'addBattleCharacter'.",&tolua_err);
  return 0;
 #endif
 }
@@ -2030,6 +2233,15 @@ TOLUA_API int tolua_AllLua_open (lua_State* tolua_S)
    tolua_function(tolua_S,"pause",tolua_AllLua_OwManager_pause00);
    tolua_function(tolua_S,"unpause",tolua_AllLua_OwManager_unpause00);
    tolua_function(tolua_S,"resetMenuLUA",tolua_AllLua_OwManager_resetMenuLUA00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"BattleManager","BattleManager","",NULL);
+  tolua_beginmodule(tolua_S,"BattleManager");
+   tolua_function(tolua_S,"getInstance",tolua_AllLua_BattleManager_getInstance00);
+   tolua_function(tolua_S,"addChildToGameLayer",tolua_AllLua_BattleManager_addChildToGameLayer00);
+   tolua_function(tolua_S,"addChildToUILayer",tolua_AllLua_BattleManager_addChildToUILayer00);
+   tolua_function(tolua_S,"removeChildFromGameLayer",tolua_AllLua_BattleManager_removeChildFromGameLayer00);
+   tolua_function(tolua_S,"removeChildFromUILayer",tolua_AllLua_BattleManager_removeChildFromUILayer00);
+   tolua_function(tolua_S,"addBattleCharacter",tolua_AllLua_BattleManager_addBattleCharacter00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"OwCharacter","OwCharacter","OwEntityBase",NULL);
   tolua_beginmodule(tolua_S,"OwCharacter");

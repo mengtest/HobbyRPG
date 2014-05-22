@@ -5,10 +5,11 @@ $cfile "..\Overworld\OwEntities\OwEntityBase.h"
 $cfile "..\Overworld\OwEntities\OwCharacter.h"
 $cfile "..\Overworld\OwEntities\OwAICharacter.h"
 $cfile "..\Overworld\OwAICommands\OwAIMove.h"
-
 $cfile "..\Overworld\OwEvents\OwEventDelay.h"
 $cfile "..\Overworld\OwEvents\OwEventDialog.h"
 
+$cfile "..\Battle\BattleManager\BattleManager.h"
+$cfile "..\Battle\BattleCharacter\BattleCharacter.h"
 
 $cfile "..\Enum\DirectionEnum.h"
 
@@ -71,6 +72,18 @@ class OwManager
 	void resetMenuLUA();
 };
 
+class BattleManager
+{
+	static BattleManager * getInstance();
+	
+    void addChildToGameLayer( CCNode * obj );
+    void addChildToUILayer( CCNode * obj );
+    void removeChildFromGameLayer(CCNode * obj );
+    void removeChildFromUILayer( CCNode * obj ); 
+
+	BattleCharacter * addBattleCharacter(CCPoint position, Character * character, DirectionEnum direction);
+}
+
 class OwCharacter : public OwEntityBase
 {
 };
@@ -132,6 +145,7 @@ class Player
 	Party * getParty();
 	Character * getCharacter(const char * name );
 	Inventory * getInventory();
+	
 };
 
 class Party

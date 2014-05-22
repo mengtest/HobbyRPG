@@ -37,8 +37,7 @@ bool BattleScene::init()
 void BattleScene::onEnter()
 {
 	CCLayer::onEnter();
-	BattleManager * mgr = BattleManager::getInstance();
-  
+	BattleManager * mgr = BattleManager::getInstance(); 
 	// Misc //
 	this->setTouchEnabled(true);
 	this->schedule(schedule_selector(BattleScene::update), 1.0/60.0);
@@ -61,7 +60,7 @@ void BattleScene::onEnter()
 	this->addChild(m_uiLayer);
 
 	// Init Manager //
-	//mgr->init();
+	mgr->init(this);
 
 	//ui = new cInGameUI();
 	//ui->init(this);

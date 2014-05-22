@@ -3,15 +3,17 @@
 
 #include <cocos2d.h>
 #include <string>
-#include <queue>
 #include <map>
 
 #include "../../AI/AIHeaders.h"
+#include "../../Enum/DirectionEnum.h"
 
 class BattleScene;
+class BattleCharacter;
 class CustomActionManager;
 class EventManager;
 class EventBase;
+class Character;
 
 //essentially a nice global class that stores data for everyone 
 //in battle to use so that we don't have to pass pointers around.
@@ -38,6 +40,9 @@ public:
 	void processTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
 	
 	void gotoOverworld();
+
+	BattleCharacter * addBattleCharacter(cocos2d::CCPoint position, Character * character, DirectionEnum direction);
+
 private:
 	bool m_isInit;
 	
@@ -47,6 +52,8 @@ private:
 	BattleScene * m_scene;
 
 	static BattleManager * instance;
+
+	std::map<std::string, BattleCharacter*> m_characterList;
 };
 
 

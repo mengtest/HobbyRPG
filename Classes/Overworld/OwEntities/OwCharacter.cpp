@@ -8,8 +8,8 @@ using namespace std;
 USING_NS_CC;
 
 OwCharacter::OwCharacter(CCPoint position,const std::string& name, 
-						const string& spriteName, const string& initialSpriteBaseName, int id)
-	: OwEntityBase(position, name, spriteName,initialSpriteBaseName, id), m_bIsMoving(false), 
+						const string& spriteName, const string& initialSpriteBaseName)
+	: OwEntityBase(position, name, spriteName,initialSpriteBaseName), m_bIsMoving(false), 
 	  m_moveTime(0.f), m_moveDuration(0.4f), m_action(0)
 {
 

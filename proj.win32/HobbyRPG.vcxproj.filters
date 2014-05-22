@@ -115,6 +115,9 @@
     <Filter Include="Classes\Transition">
       <UniqueIdentifier>{fa32708d-7f35-4acb-8ea7-c86a6ad48a5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lua\battle">
+      <UniqueIdentifier>{984d1854-95cd-488d-9dd6-8a12cc665a16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -242,6 +245,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Transition\TransitionScene.cpp">
       <Filter>Classes\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Battle\BattleCharacter\BattleCharacter.cpp">
+      <Filter>Classes\Battle\BattleCharacter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -398,6 +404,9 @@
     <ClInclude Include="..\Classes\Transition\TransitionScene.h">
       <Filter>Classes\Transition</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\Battle\BattleCharacter\BattleCharacter.h">
+      <Filter>Classes\Battle\BattleCharacter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Classes\AI\cState.inl">
@@ -440,11 +449,14 @@
     <None Include="..\Resources\lua\common.lua">
       <Filter>Lua</Filter>
     </None>
+    <None Include="..\Classes\LuaBinding\AllLua.pkg">
+      <Filter>Classes\LuaBinding</Filter>
+    </None>
     <None Include="..\Resources\lua\menu\OverworldMenu.lua">
       <Filter>Lua\menu</Filter>
     </None>
-    <None Include="..\Classes\LuaBinding\AllLua.pkg">
-      <Filter>Classes\LuaBinding</Filter>
+    <None Include="..\Resources\lua\battle\BattleFunctions.lua">
+      <Filter>Lua\battle</Filter>
     </None>
   </ItemGroup>
 </Project>

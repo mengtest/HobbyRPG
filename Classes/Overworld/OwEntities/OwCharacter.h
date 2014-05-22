@@ -17,8 +17,7 @@ public:
 	OwCharacter(cocos2d::CCPoint position, 
 				const std::string& name, 
 				const std::string& spriteName = "chika", 
-				const std::string& initialSpriteBaseName = "chika_front_2.png",
-				int id = 0);
+				const std::string& initialSpriteBaseName = "chika_front_2.png");
 	~OwCharacter();
 
 	inline bool isMoving() { return m_bIsMoving; }

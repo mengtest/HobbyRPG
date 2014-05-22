@@ -278,7 +278,7 @@ void OwManager::processTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pE
 OwAICharacter * OwManager::addAICharacter(CCPoint position, const string& name, const string& spritename, const string& initialSpriteName)
 {
 	CCLOG("[OwManager][addAICharacter]: adding '%s'", name.c_str());
-	OwAICharacter * rtn	= new OwAICharacter(position, name, spritename, initialSpriteName, m_aiList.size());
+	OwAICharacter * rtn	= new OwAICharacter(position, name, spritename, initialSpriteName);
 	
 	if ( rtn->loadLUA() )
 	{
@@ -584,7 +584,7 @@ void OwManager::gotoBattle()
 	CCLOG("[OwManager][gotoBattle] going to Battle!");
 
 	//GameMaster::getInstance().setCurrentOverworldScene(m_scene);
-	//CCDirector::sharedDirector()->pushScene( BattleScene::scene() );
+	CCDirector::sharedDirector()->pushScene( BattleScene::scene() );
 }
 
 void OwManager::pause()

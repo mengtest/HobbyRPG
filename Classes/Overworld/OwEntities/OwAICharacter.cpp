@@ -12,8 +12,8 @@ using namespace std;
 
 USING_NS_CC;
 
-OwAICharacter::OwAICharacter(CCPoint position, const std::string& name, const string& spriteName, const string& initialSpriteBaseName, int id)
-	: OwCharacter(position, name, spriteName, initialSpriteBaseName, id),
+OwAICharacter::OwAICharacter(CCPoint position, const std::string& name, const string& spriteName, const string& initialSpriteBaseName)
+	: OwCharacter(position, name, spriteName, initialSpriteBaseName),
 	  m_bIsLoop(true), m_bIsPaused(false), m_currentCmd(0), m_bIsDone(false),
 	  m_bIsCmdLock(false)
 {

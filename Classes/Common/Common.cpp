@@ -111,7 +111,8 @@ int Common::loadLuas()
 	ret_val |= loadLua("lua/common.lua") &
 			   loadLua("lua/world/MainWorld.lua") &
 			   loadLua("lua/item/items.lua") &
-			   loadLua("lua/menu/OverworldMenu.lua");
+			   loadLua("lua/menu/OverworldMenu.lua") & 
+			   loadLua("lua/battle/BattleFunctions.lua");
 
 	return ret_val;
 }

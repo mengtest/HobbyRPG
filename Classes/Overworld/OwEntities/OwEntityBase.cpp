@@ -6,8 +6,8 @@ using namespace std;
 USING_NS_CC;
 
 OwEntityBase::OwEntityBase(CCPoint position, const std::string& name, 
-							const string& spriteBaseName, const std::string& initialSpriteFrameName, int id )
-							: m_name(name), m_id(id), m_sprite(0), m_spriteName()
+							const string& spriteBaseName, const std::string& initialSpriteFrameName)
+							: m_name(name), m_sprite(0), m_spriteName()
 {
 	setSprite(spriteBaseName, initialSpriteFrameName);
 	setPosition(position);

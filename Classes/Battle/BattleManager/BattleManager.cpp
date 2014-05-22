@@ -1,8 +1,14 @@
 #include "BattleManager.h"
-#include "../BattleScene.h"
+#include "..\BattleScene.h"
+#include "..\BattleCharacter\BattleCharacter.h"
 
 #include "..\..\GameMaster\GameMaster.h"
 #include "..\..\Overworld\OverworldScene.h"
+#include "..\..\Player\Player.h"
+#include "..\..\Party\Party.h"
+#include "..\..\Character\Character.h"
+
+#include "CCLuaEngine.h"
 
 USING_NS_CC;
 using namespace std;
@@ -48,6 +54,22 @@ bool BattleManager::init(BattleScene * scene)
 	m_scene = scene;
 	m_isInit = true;
 
+	//create sprites according to how many characters in party
+	
+	/*for ( int i = 0; i < Player::getInstance().getParty()->MAX_MEMBERS; ++i )
+	{
+		Character * character = Player::getInstance().getParty()->getCharacterAtSlot(i);
+		if ( NULL == character )
+		{
+			CCLOG("[BattleManager][init]: character is null");
+			continue;
+		}
+
+		addBattleCharacter(ccp(100, 100), character, LEFT);
+	}*/
+
+	CCLuaEngine::defaultEngine()->executeGlobalFunction("BattleInit");
+
 	return true;
 }
 
@@ -61,6 +83,18 @@ void BattleManager::release()
 	}
 
 	m_isInit = false;
+}
+
+BattleCharacter * BattleManager::addBattleCharacter(CCPoint position, Character * character, DirectionEnum direction)
+{
+	std::string name = character->getInfo(CharacterInfoEnum::SPRITE);
+
+	CCLOG("[BattleManager][addBattleCharacter]: adding '%s'", name);
+	BattleCharacter * rtn	= new BattleCharacter(position, character, direction);
+	m_scene->getGameLayer()->addChild(rtn->getSprite());
+	m_characterList.insert(make_pair(name, rtn));
+
+	return rtn;
 }
 
 void BattleManager::update(float dt)

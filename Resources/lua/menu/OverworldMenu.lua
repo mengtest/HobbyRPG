@@ -8,14 +8,14 @@ local FONT = "fonts/testfont.fnt"
 local SCREEN_WIDTH = Common:getGameWidth()
 local SCREEN_HEIGHT = Common:getGameHeight()
 
-local DESC_WIDTH = 640
-local DESC_HEIGHT = 48
+local DESC_WIDTH = SCREEN_WIDTH
+local DESC_HEIGHT = SCREEN_WIDTH * 0.075
 
-local BACK_WIDTH = 640
-local BACK_HEIGHT = 48	
+local BACK_WIDTH = SCREEN_WIDTH
+local BACK_HEIGHT = SCREEN_WIDTH * 0.075	
 
 local SLIDER_X = SCREEN_WIDTH - 16;
-local SLIDER_Y = SCREEN_HEIGHT / 2;
+local SLIDER_Y = SCREEN_HEIGHT * 0.5;
 
 --
 
@@ -46,21 +46,21 @@ initEquipCharPage = function(char_id)
 	local CHARACTER_BACK_Y = SCREEN_HEIGHT - CHARACTER_BACK_HEIGHT / 2 - DESC_HEIGHT;
 	local CHARACTER_HP_X = CHARACTER_BACK_X;
 	local CHARACTER_HP_Y = CHARACTER_BACK_Y;
-	local CHARACTER_NAME_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + 100;
-	local CHARACTER_NAME_Y = CHARACTER_HP_Y + CHARACTER_BACK_HEIGHT / 2 - 40;
+	local CHARACTER_NAME_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + (SCREEN_WIDTH / 6.4);
+	local CHARACTER_NAME_Y = CHARACTER_HP_Y + CHARACTER_BACK_HEIGHT / 2 - (SCREEN_WIDTH / 16);
 	local CHARACTER_BACK_OFFSET = CHARACTER_BACK_HEIGHT;
-	local CHARACTER_SPRITE_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + 50;
+	local CHARACTER_SPRITE_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + (SCREEN_WIDTH / 12.8);
 	local CHARACTER_SPRITE_Y = CHARACTER_NAME_Y;
 
-	local ITEM_WIDTH = 256
-	local ITEM_HEIGHT = 52.8
+	local ITEM_WIDTH = SCREEN_WIDTH / 2.5;
+	local ITEM_HEIGHT = SCREEN_WIDTH / 12.12;
 	local ITEM_START_X = SCREEN_WIDTH * 3 / 4;
 	local ITEM_START_Y = SCREEN_HEIGHT - DESC_HEIGHT - ITEM_HEIGHT / 2 - ITEM_HEIGHT;
 	local ITEM_COLS = 2;
 	local ITEM_MIN_ROWS = 5;
 	local ITEM_EXTRA_ROWS = 3;
 	local ITEM_WORD_OFFSET = 24
-	local ITEM_STACK_OFFSET = 200
+	local ITEM_STACK_OFFSET = SCREEN_WIDTH / 3.2
 
 	local FILTER_WIDTH = ITEM_WIDTH / 4;
 	local FILTER_HEIGHT = ITEM_HEIGHT;
@@ -87,7 +87,7 @@ initEquipCharPage = function(char_id)
 	charName:setAnchorPoint(ccp(0, 0.5));
 	gameMenuLayer:addChild(charName);
 
-	local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(char_id):getInfo(SPRITE) .. ".png";
+	local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(char_id):getInfo(SPRITE) .. "_front_2.png";
 	local charSprite = CCScale9Sprite:createWithSpriteFrameName( spriteName,  CCRectMake(0,0,0,0) );
 	charSprite:setContentSize(CCSizeMake(32, 32));
 	charSprite:setPosition(ccp(CHARACTER_SPRITE_X, CHARACTER_SPRITE_Y ));
@@ -122,22 +122,24 @@ initEquipCharPage = function(char_id)
 		local equip_ring = Player:getInstance():getParty():getCharacterAtSlot(char_id):getRing();
 
 		refreshable_count = 0;
+
+		local offset_increment = SCREEN_HEIGHT / 7.2
 		local weapon_name = CCLabelBMFont:create("Weapon: " .. ItemManager:getInstance():getItemStat(equip_weapon, NAME), FONT );
-		weapon_name:setPosition(CHARACTER_SPRITE_X, CHARACTER_NAME_Y - 50)
+		weapon_name:setPosition(CHARACTER_SPRITE_X, CHARACTER_NAME_Y - offset_increment)
 		weapon_name:setAnchorPoint(ccp(0, 0.5));
 		gameMenuLayer:addChild(weapon_name);
 		refreshables[refreshable_count] = weapon_name;
 		refreshable_count = refreshable_count + 1;
 
 		local armor_name = CCLabelBMFont:create("Armor: " .. ItemManager:getInstance():getItemStat(equip_armor, NAME), FONT );
-		armor_name:setPosition(CHARACTER_SPRITE_X, CHARACTER_NAME_Y - 100)
+		armor_name:setPosition(CHARACTER_SPRITE_X, CHARACTER_NAME_Y - offset_increment * 2)
 		armor_name:setAnchorPoint(ccp(0, 0.5));
 		gameMenuLayer:addChild(armor_name);
 		refreshables[refreshable_count] = armor_name;
 		refreshable_count = refreshable_count + 1;
 
 		local ring_name = CCLabelBMFont:create("Weapon: " .. ItemManager:getInstance():getItemStat(equip_ring, NAME), FONT );
-		ring_name:setPosition(CHARACTER_SPRITE_X, CHARACTER_NAME_Y - 150)
+		ring_name:setPosition(CHARACTER_SPRITE_X, CHARACTER_NAME_Y - offset_increment * 3)
 		ring_name:setAnchorPoint(ccp(0, 0.5));
 		gameMenuLayer:addChild(ring_name);
 		refreshables[refreshable_count] = ring_name;
@@ -443,15 +445,15 @@ initEquipPage = function()
 	local PARTY_SIZE = 3
 	
 	local CHARACTER_BACK_WIDTH = SCREEN_WIDTH;
-	local CHARACTER_BACK_HEIGHT = 90;
+	local CHARACTER_BACK_HEIGHT = SCREEN_HEIGHT / 4;
 	local CHARACTER_BACK_X = SCREEN_WIDTH / 2;
 	local CHARACTER_BACK_Y = SCREEN_HEIGHT - CHARACTER_BACK_HEIGHT / 2 - DESC_HEIGHT;
 	local CHARACTER_HP_X = CHARACTER_BACK_X;
 	local CHARACTER_HP_Y = CHARACTER_BACK_Y;
-	local CHARACTER_NAME_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + 100;
+	local CHARACTER_NAME_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + SCREEN_WIDTH / 6.4;
 	local CHARACTER_NAME_Y = CHARACTER_HP_Y;
 	local CHARACTER_BACK_OFFSET = CHARACTER_BACK_HEIGHT;
-	local CHARACTER_SPRITE_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + 50;
+	local CHARACTER_SPRITE_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + SCREEN_WIDTH / 12.8;
 	local CHARACTER_SPRITE_Y = CHARACTER_HP_Y;
 
 	local backBool = false;
@@ -514,7 +516,7 @@ initEquipPage = function()
 		charName:setAnchorPoint(ccp(0, 0.5));
 		gameMenuLayer:addChild(charName);
 
-		local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(SPRITE) .. ".png";
+		local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(SPRITE) .. "_front_2.png";
 		local charSprite = CCScale9Sprite:createWithSpriteFrameName( spriteName,  CCRectMake(0,0,0,0) );
 		charSprite:setContentSize(CCSizeMake(32, 32));
 		charSprite:setPosition(ccp(CHARACTER_SPRITE_X, CHARACTER_SPRITE_Y - CHARACTER_BACK_OFFSET * i));
@@ -605,15 +607,15 @@ initItemCharPage = function( inventory_num )
 	local PARTY_SIZE = 3
 	
 	local CHARACTER_BACK_WIDTH = SCREEN_WIDTH;
-	local CHARACTER_BACK_HEIGHT = 90;
+	local CHARACTER_BACK_HEIGHT = SCREEN_HEIGHT / 4;
 	local CHARACTER_BACK_X = SCREEN_WIDTH / 2;
 	local CHARACTER_BACK_Y = SCREEN_HEIGHT - CHARACTER_BACK_HEIGHT / 2 - DESC_HEIGHT;
 	local CHARACTER_HP_X = CHARACTER_BACK_X;
 	local CHARACTER_HP_Y = CHARACTER_BACK_Y;
-	local CHARACTER_NAME_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + 100;
+	local CHARACTER_NAME_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + SCREEN_WIDTH / 6.4;
 	local CHARACTER_NAME_Y = CHARACTER_HP_Y;
 	local CHARACTER_BACK_OFFSET = CHARACTER_BACK_HEIGHT;
-	local CHARACTER_SPRITE_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + 50;
+	local CHARACTER_SPRITE_X = CHARACTER_BACK_X - CHARACTER_BACK_WIDTH / 2 + SCREEN_WIDTH / 12.8;
 	local CHARACTER_SPRITE_Y = CHARACTER_HP_Y;
 
 	local backBool = false;
@@ -747,16 +749,17 @@ end
 initItemPage = function()
 
 	local currentSelection = null;
-
-	local ITEM_WIDTH = 256
-	local ITEM_HEIGHT = 52.8
-	local ITEM_START_X = 128
-	local ITEM_START_Y = SCREEN_HEIGHT - DESC_HEIGHT - ITEM_HEIGHT / 2
+	
+	local ITEM_WIDTH = SCREEN_WIDTH / 2.5;
+	local ITEM_HEIGHT = SCREEN_WIDTH / 12.12;
+	local ITEM_START_X = SCREEN_WIDTH / 5;
+	local ITEM_START_Y = SCREEN_HEIGHT - DESC_HEIGHT - ITEM_HEIGHT / 2 ;
 	local ITEM_COLS = 2;
 	local ITEM_MIN_ROWS = 5;
 	local ITEM_WORD_OFFSET = 24
 	local ITEM_STACK_START_Y = ITEM_START_Y;
-	local ITEM_STACK_OFFSET = 200
+	local ITEM_STACK_OFFSET = SCREEN_WIDTH / 3.2
+
 
 	local backBool = false;
 
@@ -769,9 +772,6 @@ initItemPage = function()
 		gameMenuLayer:unregisterScriptTouchHandler()
 		OwManager:getInstance():removeChildFromUILayer(gameMenuLayer)
 	end
-
-	
-
 	
 	local max = Player:getInstance():getInventory():getInventorySize();
 	local i = 0; -- main iterator
@@ -1008,8 +1008,8 @@ end
 
 initMenuPage = function()
 
-	local BUTTON_WIDTH = 128;
-	local BUTTON_HEIGHT = 64;
+	local BUTTON_WIDTH = SCREEN_WIDTH / 5;
+	local BUTTON_HEIGHT = SCREEN_WIDTH / 10;
 	local BUTTON_START_X = SCREEN_WIDTH - BUTTON_WIDTH / 2;
 	local BUTTON_START_Y = SCREEN_HEIGHT - BUTTON_HEIGHT / 2;
 	local BUTTON_OFFSET = BUTTON_HEIGHT;
@@ -1102,6 +1102,7 @@ initMenuPage = function()
 end
 
 function createOverworldMenu()
+	require('mobdebug').start() --<-- this line
 	initEntryPage()
 end
 

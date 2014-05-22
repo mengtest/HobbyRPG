@@ -10,8 +10,7 @@ public:
 	OwEntityBase(cocos2d::CCPoint position,
 				const std::string& name, 
 				const std::string& spriteBaseName = "chika",
-				const std::string& initialSpriteFrameName = "chika_front_2.png",
-				int id = 0);
+				const std::string& initialSpriteFrameName = "chika_front_2.png");
 
 	void setSprite(const std::string& spriteBaseName, const std::string& initialSpriteFrameName);
 	void setPosition( cocos2d::CCPoint position );

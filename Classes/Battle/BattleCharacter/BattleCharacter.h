@@ -1,5 +1,5 @@
-#ifndef __OWENTITYBASE_H__
-#define __OWENTITYBASE_H__
+#ifndef __BATTLE_CHARACTER_H__
+#define __BATTLE_CHARACTER_H__
 
 #include "cocos2d.h"
 

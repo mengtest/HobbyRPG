@@ -49,11 +49,11 @@ const string& ItemManager::getItemStat( ItemEnum type, ItemStatEnum stat )
 		return std::string();
 	}
 
-	if ( (size_t)stat > m_data[type].size() || stat < 0 )
+	if ( (size_t)stat.getValue() > m_data[type].size() || stat.getValue() < 0 )
 	{
 		CCLOG("[ItemManager][getItemStat]: stat '%d' invalid", stat);
 		return std::string();
 	}
 
-	return m_data[type][stat];
+	return m_data[type][stat.getValue()];
 }

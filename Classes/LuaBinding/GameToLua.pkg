@@ -35,8 +35,8 @@ class ItemManager
 {
 	static ItemManager& getInstance();
 
-	const std::vector< std::string >& getItemValues( ItemEnum type );
-	const std::string& getItemStat( ItemEnum type, ItemStatEnum stat ); 
+	const std::vector< std::string >& getItemValues( const ItemEnum type );
+	const std::string& getItemStat( const ItemEnum type, const ItemStatEnum stat ); 
 };
 
 class Common
@@ -128,14 +128,16 @@ class Character
 	void setLevel( int level ); 
 	void heal( int amount );
 	void damage( int amount );
-	bool equipWeapon( ItemEnum item );
-	bool equipArmor( ItemEnum item );
-	bool equipRing( ItemEnum item );
+
+	bool equipWeapon( const ItemEnum item );
+	bool equipArmor( const ItemEnum item );
+	bool equipRing( const ItemEnum item );
+
 	ItemEnum getWeapon();
 	ItemEnum getArmor();
 	ItemEnum getRing();
-	int getStat( StatsEnum type );
-	const std::string& getInfo( CharacterInfoEnum type );
+	int getStat( const StatsEnum type );
+	const std::string& getInfo( const CharacterInfoEnum type );
 	int getCurrentHP();
 };
 
@@ -156,8 +158,8 @@ class Party
 
 class Inventory
 {
-	bool addItem(ItemEnum item, int amount = 1 );
-	bool removeItem(ItemEnum item, int amount = 1);
+	bool addItem(const ItemEnum item, int amount = 1 );
+	bool removeItem(const ItemEnum item, int amount = 1);
     int getItemByIndex( int index );
 	int getInventorySize();
 };

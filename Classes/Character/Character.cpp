@@ -62,18 +62,18 @@ void Character::setLevel( int level )
 	}
 
 	//Set current HP
-	m_currentHP = this->getStat(HP);
+	m_currentHP = this->getStat(StatsEnum::HP);
 }
 
 int Character::getStat( StatsEnum type ) const
 {
-	if ( (size_t)type > m_stats.size() || type < 0 ) 
+	if ( (size_t)type.getValue() > m_stats.size() || type.getValue() < 0 ) 
 	{
-		CCLOG("[Character][getStat]: type '%d' invalid", type );
+		CCLOG("[Character][getStat]: type '%d' invalid", type.getValue() );
 		return 0.0f;
 	}
 
-	return m_stats[type];
+	return m_stats[type.getValue()];
 }
 
 const vector < int > & Character::getAllStats() const
@@ -83,14 +83,14 @@ const vector < int > & Character::getAllStats() const
 
 void Character::heal( int amount )
 {
-	CCLOG("[Character][heal]: %s healed for %i HP!", getInfo(ALIAS).c_str(), amount );
+	CCLOG("[Character][heal]: %s healed for %i HP!", getInfo(CharacterInfoEnum::ALIAS).c_str(), amount );
 	m_currentHP += amount;
 	regulateHP();
 }
 
 void Character::damage( int amount )
 {
-	CCLOG("[Character][damage]: %s takes '%d' damage!", getInfo(ALIAS).c_str(), amount );
+	CCLOG("[Character][damage]: %s takes '%d' damage!", getInfo(CharacterInfoEnum::ALIAS).c_str(), amount );
 	m_currentHP -= amount;
 	regulateHP();
 }
@@ -102,44 +102,44 @@ void Character::regulateHP()
 		m_currentHP = 0;
 	}
 
-	if ( m_currentHP > getStat(HP) )
+	if ( m_currentHP > getStat(StatsEnum::HP) )
 	{
-		m_currentHP = getStat(HP);
+		m_currentHP = getStat(StatsEnum::HP);
 	}
 }
 
 
 bool Character::equipArmor(ItemEnum armor)
 {
-	if ( ItemManager::getInstance().getItemStat(armor, ARMOR_TYPE ).compare( getInfo(ARMOR)) <= 0 )
+	if ( ItemManager::getInstance().getItemStat(armor, ItemStatEnum::ARMOR_TYPE ).compare( getInfo(CharacterInfoEnum::ARMOR)) <= 0 )
 	{
 		m_armor = armor;
-		CCLOG("Equipping %s on %s success!", ItemManager::getInstance().getItemStat(armor, NAME).c_str(), getInfo(ALIAS).c_str());
+		CCLOG("Equipping %s on %s success!", ItemManager::getInstance().getItemStat(armor, ItemStatEnum::NAME).c_str(), getInfo(CharacterInfoEnum::ALIAS).c_str());
 		return true;
 	}
 
 	CCLOG("Equipping %s on %s fail! Can only equip %s type, tried to equip %s type", 
-		ItemManager::getInstance().getItemStat(armor, NAME).c_str(), 
-		getInfo(ALIAS).c_str(), 
-		getInfo(WEAPON).c_str(),
-		ItemManager::getInstance().getItemStat(armor, ARMOR_TYPE).c_str());
+		ItemManager::getInstance().getItemStat(armor, ItemStatEnum::NAME).c_str(), 
+		getInfo(CharacterInfoEnum::ALIAS).c_str(), 
+		getInfo(CharacterInfoEnum::WEAPON).c_str(),
+		ItemManager::getInstance().getItemStat(armor, ItemStatEnum::ARMOR_TYPE).c_str());
 	return false;
 }
 
 bool Character::equipWeapon(ItemEnum weapon)
 {
-	if ( ItemManager::getInstance().getItemStat(weapon, WEAPON_TYPE ).compare( getInfo(WEAPON)) <= 0 )
+	if ( ItemManager::getInstance().getItemStat(weapon, ItemStatEnum::WEAPON_TYPE ).compare( getInfo( CharacterInfoEnum::WEAPON )) <= 0 )
 	{
 		m_weapon = weapon;
-		CCLOG("Equipping %s on %s success!", ItemManager::getInstance().getItemStat(weapon, NAME).c_str(), getInfo(ALIAS).c_str());
+		CCLOG("Equipping %s on %s success!", ItemManager::getInstance().getItemStat(weapon, ItemStatEnum::NAME).c_str(), getInfo(CharacterInfoEnum::ALIAS).c_str());
 		return true;
 	}
 
 	CCLOG("Equipping %s on %s fail! Can only equip %s type, tried to equip %s type", 
-		ItemManager::getInstance().getItemStat(weapon, NAME).c_str(), 
-		getInfo(ALIAS).c_str(), 
-		getInfo(WEAPON).c_str(),
-		ItemManager::getInstance().getItemStat(weapon, WEAPON_TYPE).c_str());
+		ItemManager::getInstance().getItemStat(weapon, ItemStatEnum::NAME).c_str(), 
+		getInfo(CharacterInfoEnum::ALIAS).c_str(), 
+		getInfo(CharacterInfoEnum::WEAPON).c_str(),
+		ItemManager::getInstance().getItemStat(weapon, ItemStatEnum::WEAPON_TYPE).c_str());
 	return false;
 }
 

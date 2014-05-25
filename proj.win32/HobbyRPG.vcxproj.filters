@@ -249,6 +249,15 @@
     <ClCompile Include="..\Classes\Battle\BattleCharacter\BattleCharacter.cpp">
       <Filter>Classes\Battle\BattleCharacter</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Enum\CharacterInfoEnum.cpp">
+      <Filter>Classes\Enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enum\ItemStatEnum.cpp">
+      <Filter>Classes\Enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enum\StatsEnum.cpp">
+      <Filter>Classes\Enum</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">

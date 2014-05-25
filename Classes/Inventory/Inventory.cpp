@@ -17,7 +17,7 @@ bool Inventory::addItem( ItemEnum item, int amount )
 {
 	// TODO: max stacks
 	m_masterItemList[item] += amount;
-	CCLOG("[Inventory][addItem]: %s = %i", ItemManager::getInstance().getItemStat( item, NAME ).c_str(), m_masterItemList[item] );
+	CCLOG("[Inventory][addItem]: %s = %i", ItemManager::getInstance().getItemStat( item, ItemStatEnum::NAME ).c_str(), m_masterItemList[item] );
 
 	return true;
 }
@@ -27,10 +27,10 @@ bool Inventory::removeItem(ItemEnum item, int amount)
 	if ( m_masterItemList[item] != 0 )
 	{
 		m_masterItemList[item] -= amount;
-		CCLOG("[Inventory][removeItem] success: %s = %i", ItemManager::getInstance().getItemStat( item, NAME ).c_str(), m_masterItemList[item] );
+		CCLOG("[Inventory][removeItem] success: %s = %i", ItemManager::getInstance().getItemStat( item, ItemStatEnum::NAME ).c_str(), m_masterItemList[item] );
 		return true;
 	}
-	CCLOG("[Inventory][removeItem] failed: %s = %i", ItemManager::getInstance().getItemStat( item, NAME ).c_str(), m_masterItemList[item] );
+	CCLOG("[Inventory][removeItem] failed: %s = %i", ItemManager::getInstance().getItemStat( item, ItemStatEnum::NAME ).c_str(), m_masterItemList[item] );
 
 	
 	return false;
@@ -45,7 +45,7 @@ void Inventory::outputInventory()
 	int i = 0;
 	for ( ; beg != end; ++beg )
 	{
-		CCLOG("%i: %s = %i", i, ItemManager::getInstance().getItemStat( static_cast<ItemEnum>(i), NAME ).c_str(), *beg );
+		CCLOG("%i: %s = %i", i, ItemManager::getInstance().getItemStat( static_cast<ItemEnum>(i), ItemStatEnum::NAME ).c_str(), *beg );
 		++i;
 
 	}

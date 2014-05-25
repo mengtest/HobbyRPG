@@ -2,7 +2,7 @@ local MAX_MEMBERS = 3;
 local SCREEN_WIDTH = Common:getGameWidth()
 local SCREEN_HEIGHT = Common:getGameHeight()
 
-function BattleInit()
+function BattleInitCharacters()
 	local i = 0;
 	local offset_y = SCREEN_HEIGHT * 0.15;
 	while ( i < MAX_MEMBERS ) do
@@ -12,4 +12,9 @@ function BattleInit()
 		BattleManager:getInstance():addBattleCharacter( ccp(x,y), test, LEFT);
 		i = i + 1;
 	end
+end
+
+function BattleInit()
+	BattleInitCharacters()
+
 end

@@ -128,7 +128,7 @@ bool OwManager::init(OverworldScene * scene)
 	
 
 	// inventory test cases
-	/*Inventory * inv = Player::getInstance().getInventory();
+	Inventory * inv = Player::getInstance().getInventory();
 	inv->addItem(CHILI);
 	inv->addItem(PLAIN_WATER);
 	inv->addItem(PLAIN_WATER);
@@ -149,17 +149,17 @@ bool OwManager::init(OverworldScene * scene)
 
 
 	inv->outputInventory();
-	*/
+	//*/
 	
 	//temp->equipArmor(PLAIN_WATER); //fail
 	//temp->equipArmor(CHAINMAIL); //fail
 	//temp->equipWeapon(SWORD); // succeed
 
 	// add one of every time
-	/*for (  int i = 1; i < ItemEnum::NUM_ITEMS; ++i )
+	for (  int i = 1; i < ItemEnum::NUM_ITEMS; ++i )
 	{
 		inv->addItem( (ItemEnum)i);
-	}*/
+	}
 
 	CCLuaEngine::defaultEngine()->executeGlobalFunction("createOverworldMenu");
 

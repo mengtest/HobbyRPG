@@ -1,9 +1,10 @@
 $cfile "..\Enum\CharacterInfoEnum.h" 
-enum CharacterInfoEnum {
-    ALIAS = 0,
-    SPRITE = 1,
-    CLASS = 2,
-    ARMOR = 3,
-    WEAPON = 4,
-    AGE = 5,
+class CharacterInfoEnum {
+    const static CharacterInfoEnum ALIAS;
+    const static CharacterInfoEnum SPRITE;
+    const static CharacterInfoEnum CLASS;
+    const static CharacterInfoEnum ARMOR;
+    const static CharacterInfoEnum WEAPON;
+    const static CharacterInfoEnum AGE;
+    inline int getValue() { return value; }
 };

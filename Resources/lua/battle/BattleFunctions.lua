@@ -2,6 +2,10 @@ local MAX_MEMBERS = 3;
 local SCREEN_WIDTH = Common:getGameWidth()
 local SCREEN_HEIGHT = Common:getGameHeight()
 
+function BattleInitEnemies()
+
+end
+
 function BattleInitCharacters()
 	local i = 0;
 	local offset_y = SCREEN_HEIGHT * 0.15;
@@ -16,5 +20,5 @@ end
 
 function BattleInit()
 	BattleInitCharacters()
-
+	BattleInitEnemies()
 end

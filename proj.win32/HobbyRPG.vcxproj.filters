@@ -258,6 +258,9 @@
     <ClCompile Include="..\Classes\Enum\StatsEnum.cpp">
       <Filter>Classes\Enum</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Enum\EnemyStatsEnum.cpp">
+      <Filter>Classes\Enum</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -466,6 +469,9 @@
     </None>
     <None Include="..\Resources\lua\battle\BattleFunctions.lua">
       <Filter>Lua\battle</Filter>
+    </None>
+    <None Include="..\Classes\LuaBinding\EnemyStatsEnumToLua.pkg">
+      <Filter>Classes\LuaBinding</Filter>
     </None>
   </ItemGroup>
 </Project>

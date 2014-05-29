@@ -138,6 +138,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile Include="..\Classes\Config\ConfigReader.cpp" />
     <ClCompile Include="..\Classes\CustomActionManager\CustomActionManager.cpp" />
     <ClCompile Include="..\Classes\Enum\CharacterInfoEnum.cpp" />
+    <ClCompile Include="..\Classes\Enum\EnemyStatsEnum.cpp" />
     <ClCompile Include="..\Classes\Enum\ItemStatEnum.cpp" />
     <ClCompile Include="..\Classes\Enum\StatsEnum.cpp" />
     <ClCompile Include="..\Classes\Events\EventManager.cpp" />
@@ -261,6 +262,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <None Include="..\Classes\AI\cTrigger.inl" />
     <None Include="..\Classes\LuaBinding\AllLua.pkg" />
     <None Include="..\Classes\LuaBinding\CharacterInfoEnumToLua.pkg" />
+    <None Include="..\Classes\LuaBinding\EnemyStatsEnumToLua.pkg" />
     <None Include="..\Classes\LuaBinding\GameToLua.pkg" />
     <None Include="..\Classes\LuaBinding\ItemEnumToLua.pkg" />
     <None Include="..\Classes\LuaBinding\ItemStatEnumToLua.pkg" />

@@ -32,28 +32,28 @@ ItemManager& ItemManager::getInstance()
 
 const vector< string >& ItemManager::getItemValues( ItemEnum type )
 {
-	if ( (size_t)type > m_data.size() || type < 0 )
+	if ( (size_t)type.getValue() > m_data.size() || type.getValue() < 0 )
 	{
 		CCLOG("[ItemManager][getItemValues]: type '%d' invalid", type );
 		return std::vector< std::string >();
 	}
 
-	return m_data[type];
+	return m_data[type.getValue()];
 }
 
 const string& ItemManager::getItemStat( ItemEnum type, ItemStatEnum stat )
 {
-	if ( (size_t)type > m_data.size() || type < 0 )
+	if ( (size_t)type.getValue() > m_data.size() || type.getValue() < 0 )
 	{
-		CCLOG("[ItemManager][getItemStat]: type '%d' invalid", type);
+		CCLOG("[ItemManager][getItemStat]: type '%d' invalid", type.getValue());
 		return std::string();
 	}
 
-	if ( (size_t)stat.getValue() > m_data[type].size() || stat.getValue() < 0 )
+	if ( (size_t)stat.getValue() > m_data[type.getValue()].size() || stat.getValue() < 0 )
 	{
 		CCLOG("[ItemManager][getItemStat]: stat '%d' invalid", stat);
 		return std::string();
 	}
 
-	return m_data[type][stat.getValue()];
+	return m_data[type.getValue()][stat.getValue()];
 }

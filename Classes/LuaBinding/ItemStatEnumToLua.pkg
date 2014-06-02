@@ -9,5 +9,5 @@ class ItemStatEnum {
     const static ItemStatEnum WEAPON_TYPE;
     const static ItemStatEnum ARMOR_TYPE;
     const static ItemStatEnum ITEM_TYPE;
-    inline int getValue() { return value; };
+    inline int getValue() const;
 };

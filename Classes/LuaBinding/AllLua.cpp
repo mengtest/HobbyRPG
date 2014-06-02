@@ -1,6 +1,6 @@
 /*
 ** Lua binding: AllLua
-** Generated automatically by tolua++-1.0.92 on 05/25/14 00:34:59.
+** Generated automatically by tolua++-1.0.92 on 06/01/14 22:51:23.
 */
 
 #ifndef __cplusplus
@@ -67,6 +67,13 @@ static int tolua_collect_OwEventDialog (lua_State* tolua_S)
 	Mtolua_delete(self);
 	return 0;
 }
+
+static int tolua_collect_ItemEnum (lua_State* tolua_S)
+{
+ ItemEnum* self = (ItemEnum*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
 #endif
 
 
@@ -76,6 +83,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"CCPoint");
  tolua_usertype(tolua_S,"ItemManager");
  tolua_usertype(tolua_S,"OwManager");
+ tolua_usertype(tolua_S,"ItemEnum");
  tolua_usertype(tolua_S,"Character");
  tolua_usertype(tolua_S,"StatsEnum");
  tolua_usertype(tolua_S,"OwAICommand");
@@ -136,7 +144,7 @@ static int tolua_AllLua_ItemManager_getItemValues00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"ItemManager",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const ItemEnum",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -144,7 +152,7 @@ static int tolua_AllLua_ItemManager_getItemValues00(lua_State* tolua_S)
 #endif
  {
   ItemManager* self = (ItemManager*)  tolua_tousertype(tolua_S,1,0);
-  const ItemEnum type = ((const ItemEnum) (int)  tolua_tonumber(tolua_S,2,0));
+  const ItemEnum type = *((const ItemEnum*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getItemValues'", NULL);
 #endif
@@ -170,7 +178,7 @@ static int tolua_AllLua_ItemManager_getItemStat00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"ItemManager",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const ItemEnum",0,&tolua_err)) ||
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const ItemStatEnum",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
@@ -179,7 +187,7 @@ static int tolua_AllLua_ItemManager_getItemStat00(lua_State* tolua_S)
 #endif
  {
   ItemManager* self = (ItemManager*)  tolua_tousertype(tolua_S,1,0);
-  const ItemEnum type = ((const ItemEnum) (int)  tolua_tonumber(tolua_S,2,0));
+  const ItemEnum type = *((const ItemEnum*)  tolua_tousertype(tolua_S,2,0));
   const ItemStatEnum stat = *((const ItemStatEnum*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getItemStat'", NULL);
@@ -1561,7 +1569,7 @@ static int tolua_AllLua_Character_equipWeapon00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Character",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const ItemEnum",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -1569,7 +1577,7 @@ static int tolua_AllLua_Character_equipWeapon00(lua_State* tolua_S)
 #endif
  {
   Character* self = (Character*)  tolua_tousertype(tolua_S,1,0);
-  const ItemEnum item = ((const ItemEnum) (int)  tolua_tonumber(tolua_S,2,0));
+  const ItemEnum item = *((const ItemEnum*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'equipWeapon'", NULL);
 #endif
@@ -1595,7 +1603,7 @@ static int tolua_AllLua_Character_equipArmor00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Character",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const ItemEnum",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -1603,7 +1611,7 @@ static int tolua_AllLua_Character_equipArmor00(lua_State* tolua_S)
 #endif
  {
   Character* self = (Character*)  tolua_tousertype(tolua_S,1,0);
-  const ItemEnum item = ((const ItemEnum) (int)  tolua_tonumber(tolua_S,2,0));
+  const ItemEnum item = *((const ItemEnum*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'equipArmor'", NULL);
 #endif
@@ -1629,7 +1637,7 @@ static int tolua_AllLua_Character_equipRing00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Character",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const ItemEnum",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -1637,7 +1645,7 @@ static int tolua_AllLua_Character_equipRing00(lua_State* tolua_S)
 #endif
  {
   Character* self = (Character*)  tolua_tousertype(tolua_S,1,0);
-  const ItemEnum item = ((const ItemEnum) (int)  tolua_tonumber(tolua_S,2,0));
+  const ItemEnum item = *((const ItemEnum*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'equipRing'", NULL);
 #endif
@@ -1675,7 +1683,17 @@ static int tolua_AllLua_Character_getWeapon00(lua_State* tolua_S)
 #endif
   {
    ItemEnum tolua_ret = (ItemEnum)  self->getWeapon();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((ItemEnum)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"ItemEnum");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(ItemEnum));
+     tolua_pushusertype(tolua_S,tolua_obj,"ItemEnum");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
   }
  }
  return 1;
@@ -1707,7 +1725,17 @@ static int tolua_AllLua_Character_getArmor00(lua_State* tolua_S)
 #endif
   {
    ItemEnum tolua_ret = (ItemEnum)  self->getArmor();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((ItemEnum)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"ItemEnum");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(ItemEnum));
+     tolua_pushusertype(tolua_S,tolua_obj,"ItemEnum");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
   }
  }
  return 1;
@@ -1739,7 +1767,17 @@ static int tolua_AllLua_Character_getRing00(lua_State* tolua_S)
 #endif
   {
    ItemEnum tolua_ret = (ItemEnum)  self->getRing();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((ItemEnum)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"ItemEnum");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(ItemEnum));
+     tolua_pushusertype(tolua_S,tolua_obj,"ItemEnum");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
   }
  }
  return 1;
@@ -2055,7 +2093,7 @@ static int tolua_AllLua_Inventory_addItem00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Inventory",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const ItemEnum",0,&tolua_err)) ||
      !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
@@ -2064,7 +2102,7 @@ static int tolua_AllLua_Inventory_addItem00(lua_State* tolua_S)
 #endif
  {
   Inventory* self = (Inventory*)  tolua_tousertype(tolua_S,1,0);
-  const ItemEnum item = ((const ItemEnum) (int)  tolua_tonumber(tolua_S,2,0));
+  const ItemEnum item = *((const ItemEnum*)  tolua_tousertype(tolua_S,2,0));
   int amount = ((int)  tolua_tonumber(tolua_S,3,1));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addItem'", NULL);
@@ -2091,7 +2129,7 @@ static int tolua_AllLua_Inventory_removeItem00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Inventory",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const ItemEnum",0,&tolua_err)) ||
      !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
@@ -2100,7 +2138,7 @@ static int tolua_AllLua_Inventory_removeItem00(lua_State* tolua_S)
 #endif
  {
   Inventory* self = (Inventory*)  tolua_tousertype(tolua_S,1,0);
-  const ItemEnum item = ((const ItemEnum) (int)  tolua_tonumber(tolua_S,2,0));
+  const ItemEnum item = *((const ItemEnum*)  tolua_tousertype(tolua_S,2,0));
   int amount = ((int)  tolua_tonumber(tolua_S,3,1));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'removeItem'", NULL);
@@ -2180,6 +2218,312 @@ static int tolua_AllLua_Inventory_getInventorySize00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getInventorySize'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: EMPTY of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_EMPTY
+static int tolua_get_ItemEnum_EMPTY(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::EMPTY,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: PLAIN_WATER of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_PLAIN_WATER
+static int tolua_get_ItemEnum_PLAIN_WATER(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::PLAIN_WATER,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: CHILI of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_CHILI
+static int tolua_get_ItemEnum_CHILI(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::CHILI,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: DASHI of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_DASHI
+static int tolua_get_ItemEnum_DASHI(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::DASHI,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: ITEM_1 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_ITEM_1
+static int tolua_get_ItemEnum_ITEM_1(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::ITEM_1,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: ITEM_2 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_ITEM_2
+static int tolua_get_ItemEnum_ITEM_2(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::ITEM_2,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: ITEM_3 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_ITEM_3
+static int tolua_get_ItemEnum_ITEM_3(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::ITEM_3,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: ITEM_4 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_ITEM_4
+static int tolua_get_ItemEnum_ITEM_4(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::ITEM_4,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: ITEM_5 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_ITEM_5
+static int tolua_get_ItemEnum_ITEM_5(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::ITEM_5,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: ITEM_6 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_ITEM_6
+static int tolua_get_ItemEnum_ITEM_6(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::ITEM_6,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: SWORD of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_SWORD
+static int tolua_get_ItemEnum_SWORD(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::SWORD,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: KATANA of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_KATANA
+static int tolua_get_ItemEnum_KATANA(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::KATANA,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: SPEAR of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_SPEAR
+static int tolua_get_ItemEnum_SPEAR(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::SPEAR,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: WEAPON1 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_WEAPON1
+static int tolua_get_ItemEnum_WEAPON1(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::WEAPON1,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: WEAPON2 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_WEAPON2
+static int tolua_get_ItemEnum_WEAPON2(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::WEAPON2,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: WEAPON3 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_WEAPON3
+static int tolua_get_ItemEnum_WEAPON3(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::WEAPON3,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: WEAPON4 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_WEAPON4
+static int tolua_get_ItemEnum_WEAPON4(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::WEAPON4,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: WEAPON5 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_WEAPON5
+static int tolua_get_ItemEnum_WEAPON5(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::WEAPON5,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: WEAPON6 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_WEAPON6
+static int tolua_get_ItemEnum_WEAPON6(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::WEAPON6,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: WEAPON7 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_WEAPON7
+static int tolua_get_ItemEnum_WEAPON7(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::WEAPON7,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: WEAPON8 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_WEAPON8
+static int tolua_get_ItemEnum_WEAPON8(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::WEAPON8,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: WEAPON9 of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_WEAPON9
+static int tolua_get_ItemEnum_WEAPON9(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::WEAPON9,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: T_SHIRT of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_T_SHIRT
+static int tolua_get_ItemEnum_T_SHIRT(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::T_SHIRT,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: HIDE_ARMOR of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_HIDE_ARMOR
+static int tolua_get_ItemEnum_HIDE_ARMOR(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::HIDE_ARMOR,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: CHAINMAIL of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_CHAINMAIL
+static int tolua_get_ItemEnum_CHAINMAIL(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::CHAINMAIL,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: NUM_ITEMS of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_get_ItemEnum_NUM_ITEMS
+static int tolua_get_ItemEnum_NUM_ITEMS(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&ItemEnum::NUM_ITEMS,"const ItemEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getValue of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_AllLua_ItemEnum_getValue00
+static int tolua_AllLua_ItemEnum_getValue00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const ItemEnum",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const ItemEnum* self = (const ItemEnum*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getValue'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getValue();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getValue'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getItemByIndex of class  ItemEnum */
+#ifndef TOLUA_DISABLE_tolua_AllLua_ItemEnum_getItemByIndex00
+static int tolua_AllLua_ItemEnum_getItemByIndex00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ItemEnum",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+  {
+   ItemEnum tolua_ret = (ItemEnum)  ItemEnum::getItemByIndex(index);
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((ItemEnum)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"ItemEnum");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(ItemEnum));
+     tolua_pushusertype(tolua_S,tolua_obj,"ItemEnum");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getItemByIndex'.",&tolua_err);
  return 0;
 #endif
 }
@@ -2273,14 +2617,14 @@ static int tolua_AllLua_ItemStatEnum_getValue00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"ItemStatEnum",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const ItemStatEnum",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  ItemStatEnum* self = (ItemStatEnum*)  tolua_tousertype(tolua_S,1,0);
+  const ItemStatEnum* self = (const ItemStatEnum*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getValue'", NULL);
 #endif
@@ -2619,32 +2963,41 @@ TOLUA_API int tolua_AllLua_open (lua_State* tolua_S)
    tolua_function(tolua_S,"getItemByIndex",tolua_AllLua_Inventory_getItemByIndex00);
    tolua_function(tolua_S,"getInventorySize",tolua_AllLua_Inventory_getInventorySize00);
   tolua_endmodule(tolua_S);
-  tolua_constant(tolua_S,"EMPTY",EMPTY);
-  tolua_constant(tolua_S,"PLAIN_WATER",PLAIN_WATER);
-  tolua_constant(tolua_S,"CHILI",CHILI);
-  tolua_constant(tolua_S,"DASHI",DASHI);
-  tolua_constant(tolua_S,"ITEM_1",ITEM_1);
-  tolua_constant(tolua_S,"ITEM_2",ITEM_2);
-  tolua_constant(tolua_S,"ITEM_3",ITEM_3);
-  tolua_constant(tolua_S,"ITEM_4",ITEM_4);
-  tolua_constant(tolua_S,"ITEM_5",ITEM_5);
-  tolua_constant(tolua_S,"ITEM_6",ITEM_6);
-  tolua_constant(tolua_S,"SWORD",SWORD);
-  tolua_constant(tolua_S,"KATANA",KATANA);
-  tolua_constant(tolua_S,"SPEAR",SPEAR);
-  tolua_constant(tolua_S,"WEAPON1",WEAPON1);
-  tolua_constant(tolua_S,"WEAPON2",WEAPON2);
-  tolua_constant(tolua_S,"WEAPON3",WEAPON3);
-  tolua_constant(tolua_S,"WEAPON4",WEAPON4);
-  tolua_constant(tolua_S,"WEAPON5",WEAPON5);
-  tolua_constant(tolua_S,"WEAPON6",WEAPON6);
-  tolua_constant(tolua_S,"WEAPON7",WEAPON7);
-  tolua_constant(tolua_S,"WEAPON8",WEAPON8);
-  tolua_constant(tolua_S,"WEAPON9",WEAPON9);
-  tolua_constant(tolua_S,"T_SHIRT",T_SHIRT);
-  tolua_constant(tolua_S,"HIDE_ARMOR",HIDE_ARMOR);
-  tolua_constant(tolua_S,"CHAINMAIL",CHAINMAIL);
-  tolua_constant(tolua_S,"NUM_ITEMS",NUM_ITEMS);
+  #ifdef __cplusplus
+  tolua_cclass(tolua_S,"ItemEnum","ItemEnum","",tolua_collect_ItemEnum);
+  #else
+  tolua_cclass(tolua_S,"ItemEnum","ItemEnum","",NULL);
+  #endif
+  tolua_beginmodule(tolua_S,"ItemEnum");
+   tolua_variable(tolua_S,"EMPTY",tolua_get_ItemEnum_EMPTY,NULL);
+   tolua_variable(tolua_S,"PLAIN_WATER",tolua_get_ItemEnum_PLAIN_WATER,NULL);
+   tolua_variable(tolua_S,"CHILI",tolua_get_ItemEnum_CHILI,NULL);
+   tolua_variable(tolua_S,"DASHI",tolua_get_ItemEnum_DASHI,NULL);
+   tolua_variable(tolua_S,"ITEM_1",tolua_get_ItemEnum_ITEM_1,NULL);
+   tolua_variable(tolua_S,"ITEM_2",tolua_get_ItemEnum_ITEM_2,NULL);
+   tolua_variable(tolua_S,"ITEM_3",tolua_get_ItemEnum_ITEM_3,NULL);
+   tolua_variable(tolua_S,"ITEM_4",tolua_get_ItemEnum_ITEM_4,NULL);
+   tolua_variable(tolua_S,"ITEM_5",tolua_get_ItemEnum_ITEM_5,NULL);
+   tolua_variable(tolua_S,"ITEM_6",tolua_get_ItemEnum_ITEM_6,NULL);
+   tolua_variable(tolua_S,"SWORD",tolua_get_ItemEnum_SWORD,NULL);
+   tolua_variable(tolua_S,"KATANA",tolua_get_ItemEnum_KATANA,NULL);
+   tolua_variable(tolua_S,"SPEAR",tolua_get_ItemEnum_SPEAR,NULL);
+   tolua_variable(tolua_S,"WEAPON1",tolua_get_ItemEnum_WEAPON1,NULL);
+   tolua_variable(tolua_S,"WEAPON2",tolua_get_ItemEnum_WEAPON2,NULL);
+   tolua_variable(tolua_S,"WEAPON3",tolua_get_ItemEnum_WEAPON3,NULL);
+   tolua_variable(tolua_S,"WEAPON4",tolua_get_ItemEnum_WEAPON4,NULL);
+   tolua_variable(tolua_S,"WEAPON5",tolua_get_ItemEnum_WEAPON5,NULL);
+   tolua_variable(tolua_S,"WEAPON6",tolua_get_ItemEnum_WEAPON6,NULL);
+   tolua_variable(tolua_S,"WEAPON7",tolua_get_ItemEnum_WEAPON7,NULL);
+   tolua_variable(tolua_S,"WEAPON8",tolua_get_ItemEnum_WEAPON8,NULL);
+   tolua_variable(tolua_S,"WEAPON9",tolua_get_ItemEnum_WEAPON9,NULL);
+   tolua_variable(tolua_S,"T_SHIRT",tolua_get_ItemEnum_T_SHIRT,NULL);
+   tolua_variable(tolua_S,"HIDE_ARMOR",tolua_get_ItemEnum_HIDE_ARMOR,NULL);
+   tolua_variable(tolua_S,"CHAINMAIL",tolua_get_ItemEnum_CHAINMAIL,NULL);
+   tolua_variable(tolua_S,"NUM_ITEMS",tolua_get_ItemEnum_NUM_ITEMS,NULL);
+   tolua_function(tolua_S,"getValue",tolua_AllLua_ItemEnum_getValue00);
+   tolua_function(tolua_S,"getItemByIndex",tolua_AllLua_ItemEnum_getItemByIndex00);
+  tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"ItemStatEnum","ItemStatEnum","",NULL);
   tolua_beginmodule(tolua_S,"ItemStatEnum");
    tolua_variable(tolua_S,"NAME",tolua_get_ItemStatEnum_NAME,NULL);

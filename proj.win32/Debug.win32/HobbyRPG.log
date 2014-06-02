@@ -1,10 +1,18 @@
-﻿Build started 2014/05/25 0:39:37.
+﻿Build started 2014/06/01 22:52:09.
      1>Project "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\HobbyRPG.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\include" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\kazmath\include" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\platform\win32" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\platform\third_party\win32" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\scripting\lua\tolua" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\scripting\lua\cocos2dx_support" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\scripting\lua\lua" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\platform\third_party\win32\OGLES" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\external" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\external\chipmunk\include\chipmunk" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\CocosDenshion\include" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\extensions" /I..\Classes /I.. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\Overworld\OwManager\OwManager.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\include" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\kazmath\include" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\platform\win32" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\platform\third_party\win32" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\scripting\lua\tolua" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\scripting\lua\cocos2dx_support" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\scripting\lua\lua" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\cocos2dx\platform\third_party\win32\OGLES" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\external" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\external\chipmunk\include\chipmunk" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\CocosDenshion\include" /I"F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\extensions" /I..\Classes /I.. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\Battle\BattleCharacter\BattleCharacter.cpp ..\Classes\Battle\BattleManager\BattleManager.cpp ..\Classes\Character\Character.cpp ..\Classes\Enum\ItemEnum.cpp ..\Classes\Inventory\Inventory.cpp ..\Classes\Item\ItemManager.cpp ..\Classes\LuaBinding\AllLua.cpp ..\Classes\Overworld\OwManager\OwManager.cpp ..\Classes\Player\Player.cpp
+         ItemEnum.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         Player.cpp
          OwManager.cpp
-     1>f:\sandbox\cocos2d-x\cocos2dx\platform\ccsaxparser.h : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
-     1>f:\sandbox\cocos2d-x\extensions\gui\cccontrolextension\ccscale9sprite.h : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+         AllLua.cpp
+         ItemManager.cpp
+         Inventory.cpp
+         Character.cpp
+         BattleManager.cpp
+         BattleCharacter.cpp
        PreLinkEvent:
          if not exist "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\" mkdir "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\"
          xcopy /Y /Q "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\..\..\..\external\libwebsockets\win32\lib\*.*" "F:\Sandbox\cocos2d-x\projects\HobbyRPG\proj.win32\Debug.win32\"
@@ -22,6 +30,8 @@
          Debug.win32\ConfigReader.obj
          Debug.win32\CustomActionManager.obj
          Debug.win32\CharacterInfoEnum.obj
+         Debug.win32\EnemyStatsEnum.obj
+         Debug.win32\ItemEnum.obj
          Debug.win32\ItemStatEnum.obj
          Debug.win32\StatsEnum.obj
          Debug.win32\EventManager.obj
@@ -68,4 +78,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.06
+Time Elapsed 00:00:01.05

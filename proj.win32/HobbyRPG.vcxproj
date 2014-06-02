@@ -139,6 +139,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClCompile Include="..\Classes\CustomActionManager\CustomActionManager.cpp" />
     <ClCompile Include="..\Classes\Enum\CharacterInfoEnum.cpp" />
     <ClCompile Include="..\Classes\Enum\EnemyStatsEnum.cpp" />
+    <ClCompile Include="..\Classes\Enum\ItemEnum.cpp" />
     <ClCompile Include="..\Classes\Enum\ItemStatEnum.cpp" />
     <ClCompile Include="..\Classes\Enum\StatsEnum.cpp" />
     <ClCompile Include="..\Classes\Events\EventManager.cpp" />
@@ -193,8 +194,10 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <ClInclude Include="..\Classes\Config\Config.h" />
     <ClInclude Include="..\Classes\Config\ConfigReader.h" />
     <ClInclude Include="..\Classes\CustomActionManager\CustomActionManager.h" />
+    <ClInclude Include="..\Classes\Enemy\EnemyManager.h" />
     <ClInclude Include="..\Classes\Enum\CharacterInfoEnum.h" />
     <ClInclude Include="..\Classes\Enum\DirectionEnum.h" />
+    <ClInclude Include="..\Classes\Enum\EnemyStatsEnum.h" />
     <ClInclude Include="..\Classes\Enum\ItemEnum.h" />
     <ClInclude Include="..\Classes\Enum\ItemStatEnum.h" />
     <ClInclude Include="..\Classes\Enum\StatsEnum.h" />

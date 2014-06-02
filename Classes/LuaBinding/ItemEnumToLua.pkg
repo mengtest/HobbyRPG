@@ -1,29 +1,31 @@
 $cfile "..\Enum\ItemEnum.h" 
-enum ItemEnum {
-    EMPTY = 0,
-    PLAIN_WATER = 1,
-    CHILI = 2,
-    DASHI = 3,
-    ITEM_1 = 4,
-    ITEM_2 = 5,
-    ITEM_3 = 6,
-    ITEM_4 = 7,
-    ITEM_5 = 8,
-    ITEM_6 = 9,
-    SWORD = 10,
-    KATANA = 11,
-    SPEAR = 12,
-    WEAPON1 = 13,
-    WEAPON2 = 14,
-    WEAPON3 = 15,
-    WEAPON4 = 16,
-    WEAPON5 = 17,
-    WEAPON6 = 18,
-    WEAPON7 = 19,
-    WEAPON8 = 20,
-    WEAPON9 = 21,
-    T_SHIRT = 22,
-    HIDE_ARMOR = 23,
-    CHAINMAIL = 24,
-    NUM_ITEMS = 25,
+class ItemEnum {
+    const static ItemEnum EMPTY;
+    const static ItemEnum PLAIN_WATER;
+    const static ItemEnum CHILI;
+    const static ItemEnum DASHI;
+    const static ItemEnum ITEM_1;
+    const static ItemEnum ITEM_2;
+    const static ItemEnum ITEM_3;
+    const static ItemEnum ITEM_4;
+    const static ItemEnum ITEM_5;
+    const static ItemEnum ITEM_6;
+    const static ItemEnum SWORD;
+    const static ItemEnum KATANA;
+    const static ItemEnum SPEAR;
+    const static ItemEnum WEAPON1;
+    const static ItemEnum WEAPON2;
+    const static ItemEnum WEAPON3;
+    const static ItemEnum WEAPON4;
+    const static ItemEnum WEAPON5;
+    const static ItemEnum WEAPON6;
+    const static ItemEnum WEAPON7;
+    const static ItemEnum WEAPON8;
+    const static ItemEnum WEAPON9;
+    const static ItemEnum T_SHIRT;
+    const static ItemEnum HIDE_ARMOR;
+    const static ItemEnum CHAINMAIL;
+    const static ItemEnum NUM_ITEMS;
+    inline int getValue() const;
+    static ItemEnum getItemByIndex(int index);
 };

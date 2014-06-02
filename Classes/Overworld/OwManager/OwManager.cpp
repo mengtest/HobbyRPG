@@ -129,22 +129,22 @@ bool OwManager::init(OverworldScene * scene)
 
 	// inventory test cases
 	Inventory * inv = Player::getInstance().getInventory();
-	inv->addItem(CHILI);
-	inv->addItem(PLAIN_WATER);
-	inv->addItem(PLAIN_WATER);
-	inv->addItem(PLAIN_WATER);
-	inv->addItem(CHILI);
-	inv->addItem(CHILI);
-	inv->addItem(PLAIN_WATER);
-	inv->addItem(SWORD);
-	inv->addItem(PLAIN_WATER);
-	inv->addItem(CHILI);
-	inv->addItem(CHILI);
-	inv->addItem(CHILI);
+	inv->addItem(ItemEnum::CHILI);
+	inv->addItem(ItemEnum::PLAIN_WATER);
+	inv->addItem(ItemEnum::PLAIN_WATER);
+	inv->addItem(ItemEnum::PLAIN_WATER);
+	inv->addItem(ItemEnum::CHILI);
+	inv->addItem(ItemEnum::CHILI);
+	inv->addItem(ItemEnum::PLAIN_WATER);
+	inv->addItem(ItemEnum::SWORD);
+	inv->addItem(ItemEnum::PLAIN_WATER);
+	inv->addItem(ItemEnum::CHILI);
+	inv->addItem(ItemEnum::CHILI);
+	inv->addItem(ItemEnum::CHILI);
 
-	inv->addItem(PLAIN_WATER, 4);
-	inv->addItem(SWORD); 
-	inv->addItem(PLAIN_WATER, 4);
+	inv->addItem(ItemEnum::PLAIN_WATER, 4);
+	inv->addItem(ItemEnum::SWORD); 
+	inv->addItem(ItemEnum::PLAIN_WATER, 4);
 
 
 
@@ -155,11 +155,7 @@ bool OwManager::init(OverworldScene * scene)
 	//temp->equipArmor(CHAINMAIL); //fail
 	//temp->equipWeapon(SWORD); // succeed
 
-	// add one of every time
-	for (  int i = 1; i < ItemEnum::NUM_ITEMS; ++i )
-	{
-		inv->addItem( (ItemEnum)i);
-	}
+
 
 	CCLuaEngine::defaultEngine()->executeGlobalFunction("createOverworldMenu");
 

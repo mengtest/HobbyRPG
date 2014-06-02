@@ -118,6 +118,9 @@
     <Filter Include="Lua\battle">
       <UniqueIdentifier>{984d1854-95cd-488d-9dd6-8a12cc665a16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Enemy">
+      <UniqueIdentifier>{59ccc620-c06e-470b-9489-272c5aeabc6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -259,6 +262,9 @@
       <Filter>Classes\Enum</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Enum\EnemyStatsEnum.cpp">
+      <Filter>Classes\Enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enum\ItemEnum.cpp">
       <Filter>Classes\Enum</Filter>
     </ClCompile>
   </ItemGroup>
@@ -418,6 +424,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Battle\BattleCharacter\BattleCharacter.h">
       <Filter>Classes\Battle\BattleCharacter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemy\EnemyManager.h">
+      <Filter>Classes\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enum\EnemyStatsEnum.h">
+      <Filter>Classes\Enum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

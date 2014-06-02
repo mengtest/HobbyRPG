@@ -6,7 +6,7 @@
 
 Inventory::Inventory()
 {
-	m_masterItemList.resize(NUM_ITEMS);
+	m_masterItemList.resize(ItemEnum::NUM_ITEMS.getValue());
 }
 
 Inventory::~Inventory()
@@ -16,21 +16,21 @@ Inventory::~Inventory()
 bool Inventory::addItem( ItemEnum item, int amount )
 {
 	// TODO: max stacks
-	m_masterItemList[item] += amount;
-	CCLOG("[Inventory][addItem]: %s = %i", ItemManager::getInstance().getItemStat( item, ItemStatEnum::NAME ).c_str(), m_masterItemList[item] );
+	m_masterItemList[item.getValue()] += amount;
+	CCLOG("[Inventory][addItem]: %s = %i", ItemManager::getInstance().getItemStat( item, ItemStatEnum::NAME ).c_str(), m_masterItemList[item.getValue()] );
 
 	return true;
 }
 
 bool Inventory::removeItem(ItemEnum item, int amount)
 {
-	if ( m_masterItemList[item] != 0 )
+	if ( m_masterItemList[item.getValue()] != 0 )
 	{
-		m_masterItemList[item] -= amount;
-		CCLOG("[Inventory][removeItem] success: %s = %i", ItemManager::getInstance().getItemStat( item, ItemStatEnum::NAME ).c_str(), m_masterItemList[item] );
+		m_masterItemList[item.getValue()] -= amount;
+		CCLOG("[Inventory][removeItem] success: %s = %i", ItemManager::getInstance().getItemStat( item, ItemStatEnum::NAME ).c_str(), m_masterItemList[item.getValue()] );
 		return true;
 	}
-	CCLOG("[Inventory][removeItem] failed: %s = %i", ItemManager::getInstance().getItemStat( item, ItemStatEnum::NAME ).c_str(), m_masterItemList[item] );
+	CCLOG("[Inventory][removeItem] failed: %s = %i", ItemManager::getInstance().getItemStat( item, ItemStatEnum::NAME ).c_str(), m_masterItemList[item.getValue()] );
 
 	
 	return false;
@@ -45,7 +45,7 @@ void Inventory::outputInventory()
 	int i = 0;
 	for ( ; beg != end; ++beg )
 	{
-		CCLOG("%i: %s = %i", i, ItemManager::getInstance().getItemStat( static_cast<ItemEnum>(i), ItemStatEnum::NAME ).c_str(), *beg );
+		CCLOG("%i: %s = %i", i, ItemManager::getInstance().getItemStat( ItemEnum::getItemByIndex(i), ItemStatEnum::NAME ).c_str(), *beg );
 		++i;
 
 	}

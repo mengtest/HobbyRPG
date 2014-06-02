@@ -155,7 +155,7 @@ initEquipCharPage = function(char_id)
 
 		local i = 0; -- main iterator
 		local k = 0; -- 
-		local j = PLAIN_WATER; -- enum iterator
+		local j = 1; -- enum iterator
 		
 		local function addButton( x, y, width, height, text, stacks )
 			local itemBack = CCScale9Sprite:createWithSpriteFrameName("menu_background.png");
@@ -185,17 +185,17 @@ initEquipCharPage = function(char_id)
 
 		itemListNode:setPosition(ITEM_START_X, ITEM_START_Y );
 		while i < max do
-			if ( j < NUM_ITEMS ) then
+			if ( j < ItemEnum.NUM_ITEMS:getValue() ) then
 				local stacks = Player:getInstance():getInventory():getItemByIndex(j);
 				if ( stacks > 0 ) then
-					local itemType = ItemManager:getInstance():getItemStat( j, ItemStatEnum.ITEM_TYPE );
+					local itemType = ItemManager:getInstance():getItemStat( ItemEnum:getItemByIndex(j), ItemStatEnum.ITEM_TYPE );
 					if ( itemType ~= "Item" ) then
 						if ( itemType == type or type == "all" ) then
 							local x = 0;
 							local y = -ITEM_HEIGHT * k
-							local itemName = ItemManager:getInstance():getItemStat( j, ItemStatEnum.NAME );
+							local itemName = ItemManager:getInstance():getItemStat( ItemEnum:getItemByIndex(j), ItemStatEnum.NAME );
 							local newButton = addButton( x, y, ITEM_WIDTH, ITEM_HEIGHT, itemName, stacks )
-							inventoryIndexList[k] = j
+							inventoryIndexList[k] = ItemEnum:getItemByIndex(j)
 							--itemListHeight = itemListHeight + ITEM_HEIGHT / 2;
 							itemButtonList[k] = newButton;
 							k = k + 1;	
@@ -776,7 +776,7 @@ initItemPage = function()
 	local max = Player:getInstance():getInventory():getInventorySize();
 	local i = 0; -- main iterator
 	local k = 0; -- 
-	local j = PLAIN_WATER; -- enum iterator
+	local j = 1; -- enum iterator
 	local itemListNode = CCNode:create();
 	local itemListHeight = 0;
 
@@ -808,16 +808,16 @@ initItemPage = function()
 
 	itemListNode:setPosition(ITEM_START_X, ITEM_START_Y );
 	while i < max do
-		if ( j < NUM_ITEMS ) then
+		if ( j < ItemEnum.NUM_ITEMS:getValue() ) then
 			local stacks = Player:getInstance():getInventory():getItemByIndex(j);
 			if ( stacks > 0 ) then
-				local itemType = ItemManager:getInstance():getItemStat( j, ItemStatEnum.ITEM_TYPE );
+				local itemType = ItemManager:getInstance():getItemStat( ItemEnum:getItemByIndex(j), ItemStatEnum.ITEM_TYPE );
 				if ( itemType == "Item" ) then
 					local x = ITEM_WIDTH * (k % 2);
 					local y = -ITEM_HEIGHT * math.floor(k / 2);
-					local itemName = ItemManager:getInstance():getItemStat( j, ItemStatEnum.NAME );
+					local itemName = ItemManager:getInstance():getItemStat( ItemEnum:getItemByIndex(j), ItemStatEnum.NAME );
 					local newButton = addButton( x, y, ITEM_WIDTH, ITEM_HEIGHT, itemName, stacks )
-					inventoryIndexList[k] = j
+					inventoryIndexList[k] = ItemEnum:getItemByIndex(j);
 					--itemListHeight = itemListHeight + ITEM_HEIGHT / 2;
 					itemButtonList[k] = newButton;
 					k = k + 1;	

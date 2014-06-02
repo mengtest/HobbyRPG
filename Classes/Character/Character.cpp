@@ -9,6 +9,10 @@ USING_NS_CC;
 using namespace std;
 
 Character::Character()
+	:m_weapon(ItemEnum::EMPTY), 
+	m_armor(ItemEnum::EMPTY), 
+	m_ring(ItemEnum::EMPTY),
+	m_currentHP(1)
 {
 }
 
@@ -40,9 +44,9 @@ bool Character::init(const std::string& name)
 	m_stats.resize(m_data[0].size());
 	setLevel(1);
 
-	m_weapon = EMPTY;
-	m_armor = EMPTY;
-	m_ring = EMPTY;
+	m_weapon = ItemEnum::EMPTY;
+	m_armor = ItemEnum::EMPTY;
+	m_ring = ItemEnum::EMPTY;
 
 	return true;
 }

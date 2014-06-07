@@ -1,3 +1,4 @@
+
 local currentMode = 0
 
 -- Constants
@@ -82,12 +83,12 @@ initEquipCharPage = function(char_id)
 	charBack:setPosition(ccp( CHARACTER_BACK_X, CHARACTER_BACK_Y ));
 	gameMenuLayer:addChild(charBack);
 	
-	local charName = CCLabelBMFont:create( "" .. Player:getInstance():getParty():getCharacterAtSlot(char_id):getInfo(CharacterInfoEnum.ALIAS) , FONT );
+	local charName = CCLabelBMFont:create( "" .. Player:getInstance():getParty():getCharacterAtSlot(char_id):getInfo(CHARACTER_INFO_ENUM_ALIAS) , FONT );
 	charName:setPosition(CHARACTER_NAME_X, CHARACTER_NAME_Y)
 	charName:setAnchorPoint(ccp(0, 0.5));
 	gameMenuLayer:addChild(charName);
 
-	local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(char_id):getInfo(CharacterInfoEnum.SPRITE) .. "_front_2.png";
+	local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(char_id):getInfo(CHARACTER_INFO_ENUM_SPRITE) .. "_front_2.png";
 	local charSprite = CCScale9Sprite:createWithSpriteFrameName( spriteName,  CCRectMake(0,0,0,0) );
 	charSprite:setContentSize(CCSizeMake(32, 32));
 	charSprite:setPosition(ccp(CHARACTER_SPRITE_X, CHARACTER_SPRITE_Y ));
@@ -124,21 +125,21 @@ initEquipCharPage = function(char_id)
 		refreshable_count = 0;
 
 		local offset_increment = SCREEN_HEIGHT / 7.2
-		local weapon_name = CCLabelBMFont:create("Weapon: " .. ItemManager:getInstance():getItemStat(equip_weapon, ItemStatEnum.NAME), FONT );
+		local weapon_name = CCLabelBMFont:create("Weapon: " .. ItemManager:getInstance():getItemStat(equip_weapon, ITEM_STAT_ENUM_NAME), FONT );
 		weapon_name:setPosition(CHARACTER_SPRITE_X, CHARACTER_NAME_Y - offset_increment)
 		weapon_name:setAnchorPoint(ccp(0, 0.5));
 		gameMenuLayer:addChild(weapon_name);
 		refreshables[refreshable_count] = weapon_name;
 		refreshable_count = refreshable_count + 1;
 
-		local armor_name = CCLabelBMFont:create("Armor: " .. ItemManager:getInstance():getItemStat(equip_armor, ItemStatEnum.NAME), FONT );
+		local armor_name = CCLabelBMFont:create("Armor: " .. ItemManager:getInstance():getItemStat(equip_armor, ITEM_STAT_ENUM_NAME), FONT );
 		armor_name:setPosition(CHARACTER_SPRITE_X, CHARACTER_NAME_Y - offset_increment * 2)
 		armor_name:setAnchorPoint(ccp(0, 0.5));
 		gameMenuLayer:addChild(armor_name);
 		refreshables[refreshable_count] = armor_name;
 		refreshable_count = refreshable_count + 1;
 
-		local ring_name = CCLabelBMFont:create("Weapon: " .. ItemManager:getInstance():getItemStat(equip_ring, ItemStatEnum.NAME), FONT );
+		local ring_name = CCLabelBMFont:create("Weapon: " .. ItemManager:getInstance():getItemStat(equip_ring, ITEM_STAT_ENUM_NAME), FONT );
 		ring_name:setPosition(CHARACTER_SPRITE_X, CHARACTER_NAME_Y - offset_increment * 3)
 		ring_name:setAnchorPoint(ccp(0, 0.5));
 		gameMenuLayer:addChild(ring_name);
@@ -185,17 +186,17 @@ initEquipCharPage = function(char_id)
 
 		itemListNode:setPosition(ITEM_START_X, ITEM_START_Y );
 		while i < max do
-			if ( j < ItemEnum.NUM_ITEMS:getValue() ) then
+			if ( j < ItemManager:getInstance():getItemTypeMax() ) then
 				local stacks = Player:getInstance():getInventory():getItemByIndex(j);
 				if ( stacks > 0 ) then
-					local itemType = ItemManager:getInstance():getItemStat( ItemEnum:getItemByIndex(j), ItemStatEnum.ITEM_TYPE );
+					local itemType = ItemManager:getInstance():getItemStat( j, ITEM_STAT_ENUM_ITEM_TYPE );
 					if ( itemType ~= "Item" ) then
 						if ( itemType == type or type == "all" ) then
 							local x = 0;
 							local y = -ITEM_HEIGHT * k
-							local itemName = ItemManager:getInstance():getItemStat( ItemEnum:getItemByIndex(j), ItemStatEnum.NAME );
+							local itemName = ItemManager:getInstance():getItemStat( j, ITEM_STAT_ENUM_NAME );
 							local newButton = addButton( x, y, ITEM_WIDTH, ITEM_HEIGHT, itemName, stacks )
-							inventoryIndexList[k] = ItemEnum:getItemByIndex(j)
+							inventoryIndexList[k] = j
 							--itemListHeight = itemListHeight + ITEM_HEIGHT / 2;
 							itemButtonList[k] = newButton;
 							k = k + 1;	
@@ -307,7 +308,7 @@ initEquipCharPage = function(char_id)
 	local function equip(party_slot, item)
 		local c = Player:getInstance():getParty():getCharacterAtSlot(party_slot);
 		local i = Player:getInstance():getInventory();
-		local type = ItemManager:getInstance():getItemStat( item, ItemStatEnum.ITEM_TYPE);
+		local type = ItemManager:getInstance():getItemStat( item, ITEM_STAT_ENUM_ITEM_TYPE);
 
 		if ( type == "Weapon" ) then
 			local equipped = c:getWeapon();
@@ -492,7 +493,7 @@ initEquipPage = function()
 		local k = 0;
 		refreshable_count = 0;
 		while k < PARTY_SIZE do
-			local charHP = CCLabelBMFont:create("HP: " .. Player:getInstance():getParty():getCharacterAtSlot(k):getCurrentHP() .. "/" .. Player:getInstance():getParty():getCharacterAtSlot(0):getStat(StatsEnum.HP), FONT );	
+			local charHP = CCLabelBMFont:create("HP: " .. Player:getInstance():getParty():getCharacterAtSlot(k):getCurrentHP() .. "/" .. Player:getInstance():getParty():getCharacterAtSlot(0):getStat(STATS_ENUM_HP), FONT );	
 			charHP:setPosition(CHARACTER_HP_X, CHARACTER_HP_Y - CHARACTER_BACK_OFFSET * k);
 			charHP:setAnchorPoint(ccp(0, 0.5));
 			gameMenuLayer:addChild(charHP);
@@ -511,12 +512,12 @@ initEquipPage = function()
 		gameMenuLayer:addChild(charBack);	
 		
 		
-		local charName = CCLabelBMFont:create( "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(CharacterInfoEnum.ALIAS) , FONT );
+		local charName = CCLabelBMFont:create( "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(CHARACTER_INFO_ENUM_ALIAS) , FONT );
 		charName:setPosition(CHARACTER_NAME_X, CHARACTER_NAME_Y - CHARACTER_BACK_OFFSET * i)
 		charName:setAnchorPoint(ccp(0, 0.5));
 		gameMenuLayer:addChild(charName);
 
-		local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(CharacterInfoEnum.SPRITE) .. "_front_2.png";
+		local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(CHARACTER_INFO_ENUM_SPRITE) .. "_front_2.png";
 		local charSprite = CCScale9Sprite:createWithSpriteFrameName( spriteName,  CCRectMake(0,0,0,0) );
 		charSprite:setContentSize(CCSizeMake(32, 32));
 		charSprite:setPosition(ccp(CHARACTER_SPRITE_X, CHARACTER_SPRITE_Y - CHARACTER_BACK_OFFSET * i));
@@ -654,7 +655,7 @@ initItemCharPage = function( inventory_num )
 		local k = 0;
 		refreshable_count = 0;
 		while k < PARTY_SIZE do
-			local charHP = CCLabelBMFont:create("HP: " .. Player:getInstance():getParty():getCharacterAtSlot(k):getCurrentHP() .. "/" .. Player:getInstance():getParty():getCharacterAtSlot(0):getStat(StatsEnum.HP), FONT );	
+			local charHP = CCLabelBMFont:create("HP: " .. Player:getInstance():getParty():getCharacterAtSlot(k):getCurrentHP() .. "/" .. Player:getInstance():getParty():getCharacterAtSlot(0):getStat(STATS_ENUM_HP), FONT );	
 			charHP:setPosition(CHARACTER_HP_X, CHARACTER_HP_Y - CHARACTER_BACK_OFFSET * k);
 			charHP:setAnchorPoint(ccp(0, 0.5));
 			gameMenuLayer:addChild(charHP);
@@ -673,12 +674,12 @@ initItemCharPage = function( inventory_num )
 		gameMenuLayer:addChild(charBack);	
 		
 		
-		local charName = CCLabelBMFont:create( "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(CharacterInfoEnum.ALIAS) , FONT );
+		local charName = CCLabelBMFont:create( "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(CHARACTER_INFO_ENUM_ALIAS) , FONT );
 		charName:setPosition(CHARACTER_NAME_X, CHARACTER_NAME_Y - CHARACTER_BACK_OFFSET * i)
 		charName:setAnchorPoint(ccp(0, 0.5));
 		gameMenuLayer:addChild(charName);
 
-		local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(CharacterInfoEnum.SPRITE) .. "_front_2.png";
+		local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(CHARACTER_INFO_ENUM_SPRITE) .. "_front_2.png";
 		local charSprite = CCScale9Sprite:createWithSpriteFrameName( spriteName,  CCRectMake(0,0,0,0) );
 		charSprite:setContentSize(CCSizeMake(32, 32));
 		charSprite:setPosition(ccp(CHARACTER_SPRITE_X, CHARACTER_SPRITE_Y - CHARACTER_BACK_OFFSET * i));
@@ -713,7 +714,7 @@ initItemCharPage = function( inventory_num )
 		local i = 0;
 		for k, v in pairs(characterButtons) do
 			if checkWithin( v, x, y ) then
-				local func = ItemManager:getInstance():getItemStat( inventory_num, ItemStatEnum.USE );
+				local func = ItemManager:getInstance():getItemStat( inventory_num, ITEM_STAT_ENUM_USE );
 				_G[func](i);
 				refresh();
 				return;
@@ -808,16 +809,16 @@ initItemPage = function()
 
 	itemListNode:setPosition(ITEM_START_X, ITEM_START_Y );
 	while i < max do
-		if ( j < ItemEnum.NUM_ITEMS:getValue() ) then
+		if ( j < ItemManager:getInstance():getItemTypeMax() ) then
 			local stacks = Player:getInstance():getInventory():getItemByIndex(j);
 			if ( stacks > 0 ) then
-				local itemType = ItemManager:getInstance():getItemStat( ItemEnum:getItemByIndex(j), ItemStatEnum.ITEM_TYPE );
+				local itemType = ItemManager:getInstance():getItemStat( j, ITEM_STAT_ENUM_ITEM_TYPE );
 				if ( itemType == "Item" ) then
 					local x = ITEM_WIDTH * (k % 2);
 					local y = -ITEM_HEIGHT * math.floor(k / 2);
-					local itemName = ItemManager:getInstance():getItemStat( ItemEnum:getItemByIndex(j), ItemStatEnum.NAME );
+					local itemName = ItemManager:getInstance():getItemStat( j, ITEM_STAT_ENUM_NAME );
 					local newButton = addButton( x, y, ITEM_WIDTH, ITEM_HEIGHT, itemName, stacks )
-					inventoryIndexList[k] = ItemEnum:getItemByIndex(j);
+					inventoryIndexList[k] = j;
 					--itemListHeight = itemListHeight + ITEM_HEIGHT / 2;
 					itemButtonList[k] = newButton;
 					k = k + 1;	

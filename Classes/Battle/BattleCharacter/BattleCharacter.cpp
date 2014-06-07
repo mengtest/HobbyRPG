@@ -5,9 +5,8 @@
 using namespace std;
 USING_NS_CC;
 
-BattleCharacter::BattleCharacter(CCPoint position, Character * character, DirectionEnum direction)
+BattleCharacter::BattleCharacter(CCPoint position, Character * character, DirectionEnum direction, std::string spriteBaseName)
 {
-	std::string spriteBaseName = character->getInfo(CharacterInfoEnum::SPRITE);
 	std::string initialSpriteFrameName;
 	
 	switch ( direction ) {

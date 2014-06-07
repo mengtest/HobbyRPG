@@ -121,6 +121,9 @@
     <Filter Include="Classes\Enemy">
       <UniqueIdentifier>{59ccc620-c06e-470b-9489-272c5aeabc6a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lua\constants">
+      <UniqueIdentifier>{2433f3b3-beb1-463c-9745-3240706d382a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -252,21 +255,6 @@
     <ClCompile Include="..\Classes\Battle\BattleCharacter\BattleCharacter.cpp">
       <Filter>Classes\Battle\BattleCharacter</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Enum\CharacterInfoEnum.cpp">
-      <Filter>Classes\Enum</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Enum\ItemStatEnum.cpp">
-      <Filter>Classes\Enum</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Enum\StatsEnum.cpp">
-      <Filter>Classes\Enum</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Enum\EnemyStatsEnum.cpp">
-      <Filter>Classes\Enum</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Enum\ItemEnum.cpp">
-      <Filter>Classes\Enum</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -347,17 +335,8 @@
     <ClInclude Include="..\Classes\Enum\DirectionEnum.h">
       <Filter>Classes\Enum</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Enum\StatsEnum.h">
-      <Filter>Classes\Enum</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Item\ItemManager.h">
       <Filter>Classes\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Enum\ItemEnum.h">
-      <Filter>Classes\Enum</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Enum\ItemStatEnum.h">
-      <Filter>Classes\Enum</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Inventory\Inventory.h">
       <Filter>Classes\Inventory</Filter>
@@ -367,9 +346,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Party\Party.h">
       <Filter>Classes\Party</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Enum\CharacterInfoEnum.h">
-      <Filter>Classes\Enum</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Overworld\OwManager\OwManager.h">
       <Filter>Classes\Overworld\OwManager</Filter>
@@ -428,9 +404,6 @@
     <ClInclude Include="..\Classes\Enemy\EnemyManager.h">
       <Filter>Classes\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Enum\EnemyStatsEnum.h">
-      <Filter>Classes\Enum</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Classes\AI\cState.inl">
@@ -448,21 +421,6 @@
     </None>
     <None Include="..\Resources\lua\world\npc1_functions.lua">
       <Filter>Lua\world</Filter>
-    </None>
-    <None Include="..\Classes\LuaBinding\GameToLua.pkg">
-      <Filter>Classes\LuaBinding</Filter>
-    </None>
-    <None Include="..\Classes\LuaBinding\StatsEnumToLua.pkg">
-      <Filter>Classes\LuaBinding</Filter>
-    </None>
-    <None Include="..\Classes\LuaBinding\ItemEnumToLua.pkg">
-      <Filter>Classes\LuaBinding</Filter>
-    </None>
-    <None Include="..\Classes\LuaBinding\ItemStatEnumToLua.pkg">
-      <Filter>Classes\LuaBinding</Filter>
-    </None>
-    <None Include="..\Classes\LuaBinding\CharacterInfoEnumToLua.pkg">
-      <Filter>Classes\LuaBinding</Filter>
     </None>
     <None Include="..\Resources\lua\world\MainWorld.lua">
       <Filter>Lua\world</Filter>
@@ -482,8 +440,23 @@
     <None Include="..\Resources\lua\battle\BattleFunctions.lua">
       <Filter>Lua\battle</Filter>
     </None>
-    <None Include="..\Classes\LuaBinding\EnemyStatsEnumToLua.pkg">
+    <None Include="..\Classes\LuaBinding\GameToLua.pkg">
       <Filter>Classes\LuaBinding</Filter>
+    </None>
+    <None Include="..\Resources\lua\constants\EnemyStatsEnum.lua">
+      <Filter>Lua\constants</Filter>
+    </None>
+    <None Include="..\Resources\lua\constants\StatsEnum.lua">
+      <Filter>Lua\constants</Filter>
+    </None>
+    <None Include="..\Resources\lua\constants\CharacterInfoEnum.lua">
+      <Filter>Lua\constants</Filter>
+    </None>
+    <None Include="..\Resources\lua\constants\ItemEnum.lua">
+      <Filter>Lua\constants</Filter>
+    </None>
+    <None Include="..\Resources\lua\constants\ItemStatEnum.lua">
+      <Filter>Lua\constants</Filter>
     </None>
   </ItemGroup>
 </Project>

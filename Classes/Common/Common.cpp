@@ -22,8 +22,10 @@ bool Common::openCSV( const string& filename, vector< vector< string > >& result
 
 	string line;
 	line.append((char*)fileContents);
-	while ( getline(file,line,'\n'))
+	while ( getline(file,line,'\n') && !file.eof() )
 	{
+		if ( line.size() == 0 ) 
+			continue;
 		result.push_back(explode(line, ','));
 	} 
 	return true;
@@ -112,7 +114,12 @@ int Common::loadLuas()
 			   loadLua("lua/world/MainWorld.lua") &
 			   loadLua("lua/item/items.lua") &
 			   loadLua("lua/menu/OverworldMenu.lua") & 
-			   loadLua("lua/battle/BattleFunctions.lua");
+			   loadLua("lua/battle/BattleFunctions.lua") &
+			   loadLua("lua/constants/CharacterInfoEnum.lua") &
+			   loadLua("lua/constants/EnemyStatsEnum.lua") &
+			   loadLua("lua/constants/ItemEnum.lua") &
+			   loadLua("lua/constants/ItemStatEnum.lua") &
+			   loadLua("lua/constants/StatsEnum.lua");
 
 	return ret_val;
 }

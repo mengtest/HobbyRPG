@@ -10,7 +10,7 @@ class Character;
 class BattleCharacter
 {
 public:
-	BattleCharacter(cocos2d::CCPoint position, Character * character, DirectionEnum direction);
+	BattleCharacter(cocos2d::CCPoint position, Character * character, DirectionEnum direction, std::string spriteBaseName);
 
 	void setSprite(const std::string& spriteBaseName, const std::string& initialSpriteFrameName);
 	void setPosition( cocos2d::CCPoint position );

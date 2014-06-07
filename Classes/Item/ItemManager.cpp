@@ -17,6 +17,8 @@ ItemManager::ItemManager()
 		CCLOG("[ItemManager][constr] Load items failed!" );
 	}
 
+	m_itemTypeMax = m_data.size();
+
 }
 
 ItemManager::~ItemManager()
@@ -30,30 +32,30 @@ ItemManager& ItemManager::getInstance()
 	return instance;
 }
 
-const vector< string >& ItemManager::getItemValues( ItemEnum type )
+const vector< string >& ItemManager::getItemValues( int type )
 {
-	if ( (size_t)type.getValue() > m_data.size() || type.getValue() < 0 )
+	if ( (size_t)type > m_data.size() || type < 0 )
 	{
 		CCLOG("[ItemManager][getItemValues]: type '%d' invalid", type );
 		return std::vector< std::string >();
 	}
 
-	return m_data[type.getValue()];
+	return m_data[type];
 }
 
-const string& ItemManager::getItemStat( ItemEnum type, ItemStatEnum stat )
+const string& ItemManager::getItemStat( int type, int stat )
 {
-	if ( (size_t)type.getValue() > m_data.size() || type.getValue() < 0 )
+	if ( (size_t)type > m_data.size() || type < 0 )
 	{
-		CCLOG("[ItemManager][getItemStat]: type '%d' invalid", type.getValue());
+		CCLOG("[ItemManager][getItemStat]: type '%d' invalid", type);
 		return std::string();
 	}
 
-	if ( (size_t)stat.getValue() > m_data[type.getValue()].size() || stat.getValue() < 0 )
+	if ( (size_t)stat > m_data[type].size() || stat < 0 )
 	{
 		CCLOG("[ItemManager][getItemStat]: stat '%d' invalid", stat);
 		return std::string();
 	}
 
-	return m_data[type.getValue()][stat.getValue()];
+	return m_data[type][stat];
 }

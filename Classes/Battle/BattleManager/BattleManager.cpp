@@ -85,12 +85,10 @@ void BattleManager::release()
 	m_isInit = false;
 }
 
-BattleCharacter * BattleManager::addBattleCharacter(CCPoint position, Character * character, DirectionEnum direction)
+BattleCharacter * BattleManager::addBattleCharacter(CCPoint position, Character * character, DirectionEnum direction, std::string name)
 {
-	std::string name = character->getInfo(CharacterInfoEnum::SPRITE);
-
 	CCLOG("[BattleManager][addBattleCharacter]: adding '%s'", name);
-	BattleCharacter * rtn	= new BattleCharacter(position, character, direction);
+	BattleCharacter * rtn	= new BattleCharacter(position, character, direction, name);
 	m_scene->getGameLayer()->addChild(rtn->getSprite());
 	m_characterList.insert(make_pair(name, rtn));
 

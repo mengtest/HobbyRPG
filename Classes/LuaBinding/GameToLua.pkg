@@ -35,8 +35,9 @@ class ItemManager
 {
 	static ItemManager& getInstance();
 
-	const std::vector< std::string >& getItemValues( const ItemEnum type );
-	const std::string& getItemStat( const ItemEnum type, const ItemStatEnum stat ); 
+	const std::vector< std::string >& getItemValues( int type );
+	const std::string& getItemStat( int type, int stat ); 
+	int getItemTypeMax();
 };
 
 class Common
@@ -81,7 +82,7 @@ class BattleManager
     void removeChildFromGameLayer(CCNode * obj );
     void removeChildFromUILayer( CCNode * obj ); 
 
-	BattleCharacter * addBattleCharacter(CCPoint position, Character * character, DirectionEnum direction);
+	BattleCharacter * addBattleCharacter(CCPoint position, Character * character, DirectionEnum direction, std::string spriteBaseName);
 }
 
 class OwCharacter : public OwEntityBase
@@ -126,18 +127,17 @@ class OwEventDelay: public EventBase
 class Character
 {
 	void setLevel( int level ); 
-	void heal( int amount );
-	void damage( int amount );
+	void setCurrentHP(int hp);
 
-	bool equipWeapon( const ItemEnum item );
-	bool equipArmor( const ItemEnum item );
-	bool equipRing( const ItemEnum item );
+	bool equipWeapon( int item );
+	bool equipArmor( int item );
+	bool equipRing( int item );
 
-	ItemEnum getWeapon();
-	ItemEnum getArmor();
-	ItemEnum getRing();
-	int getStat( const StatsEnum type );
-	const std::string& getInfo( const CharacterInfoEnum type );
+	int getWeapon();
+	int getArmor();
+	int getRing();
+	int getStat( int type );
+	const std::string& getInfo( int type );
 	int getCurrentHP();
 };
 
@@ -158,8 +158,8 @@ class Party
 
 class Inventory
 {
-	bool addItem(const ItemEnum item, int amount = 1 );
-	bool removeItem(const ItemEnum item, int amount = 1);
+	bool addItem( int item, int amount = 1 );
+	bool removeItem( int item, int amount = 1);
     int getItemByIndex( int index );
 	int getInventorySize();
 };

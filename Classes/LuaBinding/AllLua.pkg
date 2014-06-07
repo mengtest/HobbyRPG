@@ -1,5 +1,1 @@
 $pfile "GameToLua.pkg"
-$pfile "ItemEnumToLua.pkg"
-$pfile "ItemStatEnumToLua.pkg"
-$pfile "StatsEnumToLua.pkg"
-$pfile "CharacterInfoEnumToLua.pkg"

@@ -3,18 +3,17 @@
 
 #include <vector>
 
-#include "..\Enum\ItemEnum.h"
-#include "..\Enum\ItemStatEnum.h"
-
 class ItemManager
 {
 public:
 	static ItemManager& getInstance();
 
-	const std::vector< std::string >& getItemValues( ItemEnum type );
-	const std::string& getItemStat( ItemEnum type, ItemStatEnum stat ); 
+	const std::vector< std::string >& getItemValues( int type );
+	const std::string& getItemStat( int type, int stat ); 
+
+	inline int getItemTypeMax() { return m_itemTypeMax; }
 protected:
-	
+	int m_itemTypeMax;
 	std::vector< std::vector< std::string > > m_data;
 
 	//singleton

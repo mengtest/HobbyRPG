@@ -1,20 +1,20 @@
 function use_potion(party_slot)
 	cclog("use_potion executing");
 	Player:getInstance():getParty():getCharacterAtSlot(party_slot):heal(10);
-	Player:getInstance():getInventory():removeItem(ItemEnum.POTION);
+	Player:getInstance():getInventory():removeItem(ITEM_ENUM_POTION);
 end
 
 function use_chili(party_slot)
 	cclog("use_chili executing");
 	Player:getInstance():getParty():getCharacterAtSlot(party_slot):heal(10);
-	Player:getInstance():getInventory():removeItem(ItemEnum.CHILI);
+	Player:getInstance():getInventory():removeItem(ITEM_ENUM_CHILI);
 end
 
 
 function use_plain_water(party_slot)
 	cclog("plain_water executing");
 	Player:getInstance():getParty():getCharacterAtSlot(party_slot):damage(10);
-	Player:getInstance():getInventory():removeItem(ItemEnum.PLAIN_WATER);
+	Player:getInstance():getInventory():removeItem(ITEM_ENUM_PLAIN_WATER);
 end
 
 function equip_armor(party_slot, item)

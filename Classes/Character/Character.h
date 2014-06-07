@@ -4,9 +4,6 @@
 #include <vector>
 #include <string>
 
-#include "..\Enum\StatsEnum.h"
-#include "..\Enum\CharacterInfoEnum.h"
-#include "..\Enum\ItemEnum.h"
 
 class Character
 {
@@ -18,27 +15,25 @@ public:
 
 	void setLevel( int level ); 
 
-	bool equipWeapon( ItemEnum item );
-	bool equipArmor( ItemEnum item );
-	bool equipRing( ItemEnum item );
+	inline void setCurrentHP(int hp) { m_currentHP = hp; }
+
+	bool equipWeapon( int item );
+	bool equipArmor( int item );
+	bool equipRing( int item );
 
 	bool unequipWeapon();
 	bool unequipArmor();
 	bool unequipRing();
 
-	void heal( int amount );
-	void damage( int amount );
-
-
 	// gettors
-	int getStat( StatsEnum type ) const;
+	int getStat( int type ) const;
 	const std::vector< int > & getAllStats() const;
-	const std::string& getInfo( CharacterInfoEnum type ) const { return m_info[0][type.getValue()]; }
+	const std::string& getInfo( int type ) const { return m_info[0][type]; }
 	const std::vector< std::string >& getAllInfo() const { return m_info[0]; }
 	inline int getCurrentHP() { return m_currentHP; }
-	inline ItemEnum getWeapon() { return m_weapon; }
-	inline ItemEnum getArmor() { return m_armor; }
-	inline ItemEnum getRing() { return m_ring; }
+	inline int getWeapon() { return m_weapon; }
+	inline int getArmor() { return m_armor; }
+	inline int getRing() { return m_ring; }
 	
 private:
 	// stores all data in csv
@@ -51,9 +46,9 @@ private:
 	void regulateHP();
 
 	// Equipments
-	ItemEnum m_weapon;
-	ItemEnum m_armor;
-	ItemEnum m_ring;
+	int m_weapon;
+	int m_armor;
+	int m_ring;
 };
 
 

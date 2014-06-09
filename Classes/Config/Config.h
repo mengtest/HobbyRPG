@@ -13,6 +13,8 @@ public:
 	inline int getDesignWidth() { return m_nDesignWidth; }
 	inline int getDesignHeight() { return m_nDesignHeight; }
 
+	inline int getEncounterRate() { return m_nEncounterRate; }
+
 private:
 	bool m_bIsDebug;
 	bool m_bIsLogging;
@@ -20,6 +22,8 @@ private:
 
 	int m_nDesignWidth;
 	int m_nDesignHeight;
+
+	int m_nEncounterRate;
 	
 
 	// Singleton Stuff

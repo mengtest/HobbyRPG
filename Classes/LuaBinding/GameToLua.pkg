@@ -82,7 +82,7 @@ class BattleManager
     void removeChildFromGameLayer(CCNode * obj );
     void removeChildFromUILayer( CCNode * obj ); 
 
-	BattleCharacter * addBattleCharacter(CCPoint position, Character * character, DirectionEnum direction, std::string spriteBaseName);
+	BattleCharacter * addBattleCharacter(CCPoint position, std::string name, std::string initialSpriteFrameName, bool enemy);
 }
 
 class OwCharacter : public OwEntityBase

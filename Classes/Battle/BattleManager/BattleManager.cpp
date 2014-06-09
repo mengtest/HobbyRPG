@@ -53,21 +53,6 @@ bool BattleManager::init(BattleScene * scene)
 
 	m_scene = scene;
 	m_isInit = true;
-
-	//create sprites according to how many characters in party
-	
-	/*for ( int i = 0; i < Player::getInstance().getParty()->MAX_MEMBERS; ++i )
-	{
-		Character * character = Player::getInstance().getParty()->getCharacterAtSlot(i);
-		if ( NULL == character )
-		{
-			CCLOG("[BattleManager][init]: character is null");
-			continue;
-		}
-
-		addBattleCharacter(ccp(100, 100), character, LEFT);
-	}*/
-
 	CCLuaEngine::defaultEngine()->executeGlobalFunction("BattleInit");
 
 	return true;
@@ -85,10 +70,10 @@ void BattleManager::release()
 	m_isInit = false;
 }
 
-BattleCharacter * BattleManager::addBattleCharacter(CCPoint position, Character * character, DirectionEnum direction, std::string name)
+BattleCharacter * BattleManager::addBattleCharacter(cocos2d::CCPoint position, std::string name, std::string initialSpriteFrameName, bool enemy)
 {
-	CCLOG("[BattleManager][addBattleCharacter]: adding '%s'", name);
-	BattleCharacter * rtn	= new BattleCharacter(position, character, direction, name);
+	CCLOG("[BattleManager][addBattleCharacter]: adding '%s'", name.c_str());
+	BattleCharacter * rtn	= new BattleCharacter(position, name, initialSpriteFrameName);
 	m_scene->getGameLayer()->addChild(rtn->getSprite());
 	m_characterList.insert(make_pair(name, rtn));
 

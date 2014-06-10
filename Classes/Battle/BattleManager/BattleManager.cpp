@@ -1,6 +1,6 @@
 #include "BattleManager.h"
 #include "..\BattleScene.h"
-#include "..\BattleCharacter\BattleCharacter.h"
+#include "..\BattleEntities\BattleCharacter.h"
 
 #include "..\..\GameMaster\GameMaster.h"
 #include "..\..\Overworld\OverworldScene.h"

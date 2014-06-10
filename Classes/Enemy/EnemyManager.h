@@ -9,10 +9,10 @@ class EnemyManager {
 public:
 	static EnemyManager& getInstance();
 
-	const std::vector< std::string >& getItemValues( EnemyStatsEnum type );
+	const std::vector< std::string >& getEnemyValues( EnemyStatsEnum type );
 
 	// TODO: replace int with actual enum type
-	const std::string& getItemStat( int type, EnemyStatsEnum stat ); 
+	const std::string& getEnemyStat( int type, EnemyStatsEnum stat ); 
 private:
 	// Singleton Stuff
 	EnemyManager();

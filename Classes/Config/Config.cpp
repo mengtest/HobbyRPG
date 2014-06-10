@@ -26,6 +26,9 @@ Config::Config()
 
 	tempStr = config_reader.get("HobbyRPG", "DESIGN_HEIGHT");
 	this->m_nDesignHeight = atoi(tempStr.c_str());
+    
+    tempStr = config_reader.get("HobbyRPG", "ENCOUNTER_RATE");
+	this->m_nEncounterRate = atoi(tempStr.c_str());
 
 }
 

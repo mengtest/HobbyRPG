@@ -68,8 +68,6 @@ bool BattleManager::init(BattleScene * scene)
 		addBattleCharacter(ccp(100, 100), character, LEFT);
 	}*/
 
-	CCLuaEngine::defaultEngine()->executeGlobalFunction("BattleInit");
-
 	return true;
 }
 

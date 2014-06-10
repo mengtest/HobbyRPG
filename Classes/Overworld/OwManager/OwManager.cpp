@@ -550,7 +550,11 @@ void OwManager::checkExit()
 void OwManager::tickBattle()
 {
 	CCLOG("[OwManager][tickBattle] ticking battle" );
-	gotoBattle();
+    srand(time(NULL));
+    int chance = rand() % 100;
+    if ( chance < Config::getInstance().getEncounterRate() ) {    
+        gotoBattle();
+    }
 }
 
 

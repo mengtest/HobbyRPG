@@ -12,7 +12,7 @@ public:
 				const std::string& spriteBaseName = "chika",
 				const std::string& initialSpriteFrameName = "chika_front_2.png");
 
-	void setSprite(const std::string& spriteBaseName, const std::string& initialSpriteFrameName);
+	
 	void setPosition( cocos2d::CCPoint position );
 	void setTiledMap( cocos2d::CCTMXTiledMap * tiledMap );
 
@@ -23,7 +23,7 @@ public:
 	//inline bool getActive() { return m_bIsActive; }
 	
 	inline const std::string& getName() { return m_name; }
-	inline cocos2d::CCSprite * getSprite() { return m_sprite; }
+	
 	inline cocos2d::CCPoint getPosition() { return m_sprite->getPosition(); }
 	cocos2d::CCPoint getTiledPosition();
 	
@@ -33,7 +33,9 @@ protected:
 		COLLIDABLE = 0
 	};
 
-
+    void setSprite(const std::string& spriteBaseName, const std::string& initialSpriteFrameName);
+    inline cocos2d::CCSprite * getSprite() { return m_sprite; }
+    
 	void snapToTile();
 
 	cocos2d::CCPoint convertPositionToTileCoord(cocos2d::CCPoint position);

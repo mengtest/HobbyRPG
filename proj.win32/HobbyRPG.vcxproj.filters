@@ -255,9 +255,6 @@
     <ClCompile Include="..\Classes\Battle\BattleCharacter\BattleCharacter.cpp">
       <Filter>Classes\Battle\BattleCharacter</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Enemy\EnemyManager.cpp">
-      <Filter>Classes\Enemy</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">

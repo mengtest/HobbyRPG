@@ -3,21 +3,21 @@
 
 #include <vector>
 
+#include "../Enum/EnemyStatsEnum.h"
+
 class EnemyManager {
 public:
 	static EnemyManager& getInstance();
 
-	const std::vector< std::string >& getEnemyValues( int type );
-	const std::string& getEnemyStat( int type, int stat ); 
+	const std::vector< std::string >& getItemValues( EnemyStatsEnum type );
+
+	// TODO: replace int with actual enum type
+	const std::string& getItemStat( int type, EnemyStatsEnum stat ); 
 private:
-	int m_enemyTypeMax;
-	std::vector< std::vector< std::string > > m_data;
-
-
 	// Singleton Stuff
 	EnemyManager();
 	EnemyManager( const EnemyManager&  ) {};
-	~EnemyManager();
+	~EnemyManager() {};
 	void operator=( const EnemyManager&  ) {};
 };
 

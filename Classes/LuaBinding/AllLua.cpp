@@ -1,6 +1,6 @@
 /*
 ** Lua binding: AllLua
-** Generated automatically by tolua++-1.0.92 on 06/09/14 01:43:44.
+** Generated automatically by tolua++-1.0.92 on 06/07/14 19:17:19.
 */
 
 #ifndef __cplusplus
@@ -961,9 +961,9 @@ static int tolua_AllLua_BattleManager_addBattleCharacter00(lua_State* tolua_S)
  if (
      !tolua_isusertype(tolua_S,1,"BattleManager",0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"CCPoint",0,&tolua_err)) ||
-     !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
-     !tolua_iscppstring(tolua_S,4,0,&tolua_err) ||
-     !tolua_isboolean(tolua_S,5,0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,3,"Character",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,5,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,6,&tolua_err)
  )
   goto tolua_lerror;
@@ -972,14 +972,14 @@ static int tolua_AllLua_BattleManager_addBattleCharacter00(lua_State* tolua_S)
  {
   BattleManager* self = (BattleManager*)  tolua_tousertype(tolua_S,1,0);
   CCPoint position = *((CCPoint*)  tolua_tousertype(tolua_S,2,0));
-  std::string name = ((std::string)  tolua_tocppstring(tolua_S,3,0));
-  std::string initialSpriteFrameName = ((std::string)  tolua_tocppstring(tolua_S,4,0));
-  bool enemy = ((bool)  tolua_toboolean(tolua_S,5,0));
+  Character* character = ((Character*)  tolua_tousertype(tolua_S,3,0));
+  DirectionEnum direction = ((DirectionEnum) (int)  tolua_tonumber(tolua_S,4,0));
+  std::string spriteBaseName = ((std::string)  tolua_tocppstring(tolua_S,5,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addBattleCharacter'", NULL);
 #endif
   {
-   BattleCharacter* tolua_ret = (BattleCharacter*)  self->addBattleCharacter(position,name,initialSpriteFrameName,enemy);
+   BattleCharacter* tolua_ret = (BattleCharacter*)  self->addBattleCharacter(position,character,direction,spriteBaseName);
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"BattleCharacter");
   }
  }

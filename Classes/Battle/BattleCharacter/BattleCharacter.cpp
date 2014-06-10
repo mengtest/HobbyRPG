@@ -5,14 +5,30 @@
 using namespace std;
 USING_NS_CC;
 
-BattleCharacter::BattleCharacter(cocos2d::CCPoint position, std::string name, std::string initialSpriteFrameName)
+BattleCharacter::BattleCharacter(CCPoint position, Character * character, DirectionEnum direction, std::string spriteBaseName)
 {
-	m_name = name;
-	setSprite(initialSpriteFrameName);
+	std::string initialSpriteFrameName;
+	
+	switch ( direction ) {
+	case UP:
+		initialSpriteFrameName = spriteBaseName + "_back_2.png";
+		break;
+	case DOWN:
+		initialSpriteFrameName = spriteBaseName + "_front_2.png";
+		break;
+	case LEFT:
+		initialSpriteFrameName = spriteBaseName + "_left_2.png";
+		break;
+	case RIGHT:
+		initialSpriteFrameName = spriteBaseName + "_right_2.png";
+		break;
+	
+	}
+	setSprite(spriteBaseName, initialSpriteFrameName);
 	setPosition(position);
 }
 
-void BattleCharacter::setSprite(const std::string& initialSpriteFrameName)
+void BattleCharacter::setSprite(const std::string& spriteBaseName, const std::string& initialSpriteFrameName)
 {
 	// Sprite creation
 	// SpriteÇçÏê¨ÇµÇ‹Ç∑
@@ -21,6 +37,7 @@ void BattleCharacter::setSprite(const std::string& initialSpriteFrameName)
 		CCLOG("[BattleCharacter][setSprite][error]: m_sprite is null!");
 		return;
 	}
+	m_spriteName = spriteBaseName;
 }
 
 void BattleCharacter::setPosition( cocos2d::CCPoint position )

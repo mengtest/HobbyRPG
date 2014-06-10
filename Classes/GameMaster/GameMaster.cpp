@@ -12,16 +12,10 @@
 #include "World\WorldManager\WorldManager.h"
 #include "World\WorldScene.h"
 
-#include "Enemy\EnemyManager.h"
-#include "Item\ItemManager.h"
-
 GameMaster::GameMaster()
 {
 	OwManager::getInstance();
 	WorldManager::getInstance();
-
-	EnemyManager::getInstance();
-	ItemManager::getInstance();
 }
 
 

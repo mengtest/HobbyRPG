@@ -548,12 +548,7 @@ void OwManager::checkExit()
 void OwManager::tickBattle()
 {
 	CCLOG("[OwManager][tickBattle] ticking battle" );
-	std::srand(time(NULL));
-	int chance = rand() % 100;
-	
-	if ( Config::getInstance().getEncounterRate() > chance ) { 
-		gotoBattle();
-	}
+	gotoBattle();
 }
 
 

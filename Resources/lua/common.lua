@@ -1,4 +1,3 @@
-
 cclog = function(...)
     print(string.format(...))
 end
@@ -23,12 +22,7 @@ function __G__TRACKBACK__(msg)
     cclog("----------------------------------------")
 end
 
-main = function()
-	local i = 0
-	while ( i < ItemManager:getInstance():getItemTypeMax() ) do 
-		Player:getInstance():getInventory():addItem(i);
-		i = i + 1;
-	end
+local function main()
 end
 
 add = function ( a, b)

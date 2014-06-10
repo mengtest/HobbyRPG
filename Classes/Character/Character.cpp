@@ -9,9 +9,9 @@ USING_NS_CC;
 using namespace std;
 
 Character::Character()
-	:m_weapon(0), 
-	m_armor(0), 
-	m_ring(0),
+	:m_weapon(ItemEnum::EMPTY), 
+	m_armor(ItemEnum::EMPTY), 
+	m_ring(ItemEnum::EMPTY),
 	m_currentHP(1)
 {
 }
@@ -44,9 +44,9 @@ bool Character::init(const std::string& name)
 	m_stats.resize(m_data[0].size());
 	setLevel(1);
 
-	m_weapon = 0;
-	m_armor = 0;
-	m_ring = 0;
+	m_weapon = ItemEnum::EMPTY;
+	m_armor = ItemEnum::EMPTY;
+	m_ring = ItemEnum::EMPTY;
 
 	return true;
 }
@@ -64,17 +64,20 @@ void Character::setLevel( int level )
 	{
 		m_stats[i] = atoi(m_data[level][i].c_str());
 	}
+
+	//Set current HP
+	m_currentHP = this->getStat(StatsEnum::HP);
 }
 
-int Character::getStat( int type ) const
+int Character::getStat( StatsEnum type ) const
 {
-	if ( (size_t)type > m_stats.size() || type < 0 ) 
+	if ( (size_t)type.getValue() > m_stats.size() || type.getValue() < 0 ) 
 	{
-		CCLOG("[Character][getStat]: type '%d' invalid", type );
+		CCLOG("[Character][getStat]: type '%d' invalid", type.getValue() );
 		return 0.0f;
 	}
 
-	return m_stats[type];
+	return m_stats[type.getValue()];
 }
 
 const vector < int > & Character::getAllStats() const
@@ -82,32 +85,70 @@ const vector < int > & Character::getAllStats() const
 	return m_stats;
 }
 
-bool Character::equipArmor(int armor)
+void Character::heal( int amount )
 {
-	if ( armor < 0 || armor >= ItemManager::getInstance().getItemTypeMax() ) {
-		return false;
+	CCLOG("[Character][heal]: %s healed for %i HP!", getInfo(CharacterInfoEnum::ALIAS).c_str(), amount );
+	m_currentHP += amount;
+	regulateHP();
+}
+
+void Character::damage( int amount )
+{
+	CCLOG("[Character][damage]: %s takes '%d' damage!", getInfo(CharacterInfoEnum::ALIAS).c_str(), amount );
+	m_currentHP -= amount;
+	regulateHP();
+}
+
+void Character::regulateHP()
+{
+	if ( m_currentHP < 0 )
+	{
+		m_currentHP = 0;
 	}
-	m_armor = armor;
-	return true;
+
+	if ( m_currentHP > getStat(StatsEnum::HP) )
+	{
+		m_currentHP = getStat(StatsEnum::HP);
+	}
 }
 
 
-bool Character::equipWeapon(int weapon)
+bool Character::equipArmor(ItemEnum armor)
 {
-	if ( weapon < 0 || weapon >= ItemManager::getInstance().getItemTypeMax() ) {
-		return false;
+	if ( ItemManager::getInstance().getItemStat(armor, ItemStatEnum::ARMOR_TYPE ).compare( getInfo(CharacterInfoEnum::ARMOR)) <= 0 )
+	{
+		m_armor = armor;
+		CCLOG("Equipping %s on %s success!", ItemManager::getInstance().getItemStat(armor, ItemStatEnum::NAME).c_str(), getInfo(CharacterInfoEnum::ALIAS).c_str());
+		return true;
 	}
-	m_weapon = weapon;
-	return true;
 
+	CCLOG("Equipping %s on %s fail! Can only equip %s type, tried to equip %s type", 
+		ItemManager::getInstance().getItemStat(armor, ItemStatEnum::NAME).c_str(), 
+		getInfo(CharacterInfoEnum::ALIAS).c_str(), 
+		getInfo(CharacterInfoEnum::WEAPON).c_str(),
+		ItemManager::getInstance().getItemStat(armor, ItemStatEnum::ARMOR_TYPE).c_str());
+	return false;
 }
 
-bool Character::equipRing(int ring)
+bool Character::equipWeapon(ItemEnum weapon)
 {
-	if ( ring < 0 || ring >= ItemManager::getInstance().getItemTypeMax() ) {
-		return false;
+	if ( ItemManager::getInstance().getItemStat(weapon, ItemStatEnum::WEAPON_TYPE ).compare( getInfo( CharacterInfoEnum::WEAPON )) <= 0 )
+	{
+		m_weapon = weapon;
+		CCLOG("Equipping %s on %s success!", ItemManager::getInstance().getItemStat(weapon, ItemStatEnum::NAME).c_str(), getInfo(CharacterInfoEnum::ALIAS).c_str());
+		return true;
 	}
-	m_ring = ring;
+
+	CCLOG("Equipping %s on %s fail! Can only equip %s type, tried to equip %s type", 
+		ItemManager::getInstance().getItemStat(weapon, ItemStatEnum::NAME).c_str(), 
+		getInfo(CharacterInfoEnum::ALIAS).c_str(), 
+		getInfo(CharacterInfoEnum::WEAPON).c_str(),
+		ItemManager::getInstance().getItemStat(weapon, ItemStatEnum::WEAPON_TYPE).c_str());
+	return false;
+}
+
+bool Character::equipRing(ItemEnum ring)
+{
 	return false;
 
 }

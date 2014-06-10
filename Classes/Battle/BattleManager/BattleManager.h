@@ -41,7 +41,7 @@ public:
 	
 	void gotoOverworld();
 
-	BattleCharacter * addBattleCharacter(cocos2d::CCPoint position, Character * character, DirectionEnum direction, std::string name);
+	BattleCharacter * addBattleCharacter(cocos2d::CCPoint position, Character * character, DirectionEnum direction);
 
 private:
 	bool m_isInit;

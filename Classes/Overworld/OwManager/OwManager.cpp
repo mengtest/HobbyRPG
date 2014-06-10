@@ -11,6 +11,7 @@
 #include "..\..\World\WorldScene.h"
 #include "..\..\Item\ItemManager.h"
 #include "..\..\Inventory\Inventory.h"
+#include "..\..\Enum\ItemEnum.h"
 #include "..\..\Config\Config.h"
 #include "..\..\Common\Common.h"
 #include "..\..\AI\AIHeaders.h"
@@ -128,7 +129,7 @@ bool OwManager::init(OverworldScene * scene)
 
 	// inventory test cases
 	Inventory * inv = Player::getInstance().getInventory();
-	/*inv->addItem(ItemEnum::CHILI);
+	inv->addItem(ItemEnum::CHILI);
 	inv->addItem(ItemEnum::PLAIN_WATER);
 	inv->addItem(ItemEnum::PLAIN_WATER);
 	inv->addItem(ItemEnum::PLAIN_WATER);
@@ -145,7 +146,8 @@ bool OwManager::init(OverworldScene * scene)
 	inv->addItem(ItemEnum::SWORD); 
 	inv->addItem(ItemEnum::PLAIN_WATER, 4);
 
-	*/
+
+
 	inv->outputInventory();
 	//*/
 	
@@ -154,7 +156,7 @@ bool OwManager::init(OverworldScene * scene)
 	//temp->equipWeapon(SWORD); // succeed
 
 
-	CCLuaEngine::defaultEngine()->executeGlobalFunction("main");
+
 	CCLuaEngine::defaultEngine()->executeGlobalFunction("createOverworldMenu");
 
 

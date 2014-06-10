@@ -457,7 +457,15 @@ bool OwManager::loadPlayer(int x, int y)
 	x *= getTiledMap()->getTileSize().width;
 	y = ( getTiledMap()->getMapSize().height -  y ) * getTiledMap()->getTileSize().height;
  	
-	m_character = addAICharacter(ccp(x,y), "Player", "chika", "chika_front_2.png");
+    // get topmost player
+    Character * topCharacter = Party::getInstance().getCharacterAtSlot(0);
+   
+    
+	m_character = addAICharacter(ccp(x,y), 
+                                "Player",  
+                                topCharacter->getInfo(CharacterInfoEnum::BASE_SPRITE), 
+                                topCharacter->getInfo(CharacterInfoEnum::INITIAL_SPRITE));
+    
 	if ( m_character == 0 )
 	{
 		CCLOG("[OwManager][loadPlayer][error]: m_character is null");

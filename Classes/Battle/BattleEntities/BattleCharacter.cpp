@@ -7,22 +7,30 @@ USING_NS_CC;
 
 BattleCharacter::BattleCharacter(CCPoint position, Character * character, DirectionEnum direction)
     : BattleEntity(position, 
-                   character->getInfo(CharacterInfoEnum::BASE_SPRITE), 
-                   character->getInfo(CharacterInfoEnum::INITIAL_SPRITE)),
+                   character->getInfo(CharacterInfoEnum::SPRITE), 
+                   character->getInfo(CharacterInfoEnum::SPRITE) + "_left_2_.png"),
       m_character(character)
 {
-	/*switch ( direction ) {
+	std::string actual_initial_sprite;
+	switch ( direction ) {
 	case UP:
-		initialSpriteFrameName = spriteBaseName + "_back_2.png";
+		actual_initial_sprite = m_spriteBaseName + "_back_2.png";
 		break;
 	case DOWN:
-		initialSpriteFrameName = spriteBaseName + "_front_2.png";
+		actual_initial_sprite = m_spriteBaseName + "_front_2.png";
 		break;
 	case LEFT:
-		initialSpriteFrameName = spriteBaseName + "_left_2.png";
+		actual_initial_sprite = m_spriteBaseName + "_left_2.png";
 		break;
 	case RIGHT:
-		initialSpriteFrameName = spriteBaseName + "_right_2.png";
+		actual_initial_sprite = m_spriteBaseName + "_right_2.png";
 		break;
-	}*/
+	}
+	
+	m_sprite->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(actual_initial_sprite.c_str()));
+	
+}
+
+void BattleCharacter::update(float dt) 
+{
 }

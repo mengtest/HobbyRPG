@@ -1,6 +1,6 @@
 /*
 ** Lua binding: AllLua
-** Generated automatically by tolua++-1.0.92 on 06/01/14 22:51:23.
+** Generated automatically by tolua++-1.0.92 on 06/14/14 13:55:15.
 */
 
 #ifndef __cplusplus
@@ -22,7 +22,7 @@ TOLUA_API int  tolua_AllLua_open (lua_State* tolua_S);
 #include "..\Overworld\OwEvents\OwEventDelay.h"
 #include "..\Overworld\OwEvents\OwEventDialog.h"
 #include "..\Battle\BattleManager\BattleManager.h"
-#include "..\Battle\BattleCharacter\BattleCharacter.h"
+#include "..\Battle\BattleEntities\BattleCharacter.h"
 #include "..\Enum\DirectionEnum.h"
 #include "..\Common\Common.h"
 #include "..\Character\Character.h"

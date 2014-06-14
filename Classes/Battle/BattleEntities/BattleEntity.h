@@ -12,8 +12,9 @@ public:
     
     void setPosition( cocos2d::CCPoint position );
     
-	inline const std::string& getName() { return m_name; }
-	inline cocos2d::CCPoint getPosition() { return m_sprite->getPosition(); }
+	inline const std::string& getName() const { return m_name; }
+	inline cocos2d::CCPoint getPosition() const { return m_sprite->getPosition(); }
+	inline cocos2d::CCSprite * getSprite() { return m_sprite; }; 
 
 protected:
     void setSprite(const std::string& spriteBaseName, const std::string& initialSpriteFrameName);

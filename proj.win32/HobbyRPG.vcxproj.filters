@@ -106,9 +106,6 @@
     <Filter Include="Classes\Battle\BattleManager">
       <UniqueIdentifier>{1542646b-67c8-4263-b6f3-5caee6e3ddac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\Battle\BattleCharacter">
-      <UniqueIdentifier>{ec37737d-b968-43dd-8a56-527fae5c6aae}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\GameMaster">
       <UniqueIdentifier>{bf76011c-16b1-42ee-93ac-c5fefce6f9df}</UniqueIdentifier>
     </Filter>
@@ -120,6 +117,9 @@
     </Filter>
     <Filter Include="Classes\Enemy">
       <UniqueIdentifier>{59ccc620-c06e-470b-9489-272c5aeabc6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Battle\BattleEntities">
+      <UniqueIdentifier>{9746e826-4f95-48e1-8f58-6c305be0c177}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -249,9 +249,6 @@
     <ClCompile Include="..\Classes\Transition\TransitionScene.cpp">
       <Filter>Classes\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Battle\BattleCharacter\BattleCharacter.cpp">
-      <Filter>Classes\Battle\BattleCharacter</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Enum\CharacterInfoEnum.cpp">
       <Filter>Classes\Enum</Filter>
     </ClCompile>
@@ -266,6 +263,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Enum\ItemEnum.cpp">
       <Filter>Classes\Enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Battle\BattleEntities\BattleCharacter.cpp">
+      <Filter>Classes\Battle\BattleEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Battle\BattleEntities\BattleEntity.cpp">
+      <Filter>Classes\Battle\BattleEntities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -422,14 +425,17 @@
     <ClInclude Include="..\Classes\Transition\TransitionScene.h">
       <Filter>Classes\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Battle\BattleCharacter\BattleCharacter.h">
-      <Filter>Classes\Battle\BattleCharacter</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Enemy\EnemyManager.h">
       <Filter>Classes\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Enum\EnemyStatsEnum.h">
       <Filter>Classes\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Battle\BattleEntities\BattleCharacter.h">
+      <Filter>Classes\Battle\BattleEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Battle\BattleEntities\BattleEntity.h">
+      <Filter>Classes\Battle\BattleEntities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

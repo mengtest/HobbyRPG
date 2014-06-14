@@ -9,7 +9,7 @@ $cfile "..\Overworld\OwEvents\OwEventDelay.h"
 $cfile "..\Overworld\OwEvents\OwEventDialog.h"
 
 $cfile "..\Battle\BattleManager\BattleManager.h"
-$cfile "..\Battle\BattleCharacter\BattleCharacter.h"
+$cfile "..\Battle\BattleEntities\BattleCharacter.h"
 
 $cfile "..\Enum\DirectionEnum.h"
 

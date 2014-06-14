@@ -20,6 +20,7 @@
 #include "CCLuaEngine.h"
 
 #include "..\..\Player\Player.h"
+#include "..\..\Party\Party.h"
 #include "..\OverworldScene.h"
 #include "..\..\Events\EventManager.h"
 #include "..\..\Character\Character.h"
@@ -458,13 +459,13 @@ bool OwManager::loadPlayer(int x, int y)
 	y = ( getTiledMap()->getMapSize().height -  y ) * getTiledMap()->getTileSize().height;
  	
     // get topmost player
-    Character * topCharacter = Party::getInstance().getCharacterAtSlot(0);
+	Character * topCharacter = Player::getInstance().getParty()->getCharacterAtSlot(0);
    
     
 	m_character = addAICharacter(ccp(x,y), 
                                 "Player",  
-                                topCharacter->getInfo(CharacterInfoEnum::BASE_SPRITE), 
-                                topCharacter->getInfo(CharacterInfoEnum::INITIAL_SPRITE));
+                                topCharacter->getInfo(CharacterInfoEnum::SPRITE), 
+                                topCharacter->getInfo(CharacterInfoEnum::SPRITE) + "_front_2.png");
     
 	if ( m_character == 0 )
 	{

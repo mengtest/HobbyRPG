@@ -20,7 +20,7 @@ void BattleEntity::setSprite(const std::string& spriteBaseName, const std::strin
 		CCLOG("[BattleCharacter][setSprite][error]: m_sprite is null!");
 		return;
 	}
-	m_spriteName = spriteBaseName;
+	m_spriteBaseName = spriteBaseName;
 }
 
 void BattleEntity::setPosition( cocos2d::CCPoint position )

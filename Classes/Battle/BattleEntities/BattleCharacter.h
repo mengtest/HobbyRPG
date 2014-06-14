@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 
 #include "..\..\Enum\DirectionEnum.h"
-#include "BattleEntity.cpp"
+#include "BattleEntity.h"
 
 class Character;
 class BattleCharacter : public BattleEntity

@@ -55,8 +55,7 @@ bool BattleManager::init(BattleScene * scene)
 	m_isInit = true;
 
 	//create sprites according to how many characters in party
-	
-	/*for ( int i = 0; i < Player::getInstance().getParty()->MAX_MEMBERS; ++i )
+	for ( int i = 0; i < Player::getInstance().getParty()->MAX_MEMBERS; ++i )
 	{
 		Character * character = Player::getInstance().getParty()->getCharacterAtSlot(i);
 		if ( NULL == character )
@@ -66,7 +65,7 @@ bool BattleManager::init(BattleScene * scene)
 		}
 
 		addBattleCharacter(ccp(100, 100), character, LEFT);
-	}*/
+	}
 
 	return true;
 }
@@ -85,7 +84,7 @@ void BattleManager::release()
 
 BattleCharacter * BattleManager::addBattleCharacter(CCPoint position, Character * character, DirectionEnum direction)
 {
-	std::string name = character->getInfo(CharacterInfoEnum::SPRITE);
+	std::string name = character->getInfo(CharacterInfoEnum::SPRITE_BASE);
 
 	CCLOG("[BattleManager][addBattleCharacter]: adding '%s'", name);
 	BattleCharacter * rtn	= new BattleCharacter(position, character, direction);

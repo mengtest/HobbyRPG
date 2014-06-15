@@ -464,8 +464,8 @@ bool OwManager::loadPlayer(int x, int y)
     
 	m_character = addAICharacter(ccp(x,y), 
                                 "Player",  
-                                topCharacter->getInfo(CharacterInfoEnum::SPRITE), 
-                                topCharacter->getInfo(CharacterInfoEnum::SPRITE) + "_front_2.png");
+                                topCharacter->getInfo(CharacterInfoEnum::SPRITE_BASE), 
+                                topCharacter->getInfo(CharacterInfoEnum::SPRITE_INITIAL));
     
 	if ( m_character == 0 )
 	{

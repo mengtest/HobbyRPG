@@ -1,6 +1,6 @@
 /*
 ** Lua binding: AllLua
-** Generated automatically by tolua++-1.0.92 on 06/14/14 13:55:15.
+** Generated automatically by tolua++-1.0.92 on 06/14/14 23:29:08.
 */
 
 #ifndef __cplusplus
@@ -2746,11 +2746,20 @@ static int tolua_get_CharacterInfoEnum_ALIAS(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* get function: SPRITE of class  CharacterInfoEnum */
-#ifndef TOLUA_DISABLE_tolua_get_CharacterInfoEnum_SPRITE
-static int tolua_get_CharacterInfoEnum_SPRITE(lua_State* tolua_S)
+/* get function: SPRITE_BASE of class  CharacterInfoEnum */
+#ifndef TOLUA_DISABLE_tolua_get_CharacterInfoEnum_SPRITE_BASE
+static int tolua_get_CharacterInfoEnum_SPRITE_BASE(lua_State* tolua_S)
 {
-   tolua_pushusertype(tolua_S,(void*)&CharacterInfoEnum::SPRITE,"const CharacterInfoEnum");
+   tolua_pushusertype(tolua_S,(void*)&CharacterInfoEnum::SPRITE_BASE,"const CharacterInfoEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: SPRITE_INITIAL of class  CharacterInfoEnum */
+#ifndef TOLUA_DISABLE_tolua_get_CharacterInfoEnum_SPRITE_INITIAL
+static int tolua_get_CharacterInfoEnum_SPRITE_INITIAL(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&CharacterInfoEnum::SPRITE_INITIAL,"const CharacterInfoEnum");
  return 1;
 }
 #endif //#ifndef TOLUA_DISABLE
@@ -3025,7 +3034,8 @@ TOLUA_API int tolua_AllLua_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"CharacterInfoEnum","CharacterInfoEnum","",NULL);
   tolua_beginmodule(tolua_S,"CharacterInfoEnum");
    tolua_variable(tolua_S,"ALIAS",tolua_get_CharacterInfoEnum_ALIAS,NULL);
-   tolua_variable(tolua_S,"SPRITE",tolua_get_CharacterInfoEnum_SPRITE,NULL);
+   tolua_variable(tolua_S,"SPRITE_BASE",tolua_get_CharacterInfoEnum_SPRITE_BASE,NULL);
+   tolua_variable(tolua_S,"SPRITE_INITIAL",tolua_get_CharacterInfoEnum_SPRITE_INITIAL,NULL);
    tolua_variable(tolua_S,"CLASS",tolua_get_CharacterInfoEnum_CLASS,NULL);
    tolua_variable(tolua_S,"ARMOR",tolua_get_CharacterInfoEnum_ARMOR,NULL);
    tolua_variable(tolua_S,"WEAPON",tolua_get_CharacterInfoEnum_WEAPON,NULL);

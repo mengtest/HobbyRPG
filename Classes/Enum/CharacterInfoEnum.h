@@ -6,7 +6,8 @@
 class CharacterInfoEnum {
 public:
     const static CharacterInfoEnum ALIAS;
-    const static CharacterInfoEnum SPRITE;
+    const static CharacterInfoEnum SPRITE_BASE;
+    const static CharacterInfoEnum SPRITE_INITIAL;
     const static CharacterInfoEnum CLASS;
     const static CharacterInfoEnum ARMOR;
     const static CharacterInfoEnum WEAPON;

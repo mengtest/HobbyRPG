@@ -87,7 +87,7 @@ initEquipCharPage = function(char_id)
 	charName:setAnchorPoint(ccp(0, 0.5));
 	gameMenuLayer:addChild(charName);
 
-	local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(char_id):getInfo(CharacterInfoEnum.SPRITE) .. "_front_2.png";
+	local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(char_id):getInfo(CharacterInfoEnum.SPRITE_INITIAL);
 	local charSprite = CCScale9Sprite:createWithSpriteFrameName( spriteName,  CCRectMake(0,0,0,0) );
 	charSprite:setContentSize(CCSizeMake(32, 32));
 	charSprite:setPosition(ccp(CHARACTER_SPRITE_X, CHARACTER_SPRITE_Y ));
@@ -516,7 +516,7 @@ initEquipPage = function()
 		charName:setAnchorPoint(ccp(0, 0.5));
 		gameMenuLayer:addChild(charName);
 
-		local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(CharacterInfoEnum.SPRITE) .. "_front_2.png";
+		local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(CharacterInfoEnum.SPRITE_INITIAL);
 		local charSprite = CCScale9Sprite:createWithSpriteFrameName( spriteName,  CCRectMake(0,0,0,0) );
 		charSprite:setContentSize(CCSizeMake(32, 32));
 		charSprite:setPosition(ccp(CHARACTER_SPRITE_X, CHARACTER_SPRITE_Y - CHARACTER_BACK_OFFSET * i));
@@ -678,7 +678,7 @@ initItemCharPage = function( inventory_num )
 		charName:setAnchorPoint(ccp(0, 0.5));
 		gameMenuLayer:addChild(charName);
 
-		local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(CharacterInfoEnum.SPRITE) .. "_front_2.png";
+		local spriteName = "" .. Player:getInstance():getParty():getCharacterAtSlot(i):getInfo(CharacterInfoEnum.SPRITE_INITIAL);
 		local charSprite = CCScale9Sprite:createWithSpriteFrameName( spriteName,  CCRectMake(0,0,0,0) );
 		charSprite:setContentSize(CCSizeMake(32, 32));
 		charSprite:setPosition(ccp(CHARACTER_SPRITE_X, CHARACTER_SPRITE_Y - CHARACTER_BACK_OFFSET * i));

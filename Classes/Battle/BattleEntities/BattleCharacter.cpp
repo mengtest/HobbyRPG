@@ -7,8 +7,8 @@ USING_NS_CC;
 
 BattleCharacter::BattleCharacter(CCPoint position, Character * character, DirectionEnum direction)
     : BattleEntity(position, 
-                   character->getInfo(CharacterInfoEnum::SPRITE), 
-                   character->getInfo(CharacterInfoEnum::SPRITE) + "_left_2_.png"),
+                   character->getInfo(CharacterInfoEnum::SPRITE_BASE), 
+                   character->getInfo(CharacterInfoEnum::SPRITE_INITIAL)),
       m_character(character)
 {
 	std::string actual_initial_sprite;

@@ -13,6 +13,8 @@ public:
 	BattleCharacter(cocos2d::CCPoint position, Character * character, DirectionEnum direction);
 
 	void update(float dt);
+	//temp
+	int getInitiative() { return 1; }
 
 protected:
     Character * m_character;

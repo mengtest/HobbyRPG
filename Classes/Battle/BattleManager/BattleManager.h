@@ -49,6 +49,12 @@ private:
 	BattleManager() ;
 	~BattleManager() {}
 
+	void initCharacters();
+	void initEnemies();
+	void initFSM();
+
+
+
 	BattleScene * m_scene;
 
 	static BattleManager * instance;

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: AllLua
-** Generated automatically by tolua++-1.0.92 on 06/14/14 23:29:08.
+** Generated automatically by tolua++-1.0.92 on 06/20/14 23:56:55.
 */
 
 #ifndef __cplusplus
@@ -36,6 +36,8 @@ TOLUA_API int  tolua_AllLua_open (lua_State* tolua_S);
 #include "..\Enum\ItemStatEnum.h"
 #include "..\Enum\StatsEnum.h"
 #include "..\Enum\CharacterInfoEnum.h"
+#include "..\Enum\EnemyStatsEnum.h"
+#include "..\Enum\EnemyEnum.h"
 
 /* function to release collected object via destructor */
 #ifdef __cplusplus
@@ -68,6 +70,13 @@ static int tolua_collect_OwEventDialog (lua_State* tolua_S)
 	return 0;
 }
 
+static int tolua_collect_EnemyEnum (lua_State* tolua_S)
+{
+ EnemyEnum* self = (EnemyEnum*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
 static int tolua_collect_ItemEnum (lua_State* tolua_S)
 {
  ItemEnum* self = (ItemEnum*) tolua_tousertype(tolua_S,1,0);
@@ -84,8 +93,10 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ItemManager");
  tolua_usertype(tolua_S,"OwManager");
  tolua_usertype(tolua_S,"ItemEnum");
+ tolua_usertype(tolua_S,"EnemyEnum");
  tolua_usertype(tolua_S,"Character");
  tolua_usertype(tolua_S,"StatsEnum");
+ tolua_usertype(tolua_S,"OwCharacter");
  tolua_usertype(tolua_S,"OwAICommand");
  tolua_usertype(tolua_S,"CCNode");
  tolua_usertype(tolua_S,"BattleManager");
@@ -105,7 +116,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"OwEventDelay");
  tolua_usertype(tolua_S,"OwAICharacter");
  tolua_usertype(tolua_S,"std::vector<std::string>");
- tolua_usertype(tolua_S,"OwCharacter");
+ tolua_usertype(tolua_S,"EnemyStatsEnum");
 }
 
 /* method: getInstance of class  ItemManager */
@@ -2832,6 +2843,290 @@ static int tolua_AllLua_CharacterInfoEnum_getValue00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* get function: NAME of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_NAME
+static int tolua_get_EnemyStatsEnum_NAME(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::NAME,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: LEVEL of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_LEVEL
+static int tolua_get_EnemyStatsEnum_LEVEL(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::LEVEL,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: HP of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_HP
+static int tolua_get_EnemyStatsEnum_HP(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::HP,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: APOW of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_APOW
+static int tolua_get_EnemyStatsEnum_APOW(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::APOW,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: MPOW of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_MPOW
+static int tolua_get_EnemyStatsEnum_MPOW(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::MPOW,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: ADEF of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_ADEF
+static int tolua_get_EnemyStatsEnum_ADEF(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::ADEF,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: MDEF of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_MDEF
+static int tolua_get_EnemyStatsEnum_MDEF(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::MDEF,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: DROP_1 of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_DROP_1
+static int tolua_get_EnemyStatsEnum_DROP_1(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::DROP_1,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: DROP_2 of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_DROP_2
+static int tolua_get_EnemyStatsEnum_DROP_2(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::DROP_2,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: DROP_3 of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_DROP_3
+static int tolua_get_EnemyStatsEnum_DROP_3(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::DROP_3,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: DROP_RATE_1 of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_DROP_RATE_1
+static int tolua_get_EnemyStatsEnum_DROP_RATE_1(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::DROP_RATE_1,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: DROP_RATE_2 of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_DROP_RATE_2
+static int tolua_get_EnemyStatsEnum_DROP_RATE_2(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::DROP_RATE_2,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: DROP_RATE_3 of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_DROP_RATE_3
+static int tolua_get_EnemyStatsEnum_DROP_RATE_3(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::DROP_RATE_3,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: GOLD_DROP of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_GOLD_DROP
+static int tolua_get_EnemyStatsEnum_GOLD_DROP(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::GOLD_DROP,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: SPRITE of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_SPRITE
+static int tolua_get_EnemyStatsEnum_SPRITE(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::SPRITE,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: SKILL_1 of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_SKILL_1
+static int tolua_get_EnemyStatsEnum_SKILL_1(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::SKILL_1,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: SKILL_2 of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_SKILL_2
+static int tolua_get_EnemyStatsEnum_SKILL_2(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::SKILL_2,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: SKILL_3 of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyStatsEnum_SKILL_3
+static int tolua_get_EnemyStatsEnum_SKILL_3(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyStatsEnum::SKILL_3,"const EnemyStatsEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getValue of class  EnemyStatsEnum */
+#ifndef TOLUA_DISABLE_tolua_AllLua_EnemyStatsEnum_getValue00
+static int tolua_AllLua_EnemyStatsEnum_getValue00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EnemyStatsEnum",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EnemyStatsEnum* self = (EnemyStatsEnum*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getValue'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getValue();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getValue'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: PORK of class  EnemyEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyEnum_PORK
+static int tolua_get_EnemyEnum_PORK(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyEnum::PORK,"const EnemyEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: NUM_ENEMIES of class  EnemyEnum */
+#ifndef TOLUA_DISABLE_tolua_get_EnemyEnum_NUM_ENEMIES
+static int tolua_get_EnemyEnum_NUM_ENEMIES(lua_State* tolua_S)
+{
+   tolua_pushusertype(tolua_S,(void*)&EnemyEnum::NUM_ENEMIES,"const EnemyEnum");
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getValue of class  EnemyEnum */
+#ifndef TOLUA_DISABLE_tolua_AllLua_EnemyEnum_getValue00
+static int tolua_AllLua_EnemyEnum_getValue00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const EnemyEnum",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const EnemyEnum* self = (const EnemyEnum*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getValue'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->getValue();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getValue'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getEnemyByIndex of class  EnemyEnum */
+#ifndef TOLUA_DISABLE_tolua_AllLua_EnemyEnum_getEnemyByIndex00
+static int tolua_AllLua_EnemyEnum_getEnemyByIndex00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EnemyEnum",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+  {
+   EnemyEnum tolua_ret = (EnemyEnum)  EnemyEnum::getEnemyByIndex(index);
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((EnemyEnum)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"EnemyEnum");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(EnemyEnum));
+     tolua_pushusertype(tolua_S,tolua_obj,"EnemyEnum");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getEnemyByIndex'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_AllLua_open (lua_State* tolua_S)
 {
@@ -3041,6 +3336,39 @@ TOLUA_API int tolua_AllLua_open (lua_State* tolua_S)
    tolua_variable(tolua_S,"WEAPON",tolua_get_CharacterInfoEnum_WEAPON,NULL);
    tolua_variable(tolua_S,"AGE",tolua_get_CharacterInfoEnum_AGE,NULL);
    tolua_function(tolua_S,"getValue",tolua_AllLua_CharacterInfoEnum_getValue00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"EnemyStatsEnum","EnemyStatsEnum","",NULL);
+  tolua_beginmodule(tolua_S,"EnemyStatsEnum");
+   tolua_variable(tolua_S,"NAME",tolua_get_EnemyStatsEnum_NAME,NULL);
+   tolua_variable(tolua_S,"LEVEL",tolua_get_EnemyStatsEnum_LEVEL,NULL);
+   tolua_variable(tolua_S,"HP",tolua_get_EnemyStatsEnum_HP,NULL);
+   tolua_variable(tolua_S,"APOW",tolua_get_EnemyStatsEnum_APOW,NULL);
+   tolua_variable(tolua_S,"MPOW",tolua_get_EnemyStatsEnum_MPOW,NULL);
+   tolua_variable(tolua_S,"ADEF",tolua_get_EnemyStatsEnum_ADEF,NULL);
+   tolua_variable(tolua_S,"MDEF",tolua_get_EnemyStatsEnum_MDEF,NULL);
+   tolua_variable(tolua_S,"DROP_1",tolua_get_EnemyStatsEnum_DROP_1,NULL);
+   tolua_variable(tolua_S,"DROP_2",tolua_get_EnemyStatsEnum_DROP_2,NULL);
+   tolua_variable(tolua_S,"DROP_3",tolua_get_EnemyStatsEnum_DROP_3,NULL);
+   tolua_variable(tolua_S,"DROP_RATE_1",tolua_get_EnemyStatsEnum_DROP_RATE_1,NULL);
+   tolua_variable(tolua_S,"DROP_RATE_2",tolua_get_EnemyStatsEnum_DROP_RATE_2,NULL);
+   tolua_variable(tolua_S,"DROP_RATE_3",tolua_get_EnemyStatsEnum_DROP_RATE_3,NULL);
+   tolua_variable(tolua_S,"GOLD_DROP",tolua_get_EnemyStatsEnum_GOLD_DROP,NULL);
+   tolua_variable(tolua_S,"SPRITE",tolua_get_EnemyStatsEnum_SPRITE,NULL);
+   tolua_variable(tolua_S,"SKILL_1",tolua_get_EnemyStatsEnum_SKILL_1,NULL);
+   tolua_variable(tolua_S,"SKILL_2",tolua_get_EnemyStatsEnum_SKILL_2,NULL);
+   tolua_variable(tolua_S,"SKILL_3",tolua_get_EnemyStatsEnum_SKILL_3,NULL);
+   tolua_function(tolua_S,"getValue",tolua_AllLua_EnemyStatsEnum_getValue00);
+  tolua_endmodule(tolua_S);
+  #ifdef __cplusplus
+  tolua_cclass(tolua_S,"EnemyEnum","EnemyEnum","",tolua_collect_EnemyEnum);
+  #else
+  tolua_cclass(tolua_S,"EnemyEnum","EnemyEnum","",NULL);
+  #endif
+  tolua_beginmodule(tolua_S,"EnemyEnum");
+   tolua_variable(tolua_S,"PORK",tolua_get_EnemyEnum_PORK,NULL);
+   tolua_variable(tolua_S,"NUM_ENEMIES",tolua_get_EnemyEnum_NUM_ENEMIES,NULL);
+   tolua_function(tolua_S,"getValue",tolua_AllLua_EnemyEnum_getValue00);
+   tolua_function(tolua_S,"getEnemyByIndex",tolua_AllLua_EnemyEnum_getEnemyByIndex00);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;

@@ -8,7 +8,10 @@ class BattleEntity
 public:
 	BattleEntity(cocos2d::CCPoint position, const std::string& spriteBaseName, const std::string& initialSpriteFrameName);
 	
+	// abstract functions you must implement
 	virtual void update(float dt) = 0;
+	virtual int getInitiative() = 0;
+
     
     void setPosition( cocos2d::CCPoint position );
     

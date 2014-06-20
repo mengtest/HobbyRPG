@@ -270,6 +270,15 @@
     <ClCompile Include="..\Classes\Battle\BattleEntities\BattleEntity.cpp">
       <Filter>Classes\Battle\BattleEntities</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Battle\BattleEntities\BattleEnemy.cpp">
+      <Filter>Classes\Battle\BattleEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enemy\EnemyManager.cpp">
+      <Filter>Classes\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enum\EnemyEnum.cpp">
+      <Filter>Classes\Enum</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -437,6 +446,12 @@
     <ClInclude Include="..\Classes\Battle\BattleEntities\BattleEntity.h">
       <Filter>Classes\Battle\BattleEntities</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\Battle\BattleEntities\BattleEnemy.h">
+      <Filter>Classes\Battle\BattleEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enum\EnemyEnum.h">
+      <Filter>Classes\Enum</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Classes\AI\cState.inl">
@@ -489,6 +504,9 @@
       <Filter>Lua\battle</Filter>
     </None>
     <None Include="..\Classes\LuaBinding\EnemyStatsEnumToLua.pkg">
+      <Filter>Classes\LuaBinding</Filter>
+    </None>
+    <None Include="..\Classes\LuaBinding\EnemyEnumToLua.pkg">
       <Filter>Classes\LuaBinding</Filter>
     </None>
   </ItemGroup>

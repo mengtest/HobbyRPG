@@ -54,6 +54,14 @@ bool BattleManager::init(BattleScene * scene)
 	m_scene = scene;
 	m_isInit = true;
 
+	initCharacters();
+	initEnemies();
+
+	return true;
+}
+
+void BattleManager::initCharacters()
+{
 	//create sprites according to how many characters in party
 	for ( int i = 0; i < Player::getInstance().getParty()->MAX_MEMBERS; ++i )
 	{
@@ -67,9 +75,15 @@ bool BattleManager::init(BattleScene * scene)
 		addBattleCharacter(ccp(100, 100), character, LEFT);
 	}
 
-	return true;
 }
 
+void BattleManager::initEnemies()
+{
+}
+
+void BattleManager::initFSM()
+{
+}
 
 void BattleManager::release()
 {

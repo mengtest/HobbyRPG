@@ -1,5 +1,5 @@
-$cfile "..\EnemyStatsEnum.h" 
-class StatsEnum {
+$cfile "..\Enum\EnemyStatsEnum.h" 
+class EnemyStatsEnum {
     const static EnemyStatsEnum NAME;
     const static EnemyStatsEnum LEVEL;
     const static EnemyStatsEnum HP;

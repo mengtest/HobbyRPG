@@ -1,0 +1,7 @@
+$cfile "..\Enum\EnemyEnum.h" 
+class EnemyEnum {
+    const static EnemyEnum PORK;
+    const static EnemyEnum NUM_ENEMIES;
+    inline int getValue() const;
+    static EnemyEnum getEnemyByIndex(int index);
+};

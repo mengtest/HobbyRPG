@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "../Enum/EnemyStatsEnum.h"
+#include "../Enum/EnemyEnum.h"
 
 class EnemyManager {
 public:
@@ -12,7 +13,7 @@ public:
 	const std::vector< std::string >& getEnemyValues( EnemyStatsEnum type );
 
 	// TODO: replace int with actual enum type
-	const std::string& getEnemyStat( int type, EnemyStatsEnum stat ); 
+	const std::string& getEnemyStat( EnemyEnum type, EnemyStatsEnum stat ); 
 private:
 	// Singleton Stuff
 	EnemyManager();

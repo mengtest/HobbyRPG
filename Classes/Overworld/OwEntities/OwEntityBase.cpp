@@ -7,7 +7,7 @@ USING_NS_CC;
 
 OwEntityBase::OwEntityBase(CCPoint position, const std::string& name, 
 							const string& spriteBaseName, const std::string& initialSpriteFrameName)
-							: m_name(name), m_sprite(0), m_spriteName()
+							: m_name(name), m_sprite(0), m_spriteName(), m_layer(0)
 {
 	setSprite(spriteBaseName, initialSpriteFrameName);
 	setPosition(position);
@@ -210,4 +210,15 @@ CCPoint OwEntityBase::getTileCenter(CCPoint position)
 CCPoint OwEntityBase::getTiledPosition()
 {
 	return convertPositionToTileCoord(getPosition());
+}
+
+void OwEntityBase::addSpriteToLayer( cocos2d::CCLayer * layer )
+{
+	if ( m_layer != 0 )
+	{
+		m_layer->removeChild(m_sprite);
+	}
+
+	layer->addChild(m_sprite);
+	m_layer = layer;
 }

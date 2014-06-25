@@ -7,7 +7,7 @@
 class BattleEnemy : public BattleEntity
 {
 public:
-	BattleEnemy(cocos2d::CCPoint position, const std::string& spriteBaseName, const std::string& initialSpriteFrameName);
+	BattleEnemy(cocos2d::CCPoint position, int enemyID);
 	
 	void update(float dt) {};
 	int getInitiative() { return 1; }

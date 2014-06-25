@@ -5,10 +5,9 @@
 using namespace std;
 USING_NS_CC;
 
-BattleEntity::BattleEntity(CCPoint position, const std::string& spriteBaseName, const std::string& initialSpriteFrameName)
+BattleEntity::BattleEntity()
+	: m_layer(0), m_sprite(0)
 {
-	setSprite(spriteBaseName, initialSpriteFrameName);
-	setPosition(position);
 }
 
 void BattleEntity::setSprite(const std::string& spriteBaseName, const std::string& initialSpriteFrameName)
@@ -30,4 +29,15 @@ void BattleEntity::setPosition( cocos2d::CCPoint position )
 		return;
 	}
 	m_sprite->setPosition(position);
+}
+
+void BattleEntity::addSpriteToLayer( cocos2d::CCLayer * layer )
+{
+	if ( m_layer != 0 )
+	{
+		m_layer->removeChild(m_sprite);
+	}
+
+	layer->addChild(m_sprite);
+	m_layer = layer;
 }

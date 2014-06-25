@@ -123,9 +123,9 @@ bool OwManager::init(OverworldScene * scene)
 	m_eventManager = new EventManager();
 
 	//ì¬‚Ì‚à‚Ì‘S•”‚ÍƒV[ƒ“‚É‘‰Á‚·‚é//
-	m_scene->setViewPointCenter(m_character->getSprite()->getPosition());
-	m_scene->getGameLayer()->runAction(CCFollow::create(m_character->getSprite(), cocos2d::CCRect(0.0f, 0.0f, 1000.0f, 1000.0f)));
-
+	m_scene->setViewPointCenter(m_character->getPosition());
+	//m_scene->getGameLayer()->runAction(CCFollow::create(m_character->getSprite(), cocos2d::CCRect(0.0f, 0.0f, 1000.0f, 1000.0f)));
+	m_character->setFollow(m_scene->getGameLayer() );
 	
 
 	// inventory test cases
@@ -279,7 +279,8 @@ OwAICharacter * OwManager::addAICharacter(CCPoint position, const string& name, 
 	
 	if ( rtn->loadLUA() )
 	{
-		m_scene->getGameLayer()->addChild(rtn->getSprite());
+		//m_scene->getGameLayer()->addChild(rtn->getSprite());
+		rtn->addSpriteToLayer(m_scene->getGameLayer());
 		m_aiList.insert(make_pair(name, rtn));
 
 		// run the ai's init function

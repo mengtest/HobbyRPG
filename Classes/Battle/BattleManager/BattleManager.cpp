@@ -102,11 +102,13 @@ BattleCharacter * BattleManager::addBattleCharacter(CCPoint position, Character 
 
 	CCLOG("[BattleManager][addBattleCharacter]: adding '%s'", name);
 	BattleCharacter * rtn	= new BattleCharacter(position, character, direction);
-	m_scene->getGameLayer()->addChild(rtn->getSprite());
+	//m_scene->getGameLayer()->addChild(rtn->getSprite());
+	rtn->addSpriteToLayer(m_scene->getGameLayer());
 	m_characterList.insert(make_pair(name, rtn));
 
 	return rtn;
 }
+
 
 void BattleManager::update(float dt)
 {

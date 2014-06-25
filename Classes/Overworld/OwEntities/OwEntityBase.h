@@ -23,12 +23,14 @@ public:
 	//inline bool getActive() { return m_bIsActive; }
 	
 	inline const std::string& getName() { return m_name; }
-	inline cocos2d::CCSprite * getSprite() { return m_sprite; }
+	inline const cocos2d::CCSprite * getSprite() { return m_sprite; }
 	
 	inline cocos2d::CCPoint getPosition() { return m_sprite->getPosition(); }
 	cocos2d::CCPoint getTiledPosition();
 	
 	virtual void callback( const std::string& msg, void * data) {}
+
+	void addSpriteToLayer( cocos2d::CCLayer * layer );
 protected:
 	enum MetaDataEnum {
 		COLLIDABLE = 0
@@ -52,6 +54,8 @@ protected:
 	std::string m_spriteName;
 	std::string m_name;
 	int m_id;
+
+	cocos2d::CCLayer * m_layer;
 };
 
 #endif 

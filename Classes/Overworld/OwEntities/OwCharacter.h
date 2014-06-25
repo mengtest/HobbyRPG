@@ -30,6 +30,8 @@ public:
 
 	virtual void onAttach() {}
 	virtual void onDetech() {}
+
+	void setFollow(cocos2d::CCLayer * layer);
 protected:
 	DirectionEnum m_currentDirection;
 

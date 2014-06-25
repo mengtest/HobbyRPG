@@ -9,6 +9,7 @@
 #include "../../Enum/DirectionEnum.h"
 
 class BattleScene;
+class BattleEnemy;
 class BattleCharacter;
 class CustomActionManager;
 class EventManager;
@@ -42,7 +43,7 @@ public:
 	void gotoOverworld();
 
 	BattleCharacter * addBattleCharacter(cocos2d::CCPoint position, Character * character, DirectionEnum direction);
-
+	BattleEnemy * addBattleEnemy(cocos2d::CCPoint position, DirectionEnum direction, int enemyID = 0);
 private:
 	bool m_isInit;
 	

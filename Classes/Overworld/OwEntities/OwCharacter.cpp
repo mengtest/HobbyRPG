@@ -191,3 +191,9 @@ bool OwCharacter::move( DirectionEnum type )
 	return true;
 
 }
+
+void OwCharacter::setFollow(cocos2d::CCLayer * layer )
+{
+	//m_scene->getGameLayer()->runAction(CCFollow::create(m_character->getSprite(), cocos2d::CCRect(0.0f, 0.0f, 1000.0f, 1000.0f)));
+	layer->runAction(CCFollow::create(m_sprite, CCRect(0.0f, 0.0f, 1000.0f, 1000.0)));
+}

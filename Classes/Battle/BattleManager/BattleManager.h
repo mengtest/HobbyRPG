@@ -50,12 +50,12 @@ private:
 	BattleManager() ;
 	~BattleManager() {}
 
-	void loadCharacters();
-	void loadEnemies();
-	void loadFSM();
+	bool loadCharacters();
+	bool loadEnemies();
+	bool loadFSM();
 
 	// Statemachine
-	cStateMachine<OwManager> * m_stateMachine;
+	cStateMachine<BattleManager> * m_stateMachine;
 	void START_LOAD(){}
 	void START_INIT(){}
 	void START_UPDATE(float dt){};
@@ -80,7 +80,7 @@ private:
 	void TURN_ENEMY_FREE(){}
 	void TURN_ENEMY_UNLOAD() {}
     
-    bool NORMAL_TO_INIT() { return false; }
+    bool START_TO_INIT() { return false; }
 	bool INIT_TO_TURN_PLAYER() { return false; }
 	bool INIT_TO_TURN_ENEMY() { return false; }
     

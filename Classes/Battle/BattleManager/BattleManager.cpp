@@ -67,7 +67,7 @@ bool BattleManager::init(BattleScene * scene)
 	return true;
 }
 
-void BattleManager::loadCharacters()
+bool BattleManager::loadCharacters()
 {
 	//create sprites according to how many characters in party
 	for ( int i = 0; i < Player::getInstance().getParty()->MAX_MEMBERS; ++i )
@@ -82,49 +82,51 @@ void BattleManager::loadCharacters()
 		addBattleCharacter(ccp(100, 100), character, LEFT);
 	}
 
+	return true;
 }
 
-void BattleManager::loadEnemies()
+bool BattleManager::loadEnemies()
 {
+	return true;
 }
 
-void BattleManager::loadFSM()
+bool BattleManager::loadFSM()
 {
 	// State Machine //
-	m_stateMachine = new cStateMachine<OwManager>(this);
+	m_stateMachine = new cStateMachine<BattleManager>(this);
 
-	cStateTemplate<OwManager> * startState;
-	startState = m_stateMachine->AddState( &OwManager::START_LOAD,
-											&OwManager::START_INIT,
-											&OwManager::START_UPDATE,
-											&OwManager::START_FREE,
-											&OwManager::START_UNLOAD );
+	cStateTemplate<BattleManager> * startState;
+	startState = m_stateMachine->AddState( &BattleManager::START_LOAD,
+											&BattleManager::START_INIT,
+											&BattleManager::START_UPDATE,
+											&BattleManager::START_FREE,
+											&BattleManager::START_UNLOAD );
 
-	cStateTemplate<OwManager> * initState;
-	initState = m_stateMachine->AddState(   &OwManager::INIT_LOAD,
-											&OwManager::INIT_INIT,
-											&OwManager::INIT_UPDATE,
-											&OwManager::INIT_FREE,
-											&OwManager::INIT_UNLOAD );
+	cStateTemplate<BattleManager> * initState;
+	initState = m_stateMachine->AddState(   &BattleManager::INIT_LOAD,
+											&BattleManager::INIT_INIT,
+											&BattleManager::INIT_UPDATE,
+											&BattleManager::INIT_FREE,
+											&BattleManager::INIT_UNLOAD );
                                               
-    cStateTemplate<OwManager> * turnPlayerState;
-	turnPlayerState = m_stateMachine->AddState(  &OwManager::TURN_PLAYER_LOAD,
-                                                 &OwManager::TURN_PLAYER_INIT,
-                                                 &OwManager::TURN_PLAYER_UPDATE,
-                                                 &OwManager::TURN_PLAYER_FREE,
-                                                 &OwManager::TURN_PLAYER_UNLOAD );
+    cStateTemplate<BattleManager> * turnPlayerState;
+	turnPlayerState = m_stateMachine->AddState(  &BattleManager::TURN_PLAYER_LOAD,
+                                                 &BattleManager::TURN_PLAYER_INIT,
+                                                 &BattleManager::TURN_PLAYER_UPDATE,
+                                                 &BattleManager::TURN_PLAYER_FREE,
+                                                 &BattleManager::TURN_PLAYER_UNLOAD );
                                               
-    cStateTemplate<OwManager> * turnEnemyState;
-	turnEnemyState = m_stateMachine->AddState(  &OwManager::TURN_PLAYER_LOAD,
-                                                &OwManager::TURN_PLAYER_INIT,
-                                                &OwManager::TURN_PLAYER_UPDATE,
-                                                &OwManager::TURN_PLAYER_FREE,
-                                                &OwManager::TURN_PLAYER_UNLOAD );
+    cStateTemplate<BattleManager> * turnEnemyState;
+	turnEnemyState = m_stateMachine->AddState(  &BattleManager::TURN_PLAYER_LOAD,
+                                                &BattleManager::TURN_PLAYER_INIT,
+                                                &BattleManager::TURN_PLAYER_UPDATE,
+                                                &BattleManager::TURN_PLAYER_FREE,
+                                                &BattleManager::TURN_PLAYER_UNLOAD );
 
 	
-	startState->AddTriggerCheck( &OwManager::START_TO_INIT, initState);
-	initState->AddTriggerCheck( &OwManager::INIT_TO_TURN_PLAYER, turnPlayerState);
-	initState->AddTriggerCheck( &OwManager::INIT_TO_TURN_ENEMY, turnEnemyState);
+	startState->AddTriggerCheck( &BattleManager::START_TO_INIT, initState);
+	initState->AddTriggerCheck( &BattleManager::INIT_TO_TURN_PLAYER, turnPlayerState);
+	initState->AddTriggerCheck( &BattleManager::INIT_TO_TURN_ENEMY, turnEnemyState);
 
 	
 	m_stateMachine->SetCurrentState(startState);

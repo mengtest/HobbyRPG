@@ -49,12 +49,40 @@ private:
 	BattleManager() ;
 	~BattleManager() {}
 
-	void initCharacters();
-	void initEnemies();
-	void initFSM();
+	void loadCharacters();
+	void loadEnemies();
+	void loadFSM();
 
+	// Statemachine
+	cStateMachine<OwManager> * m_stateMachine;
+	void START_LOAD(){}
+	void START_INIT(){}
+	void START_UPDATE(float dt){};
+	void START_FREE(){}
+	void START_UNLOAD() {}
+    
+    void INIT_LOAD(){}
+	void INIT_INIT(){}
+	void INIT_UPDATE(float dt){};
+	void INIT_FREE(){}
+	void INIT_UNLOAD() {}
 
-
+    void TURN_PLAYER_LOAD(){}
+	void TURN_PLAYER_INIT(){}
+	void TURN_PLAYER_UPDATE(float dt){};
+	void TURN_PLAYER_FREE(){}
+	void TURN_PLAYER_UNLOAD() {}
+    
+    void TURN_ENEMY_LOAD(){}
+	void TURN_ENEMY_INIT(){}
+	void TURN_ENEMY_UPDATE(float dt){};
+	void TURN_ENEMY_FREE(){}
+	void TURN_ENEMY_UNLOAD() {}
+    
+    bool NORMAL_TO_INIT() { return false; }
+	bool INIT_TO_TURN_PLAYER() { return false; }
+	bool INIT_TO_TURN_ENEMY() { return false; }
+    
 	BattleScene * m_scene;
 
 	static BattleManager * instance;

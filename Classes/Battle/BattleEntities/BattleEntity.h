@@ -2,7 +2,6 @@
 #define __BATTLE_ENTITY_H__
 
 #include "cocos2d.h"
-
 class BattleEntity
 {
 public:

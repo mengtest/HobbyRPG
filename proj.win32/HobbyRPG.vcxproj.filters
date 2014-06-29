@@ -279,6 +279,18 @@
     <ClCompile Include="..\Classes\Enum\EnemyEnum.cpp">
       <Filter>Classes\Enum</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Battle\BattleManager\BattleManager_Start.cpp">
+      <Filter>Classes\Battle\BattleManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Battle\BattleManager\BattleManager_Init.cpp">
+      <Filter>Classes\Battle\BattleManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Battle\BattleManager\BattleManager_Turn_Player.cpp">
+      <Filter>Classes\Battle\BattleManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Battle\BattleManager\BattleManager_Turn_Enemy.cpp">
+      <Filter>Classes\Battle\BattleManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -500,14 +512,14 @@
     <None Include="..\Resources\lua\menu\OverworldMenu.lua">
       <Filter>Lua\menu</Filter>
     </None>
-    <None Include="..\Resources\lua\battle\BattleFunctions.lua">
-      <Filter>Lua\battle</Filter>
-    </None>
     <None Include="..\Classes\LuaBinding\EnemyStatsEnumToLua.pkg">
       <Filter>Classes\LuaBinding</Filter>
     </None>
     <None Include="..\Classes\LuaBinding\EnemyEnumToLua.pkg">
       <Filter>Classes\LuaBinding</Filter>
+    </None>
+    <None Include="..\Resources\lua\battle\BattleFunctions.lua">
+      <Filter>Lua\battle</Filter>
     </None>
   </ItemGroup>
 </Project>

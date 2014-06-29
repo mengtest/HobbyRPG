@@ -1,7 +1,9 @@
 #include "BattleManager.h"
 #include "..\BattleScene.h"
 #include "..\BattleEntities\BattleCharacter.h"
+#include "..\BattleEntities\BattleEnemy.h"
 
+#include "..\..\Enemy\EnemyManager.h"
 #include "..\..\GameMaster\GameMaster.h"
 #include "..\..\Overworld\OverworldScene.h"
 #include "..\..\Player\Player.h"
@@ -78,8 +80,8 @@ bool BattleManager::loadCharacters()
 			CCLOG("[BattleManager][init]: character is null");
 			continue;
 		}
-
-		addBattleCharacter(ccp(100, 100), character, LEFT);
+		int offset = 50;
+		addBattleCharacter(ccp(500, 200 + offset * i), character, LEFT);
 	}
 
 	return true;
@@ -87,6 +89,7 @@ bool BattleManager::loadCharacters()
 
 bool BattleManager::loadEnemies()
 {
+	addBattleEnemy(ccp(200, 250), RIGHT, 0);
 	return true;
 }
 
@@ -151,11 +154,27 @@ BattleCharacter * BattleManager::addBattleCharacter(CCPoint position, Character 
 {
 	std::string name = character->getInfo(CharacterInfoEnum::SPRITE_BASE);
 
-	CCLOG("[BattleManager][addBattleCharacter]: adding '%s'", name);
+	CCLOG("[BattleManager][addBattleCharacter]: adding '%s'", name.c_str());
 	BattleCharacter * rtn	= new BattleCharacter(position, character, direction);
 	//m_scene->getGameLayer()->addChild(rtn->getSprite());
 	rtn->addSpriteToLayer(m_scene->getGameLayer());
-	m_characterList.insert(make_pair(name, rtn));
+	m_participantList.insert(make_pair(name, rtn));
+	++m_nPlayerCount;
+
+
+	
+	return rtn;
+}
+
+BattleEnemy * BattleManager::addBattleEnemy(CCPoint position, DirectionEnum direction, int enemyId)
+{
+	std::string name = EnemyManager::getInstance().getEnemyStat(EnemyEnum::getEnemyByIndex(enemyId), EnemyStatsEnum::NAME);
+	CCLOG("[BattleManager][addBattleEnemy]: adding '%s'", name.c_str());
+	BattleEnemy * rtn	= new BattleEnemy(position, enemyId);
+	//m_scene->getGameLayer()->addChild(rtn->getSprite());
+	rtn->addSpriteToLayer(m_scene->getGameLayer());
+	m_participantList.insert(make_pair(name, rtn));
+	++m_nEnemyCount;
 
 	return rtn;
 }
@@ -163,6 +182,7 @@ BattleCharacter * BattleManager::addBattleCharacter(CCPoint position, Character 
 
 void BattleManager::update(float dt)
 {
+	m_stateMachine->OnUpdate(dt);
 }
 
 

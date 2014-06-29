@@ -24,9 +24,12 @@ BattleCharacter::BattleCharacter(CCPoint position, Character * character, Direct
 		actual_initial_sprite = base_sprite + "_right_2.png";
 		break;
 	}
-	
+
+	setSprite(actual_initial_sprite);
 	setPosition(position);
-	setSprite(base_sprite, actual_initial_sprite)	;	     
+	setIsEnemy(false);
+
+	m_spriteBaseName = base_sprite;
 }
 
 void BattleCharacter::update(float dt) 

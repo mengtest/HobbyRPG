@@ -18,6 +18,7 @@ public:
 
 protected:
     Character * m_character;
+	std::string m_spriteBaseName;
 };
 
 #endif 

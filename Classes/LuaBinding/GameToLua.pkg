@@ -84,6 +84,11 @@ class BattleManager
 	BattleCharacter * addBattleCharacter(CCPoint position, Character * character, DirectionEnum direction);
 }
 
+class BattleEntity 
+{
+	
+};
+
 class OwCharacter : public OwEntityBase
 {
 };

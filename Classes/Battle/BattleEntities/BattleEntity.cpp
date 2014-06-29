@@ -6,11 +6,11 @@ using namespace std;
 USING_NS_CC;
 
 BattleEntity::BattleEntity()
-	: m_layer(0), m_sprite(0)
+	: m_layer(0), m_sprite(0), m_bIsEnemy(false)
 {
 }
 
-void BattleEntity::setSprite(const std::string& spriteBaseName, const std::string& initialSpriteFrameName)
+void BattleEntity::setSprite(const std::string& initialSpriteFrameName)
 {
 	// Sprite creation
 	// SpriteÇçÏê¨ÇµÇ‹Ç∑
@@ -19,7 +19,6 @@ void BattleEntity::setSprite(const std::string& spriteBaseName, const std::strin
 		CCLOG("[BattleCharacter][setSprite][error]: m_sprite is null!");
 		return;
 	}
-	m_spriteBaseName = spriteBaseName;
 }
 
 void BattleEntity::setPosition( cocos2d::CCPoint position )

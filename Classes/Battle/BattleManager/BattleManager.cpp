@@ -224,5 +224,14 @@ void BattleManager::removeChildFromUILayer( cocos2d::CCNode * obj )
 void BattleManager::gotoOverworld()
 {
 	CCDirector::sharedDirector()->popScene();
-
 }
+
+ BattleEntity * BattleManager::getParticipant( unsigned index )
+ {
+    if ( index >= getParticipantCount() ) {
+        CCLOG("[BattleManager][getParticipant]: index too big %i", index);
+        return 0;
+    }
+    
+    return m_participantList[index];    
+ }

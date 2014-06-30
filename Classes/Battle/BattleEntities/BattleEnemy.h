@@ -10,9 +10,10 @@ public:
 	BattleEnemy(cocos2d::CCPoint position, int enemyID);
 	
 	void update(float dt) {};
-	int getInitiative() { return 1; }
+	int calculateInitiative();
 
-
+private:
+    int m_nInitiative;
 };
 
 #endif

@@ -9,8 +9,13 @@ public:
 	
 	// abstract functions you must implement
 	virtual void update(float dt) = 0;
-	virtual int getInitiative() = 0;
-
+    virtual int calculateInitiative() = 0;
+    
+	inline int getInitiative() { return m_nInitiative; }
+    //inline void setInitiative( int initiative } { m_nInitiative = initiative; }
+    //inline void addInitiative( int value ) { m_nInitiative += value; }
+    //inline void subInitiative( int value ) { m_nInitiative -= value; }
+    
     void setPosition( cocos2d::CCPoint position );
     
 	inline const std::string& getName() const { return m_name; }
@@ -31,6 +36,7 @@ protected:
 	std::string m_name;
 	cocos2d::CCLayer * m_layer;
 	bool m_bIsEnemy;
+    int m_nInitiative;
 };
 
 #endif 

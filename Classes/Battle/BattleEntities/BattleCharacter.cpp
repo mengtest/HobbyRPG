@@ -35,3 +35,8 @@ BattleCharacter::BattleCharacter(CCPoint position, Character * character, Direct
 void BattleCharacter::update(float dt) 
 {
 }
+
+void BattleCharacter::calculateInitiative()
+{
+    m_nInitiative += character->getInfo(CharacterInfoEnum::SPEED);
+}

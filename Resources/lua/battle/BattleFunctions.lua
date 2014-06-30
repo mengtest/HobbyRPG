@@ -1,0 +1,15 @@
+START_FRIENDLY_POS_X = 400
+START_FRIENDLY_POS_Y = 200
+OFFSET_FRIENDLY_POS_X = 50
+OFFSET_FRIENDLY_POS_Y = 50
+
+START_ENEMY_POS_X = 200
+START_ENEMY_POS_Y = 200
+OFFSET_ENEMY_POS_X = 50
+OFFSET_ENEMY_POS_Y = 50
+
+
+battle_calculate_position = function()
+    -- loop through all
+end
+

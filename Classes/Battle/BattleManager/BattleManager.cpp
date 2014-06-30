@@ -158,7 +158,7 @@ BattleCharacter * BattleManager::addBattleCharacter(CCPoint position, Character 
 	BattleCharacter * rtn	= new BattleCharacter(position, character, direction);
 	//m_scene->getGameLayer()->addChild(rtn->getSprite());
 	rtn->addSpriteToLayer(m_scene->getGameLayer());
-	m_participantList.insert(make_pair(name, rtn));
+	m_participantList.push(rtn);
 	++m_nPlayerCount;
 
 
@@ -173,7 +173,7 @@ BattleEnemy * BattleManager::addBattleEnemy(CCPoint position, DirectionEnum dire
 	BattleEnemy * rtn	= new BattleEnemy(position, enemyId);
 	//m_scene->getGameLayer()->addChild(rtn->getSprite());
 	rtn->addSpriteToLayer(m_scene->getGameLayer());
-	m_participantList.insert(make_pair(name, rtn));
+	m_participantList.push(rtn);
 	++m_nEnemyCount;
 
 	return rtn;

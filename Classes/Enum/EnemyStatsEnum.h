@@ -12,6 +12,7 @@ public:
     const static EnemyStatsEnum MPOW;
     const static EnemyStatsEnum ADEF;
     const static EnemyStatsEnum MDEF;
+    const static EnemyStatsEnum SPEED;
     const static EnemyStatsEnum DROP_1;
     const static EnemyStatsEnum DROP_2;
     const static EnemyStatsEnum DROP_3;

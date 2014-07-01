@@ -9,7 +9,7 @@ $cfile "..\Overworld\OwEvents\OwEventDelay.h"
 $cfile "..\Overworld\OwEvents\OwEventDialog.h"
 
 $cfile "..\Battle\BattleManager\BattleManager.h"
-$cfile "..\Battle\BattleEntities\BattleCharacter.h"
+$cfile "..\Battle\BattleEntities\BattleEntity.h"
 
 $cfile "..\Enum\DirectionEnum.h"
 
@@ -76,17 +76,13 @@ class BattleManager
 {
 	static BattleManager * getInstance();
 	
-    void addChildToGameLayer( CCNode * obj );
-    void addChildToUILayer( CCNode * obj );
-    void removeChildFromGameLayer(CCNode * obj );
-    void removeChildFromUILayer( CCNode * obj ); 
-
-	BattleCharacter * addBattleCharacter(CCPoint position, Character * character, DirectionEnum direction);
+    BattleEntity * getParticipant( int index );
+    unsigned int getParticipantCount();
 }
 
 class BattleEntity 
 {
-	
+	void setPosition(cocos2d::CCPoint& position);
 };
 
 class OwCharacter : public OwEntityBase

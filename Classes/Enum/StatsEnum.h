@@ -18,4 +18,4 @@ private:
     StatsEnum(int i) : value(i) {}
 };
 
-#endif //__CHARACTER_INFO_ENUM_H__
+#endif //__STATS_ENUM_H__

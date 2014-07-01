@@ -13,12 +13,12 @@ public:
 	BattleCharacter(cocos2d::CCPoint position, Character * character, DirectionEnum direction);
 
 	void update(float dt);
-	//temp
-	int getInitiative() { return 1; }
+	void calculateInitiative();
 
 protected:
     Character * m_character;
 	std::string m_spriteBaseName;
+    int m_nInitiative;
 };
 
 #endif 

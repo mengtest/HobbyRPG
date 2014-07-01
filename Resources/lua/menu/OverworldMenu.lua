@@ -1102,7 +1102,6 @@ initMenuPage = function()
 end
 
 function createOverworldMenu()
-	require('mobdebug').start() --<-- this line
 	initEntryPage()
 end
 

@@ -40,3 +40,4 @@ void BattleEntity::addSpriteToLayer( cocos2d::CCLayer * layer )
 	layer->addChild(m_sprite);
 	m_layer = layer;
 }
+

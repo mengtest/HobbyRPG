@@ -89,7 +89,7 @@ bool BattleManager::loadCharacters()
 
 bool BattleManager::loadEnemies()
 {
-	addBattleEnemy(ccp(200, 250), RIGHT, 0);
+	addBattleEnemy(ccp(200, 250), EnemyEnum::PORK);
 	return true;
 }
 
@@ -158,7 +158,7 @@ BattleCharacter * BattleManager::addBattleCharacter(CCPoint position, Character 
 	BattleCharacter * rtn	= new BattleCharacter(position, character, direction);
 	//m_scene->getGameLayer()->addChild(rtn->getSprite());
 	rtn->addSpriteToLayer(m_scene->getGameLayer());
-	m_participantList.insert(make_pair(name, rtn));
+	m_participantList.push_back(rtn);
 	++m_nPlayerCount;
 
 
@@ -166,14 +166,14 @@ BattleCharacter * BattleManager::addBattleCharacter(CCPoint position, Character 
 	return rtn;
 }
 
-BattleEnemy * BattleManager::addBattleEnemy(CCPoint position, DirectionEnum direction, int enemyId)
+BattleEnemy * BattleManager::addBattleEnemy(CCPoint position, EnemyEnum enemyId)
 {
-	std::string name = EnemyManager::getInstance().getEnemyStat(EnemyEnum::getEnemyByIndex(enemyId), EnemyStatsEnum::NAME);
+	std::string name = EnemyManager::getInstance().getEnemyStat(enemyId, EnemyStatsEnum::NAME);
 	CCLOG("[BattleManager][addBattleEnemy]: adding '%s'", name.c_str());
 	BattleEnemy * rtn	= new BattleEnemy(position, enemyId);
 	//m_scene->getGameLayer()->addChild(rtn->getSprite());
 	rtn->addSpriteToLayer(m_scene->getGameLayer());
-	m_participantList.insert(make_pair(name, rtn));
+	m_participantList.push_back(rtn);
 	++m_nEnemyCount;
 
 	return rtn;
@@ -224,5 +224,14 @@ void BattleManager::removeChildFromUILayer( cocos2d::CCNode * obj )
 void BattleManager::gotoOverworld()
 {
 	CCDirector::sharedDirector()->popScene();
-
 }
+
+ BattleEntity * BattleManager::getParticipant( unsigned index )
+ {
+    if ( index >= getParticipantCount() ) {
+        CCLOG("[BattleManager][getParticipant]: index too big %i", index);
+        return 0;
+    }
+    
+    return m_participantList[index];    
+ }

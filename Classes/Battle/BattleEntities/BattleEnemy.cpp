@@ -11,8 +11,8 @@ BattleEnemy::BattleEnemy(cocos2d::CCPoint position, EnemyEnum enemyId)
 	setIsEnemy(true);
 }
 
-void BattleEnemy::calculateInitiative()
+void BattleEnemy::getSpeed()
 {
 	std::string temp = EnemyManager::getInstance().getEnemyStat(m_nEnemyId, EnemyStatsEnum::SPEED);
-	m_nInitiative += atoi(temp.c_str());
+	return atoi(temp.c_str());
 }

@@ -11,10 +11,9 @@ public:
 	BattleEnemy(cocos2d::CCPoint position, EnemyEnum enemyID);
 	
 	void update(float dt) {};
-	void calculateInitiative();
+	void getSpeed();
 
 private:
-    int m_nInitiative;
 	EnemyEnum m_nEnemyId;
 };
 

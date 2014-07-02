@@ -95,7 +95,19 @@ private:
 
 	static BattleManager * instance;
 
-	std::vector<BattleEntity*> m_participantList;
+    struct BattleEntityContainer {
+        public:
+            BattleEntityContainer(BattleEntity * entity, int initiative = 0) : m_entity(entity), m_nInitiative(initiative) {}
+            inline BattleEntity * getEntity() { return m_entity; }
+            inline int getInitiative() { return m_nInitiative; }
+            inline void addInitiative(int value) { m_nInitiative += value; }
+            inline void subInitiative(int value) { m_nInitiative -= value; }
+            inline void setInitiative(int value) { m_nInitiative = value; }
+        private:
+            BattleEntity * m_entity;
+            int m_nInitiative;
+    };
+	std::vector<BattleEntityContainer> m_participantList;
 	int m_nEnemyCount;
 	int m_nPlayerCount;
 };

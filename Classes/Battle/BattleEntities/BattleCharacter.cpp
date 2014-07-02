@@ -36,7 +36,7 @@ void BattleCharacter::update(float dt)
 {
 }
 
-void BattleCharacter::calculateInitiative()
+void BattleCharacter::getSpeed()
 {
-	m_nInitiative += m_character->getStat(StatsEnum::SPEED);
+	return m_character->getStat(StatsEnum::SPEED);
 }

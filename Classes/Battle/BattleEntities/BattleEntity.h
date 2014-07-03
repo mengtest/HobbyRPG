@@ -9,9 +9,7 @@ public:
 	
 	// abstract functions you must implement
 	virtual void update(float dt) = 0;
-    virtual void calculateInitiative() = 0;
-    
-	inline int getInitiative() { return m_nInitiative; }
+    virtual int getSpeed() = 0 ;
     //inline void setInitiative( int initiative } { m_nInitiative = initiative; }
     //inline void addInitiative( int value ) { m_nInitiative += value; }
     //inline void subInitiative( int value ) { m_nInitiative -= value; }
@@ -34,7 +32,6 @@ protected:
 	std::string m_name;
 	cocos2d::CCLayer * m_layer;
 	bool m_bIsEnemy;
-    int m_nInitiative;
 };
 
 #endif 

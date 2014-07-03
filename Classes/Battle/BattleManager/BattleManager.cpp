@@ -157,10 +157,13 @@ BattleCharacter * BattleManager::addBattleCharacter(CCPoint position, Character 
 	std::string name = character->getInfo(CharacterInfoEnum::SPRITE_BASE);
 
 	CCLOG("[BattleManager][addBattleCharacter]: adding '%s'", name.c_str());
-	BattleCharacter * rtn	= new BattleCharacter(position, character, direction);
-	//m_scene->getGameLayer()->addChild(rtn->getSprite());
+	BattleCharacter * rtn = new BattleCharacter(position, character, direction);
+
 	rtn->addSpriteToLayer(m_scene->getGameLayer());
+    
+    BattleEntityContainer container(rtn);
 	m_participantList.push_back(rtn);
+    
 	++m_nPlayerCount;
 
 
@@ -173,7 +176,7 @@ BattleEnemy * BattleManager::addBattleEnemy(CCPoint position, EnemyEnum enemyId)
 	std::string name = EnemyManager::getInstance().getEnemyStat(enemyId, EnemyStatsEnum::NAME);
 	CCLOG("[BattleManager][addBattleEnemy]: adding '%s'", name.c_str());
 	BattleEnemy * rtn	= new BattleEnemy(position, enemyId);
-	//m_scene->getGameLayer()->addChild(rtn->getSprite());
+
 	rtn->addSpriteToLayer(m_scene->getGameLayer());
 	m_participantList.push_back(rtn);
 	++m_nEnemyCount;

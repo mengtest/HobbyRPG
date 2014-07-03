@@ -8,11 +8,11 @@ void BattleManager::INIT_LOAD()
 void BattleManager::INIT_INIT()
 {
     // calculate everyone's init
-    std::vector< BattleEntity* >::iterator beg = m_participantList.begin();
-    std::vector< BattleEntity* >::iterator end = m_participantList.end();
+    std::vector< BattleEntityContainer >::iterator beg = m_participantList.begin();
+    std::vector< BattleEntityContainer >::iterator end = m_participantList.end();
     
     for ( ; beg != end; ++beg ){
-		(*beg)->calculateInitiative();
+		beg->addInitiative( beg->getEntity()->getSpeed() );
     }
     
 }

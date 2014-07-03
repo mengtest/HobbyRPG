@@ -289,7 +289,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\external\libwebsockets\win32\lib\*.*" "$(OutD
     <None Include="..\Resources\lua\common.lua" />
     <None Include="..\Resources\lua\item\items.lua" />
     <None Include="..\Resources\lua\menu\OverworldMenu.lua" />
-    <None Include="..\Resources\lua\world\MainWorld.lua" />
     <None Include="..\Resources\lua\world\npc0_functions.lua" />
     <None Include="..\Resources\lua\world\npc1_functions.lua" />
   </ItemGroup>

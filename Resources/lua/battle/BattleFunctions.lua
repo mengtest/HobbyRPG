@@ -15,11 +15,11 @@ function battle_calculate_entity_position(entity)
     local is_enemy = entity:getIsEnemy();
     if is_enemy == true then
         entity:setPosition(ccp(START_ENEMY_POS_X + OFFSET_ENEMY_POS_X * enemy_count, 
-                               START_ENEMY_POS_Y + OFFSET_ENEMY_POS_Y * enemy_count)
+                               START_ENEMY_POS_Y + OFFSET_ENEMY_POS_Y * enemy_count));
         enemy_count = enemy_count + 1;
     else
         entity:setPosition(ccp(START_FRIENDLY_POS_X + OFFSET_FRIENDLY_POS_X * player_count, 
-                               START_FRIENDLY_POS_Y + OFFSET_FRIENDLY_POS_Y * player_count)
+                               START_FRIENDLY_POS_Y + OFFSET_FRIENDLY_POS_Y * player_count));
         player_count = player_count + 1;
     end
 end

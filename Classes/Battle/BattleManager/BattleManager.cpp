@@ -66,6 +66,8 @@ bool BattleManager::init(BattleScene * scene)
 	loadCharacters();
 	loadEnemies();
 
+	CCLuaEngine::defaultEngine()->executeGlobalFunction("battle_calculate_positions");
+
 	return true;
 }
 

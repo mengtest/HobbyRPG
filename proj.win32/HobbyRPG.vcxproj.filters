@@ -497,9 +497,6 @@
     <None Include="..\Classes\LuaBinding\CharacterInfoEnumToLua.pkg">
       <Filter>Classes\LuaBinding</Filter>
     </None>
-    <None Include="..\Resources\lua\world\MainWorld.lua">
-      <Filter>Lua\world</Filter>
-    </None>
     <None Include="..\Resources\lua\item\items.lua">
       <Filter>Lua\item</Filter>
     </None>

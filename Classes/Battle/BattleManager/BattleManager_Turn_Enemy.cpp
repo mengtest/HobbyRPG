@@ -2,6 +2,7 @@
 
 void BattleManager::TURN_ENEMY_LOAD()
 {
+	CCLOG("[BATTLE] Turn Enemy start");
 }
 
 void BattleManager::TURN_ENEMY_INIT()

@@ -29,6 +29,7 @@ BattleCharacter::BattleCharacter(CCPoint position, Character * character, Direct
 	setPosition(position);
 	setIsEnemy(false);
 
+	m_name = character->getInfo(CharacterInfoEnum::ALIAS);
 	m_spriteBaseName = base_sprite;
 }
 

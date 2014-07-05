@@ -9,6 +9,8 @@ BattleEnemy::BattleEnemy(cocos2d::CCPoint position, EnemyEnum enemyId)
 	setSprite(base_sprite);	 
 	setPosition(position);
 	setIsEnemy(true);
+
+	m_name = EnemyManager::getInstance().getEnemyStat(enemyId, EnemyStatsEnum::NAME);
 }
 
 int BattleEnemy::getSpeed()

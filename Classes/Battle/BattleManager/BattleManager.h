@@ -48,6 +48,7 @@ public:
 	BattleEnemy * addBattleEnemy(cocos2d::CCPoint position, EnemyEnum enemyID);
     
     BattleEntity * getParticipant( unsigned index );
+	inline unsigned int getParticipantInitiative(unsigned index) { return m_participantList[index].getInitiative(); }
     inline unsigned int getParticipantCount() { return m_participantList.size(); }
     inline unsigned int getParticipantCountAlive() { return m_nPlayerCount + m_nEnemyCount; }
     inline unsigned int getParticipantCountDead() { return getParticipantCount() - getParticipantCountAlive(); }

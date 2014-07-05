@@ -1,12 +1,28 @@
 local START_FRIENDLY_POS_X = 400
 local START_FRIENDLY_POS_Y = 200
-local OFFSET_FRIENDLY_POS_X = 50
+local OFFSET_FRIENDLY_POS_X = 0
 local OFFSET_FRIENDLY_POS_Y = 50
 
 local START_ENEMY_POS_X = 200
 local START_ENEMY_POS_Y = 200
 local OFFSET_ENEMY_POS_X = 50
 local OFFSET_ENEMY_POS_Y = 50
+
+
+-- Assumes that the participant list is sorted already
+function battle_refresh_init_images()
+	local total = BattleManager:getInstance():getParticipantCount();
+    local i = 0;
+    while i < total do
+        local entity = BattleManager:getInstance():getParticipant(i);
+        
+        i = i + 1;
+    end
+end
+
+
+function battle_show_player_menu () 
+end
 
 -- for calculation
 local player_count = 0;

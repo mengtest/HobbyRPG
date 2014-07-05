@@ -77,12 +77,14 @@ class BattleManager
 	static BattleManager * getInstance();
 	
     BattleEntity * getParticipant( int index );
+	int getParticipantSpeed(int index);
     unsigned int getParticipantCount();
 }
 
 class BattleEntity 
 {
-	void setPosition(cocos2d::CCPoint& position);
+	void setPosition(CCPoint& position);
+	bool getIsEnemy();
 };
 
 class OwCharacter : public OwEntityBase

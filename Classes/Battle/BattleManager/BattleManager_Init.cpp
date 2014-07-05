@@ -1,6 +1,8 @@
 #include "BattleManager.h"
 #include "..\BattleEntities\BattleEntity.h"
+#include "CCLuaEngine.h"
 
+USING_NS_CC;
 
 void BattleManager::INIT_LOAD()
 {
@@ -21,6 +23,8 @@ void BattleManager::INIT_INIT()
     }
 
 	CCLOG("[BATTLE] Initiatives: %s", init_log.str().c_str());
+
+	CCLuaEngine::defaultEngine()->executeGlobalFunction("battle_create_init_images");
     
 }
 

@@ -76,13 +76,15 @@ class BattleManager
 {
 	static BattleManager * getInstance();
 	
+	void addChildToUILayer( CCNode * obj );
     BattleEntity * getParticipant( int index );
-	int getParticipantSpeed(int index);
+	int getParticipantInitiative(int index);
     unsigned int getParticipantCount();
 }
 
 class BattleEntity 
 {
+	std::string getName();
 	void setPosition(CCPoint& position);
 	bool getIsEnemy();
 };

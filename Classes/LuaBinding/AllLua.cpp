@@ -1,6 +1,6 @@
 /*
 ** Lua binding: AllLua
-** Generated automatically by tolua++-1.0.92 on 07/06/14 03:27:06.
+** Generated automatically by tolua++-1.0.92 on 07/06/14 03:59:18.
 */
 
 #ifndef __cplusplus
@@ -814,6 +814,39 @@ static int tolua_AllLua_BattleManager_getInstance00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: addChildToUILayer of class  BattleManager */
+#ifndef TOLUA_DISABLE_tolua_AllLua_BattleManager_addChildToUILayer00
+static int tolua_AllLua_BattleManager_addChildToUILayer00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"BattleManager",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"CCNode",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  BattleManager* self = (BattleManager*)  tolua_tousertype(tolua_S,1,0);
+  CCNode* obj = ((CCNode*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'addChildToUILayer'", NULL);
+#endif
+  {
+   self->addChildToUILayer(obj);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'addChildToUILayer'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: getParticipant of class  BattleManager */
 #ifndef TOLUA_DISABLE_tolua_AllLua_BattleManager_getParticipant00
 static int tolua_AllLua_BattleManager_getParticipant00(lua_State* tolua_S)
@@ -848,9 +881,9 @@ static int tolua_AllLua_BattleManager_getParticipant00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: getParticipantSpeed of class  BattleManager */
-#ifndef TOLUA_DISABLE_tolua_AllLua_BattleManager_getParticipantSpeed00
-static int tolua_AllLua_BattleManager_getParticipantSpeed00(lua_State* tolua_S)
+/* method: getParticipantInitiative of class  BattleManager */
+#ifndef TOLUA_DISABLE_tolua_AllLua_BattleManager_getParticipantInitiative00
+static int tolua_AllLua_BattleManager_getParticipantInitiative00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -866,17 +899,17 @@ static int tolua_AllLua_BattleManager_getParticipantSpeed00(lua_State* tolua_S)
   BattleManager* self = (BattleManager*)  tolua_tousertype(tolua_S,1,0);
   int index = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getParticipantSpeed'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getParticipantInitiative'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->getParticipantSpeed(index);
+   int tolua_ret = (int)  self->getParticipantInitiative(index);
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'getParticipantSpeed'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'getParticipantInitiative'.",&tolua_err);
  return 0;
 #endif
 }
@@ -909,6 +942,38 @@ static int tolua_AllLua_BattleManager_getParticipantCount00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getParticipantCount'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: getName of class  BattleEntity */
+#ifndef TOLUA_DISABLE_tolua_AllLua_BattleEntity_getName00
+static int tolua_AllLua_BattleEntity_getName00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"BattleEntity",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  BattleEntity* self = (BattleEntity*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getName'", NULL);
+#endif
+  {
+   std::string tolua_ret = (std::string)  self->getName();
+   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'getName'.",&tolua_err);
  return 0;
 #endif
 }
@@ -3186,12 +3251,14 @@ TOLUA_API int tolua_AllLua_open (lua_State* tolua_S)
   tolua_cclass(tolua_S,"BattleManager","BattleManager","",NULL);
   tolua_beginmodule(tolua_S,"BattleManager");
    tolua_function(tolua_S,"getInstance",tolua_AllLua_BattleManager_getInstance00);
+   tolua_function(tolua_S,"addChildToUILayer",tolua_AllLua_BattleManager_addChildToUILayer00);
    tolua_function(tolua_S,"getParticipant",tolua_AllLua_BattleManager_getParticipant00);
-   tolua_function(tolua_S,"getParticipantSpeed",tolua_AllLua_BattleManager_getParticipantSpeed00);
+   tolua_function(tolua_S,"getParticipantInitiative",tolua_AllLua_BattleManager_getParticipantInitiative00);
    tolua_function(tolua_S,"getParticipantCount",tolua_AllLua_BattleManager_getParticipantCount00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"BattleEntity","BattleEntity","",NULL);
   tolua_beginmodule(tolua_S,"BattleEntity");
+   tolua_function(tolua_S,"getName",tolua_AllLua_BattleEntity_getName00);
    tolua_function(tolua_S,"setPosition",tolua_AllLua_BattleEntity_setPosition00);
    tolua_function(tolua_S,"getIsEnemy",tolua_AllLua_BattleEntity_getIsEnemy00);
   tolua_endmodule(tolua_S);

@@ -13,7 +13,7 @@ public:
 	BattleCharacter(cocos2d::CCPoint position, Character * character, DirectionEnum direction);
 
 	void update(float dt);
-	void getSpeed();
+	int getSpeed();
 
 protected:
     Character * m_character;

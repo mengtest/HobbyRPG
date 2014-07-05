@@ -238,5 +238,5 @@ void BattleManager::gotoOverworld()
         return 0;
     }
     
-    return m_participantList[index];    
+	return m_participantList[index].getEntity();    
  }

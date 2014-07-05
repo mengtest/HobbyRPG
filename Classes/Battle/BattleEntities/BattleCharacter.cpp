@@ -36,7 +36,7 @@ void BattleCharacter::update(float dt)
 {
 }
 
-void BattleCharacter::getSpeed()
+int BattleCharacter::getSpeed()
 {
 	return m_character->getStat(StatsEnum::SPEED);
 }

@@ -24,7 +24,7 @@ void BattleManager::INIT_INIT()
 
 	CCLOG("[BATTLE] Initiatives: %s", init_log.str().c_str());
 
-	CCLuaEngine::defaultEngine()->executeGlobalFunction("battle_create_init_images");
+	//CCLuaEngine::defaultEngine()->executeGlobalFunction("battle_create_init_images");
     
 }
 

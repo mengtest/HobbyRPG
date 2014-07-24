@@ -16,8 +16,8 @@ void OwPlayerController::move( DirectionEnum type )
 	if ( m_bDisabled )
 		return;
 
-	if ( m_character )
-		m_character->move(type);
+	if ( *m_character )
+		(*m_character)->move(type);
 }
 
 void OwPlayerController::interact()
@@ -25,10 +25,14 @@ void OwPlayerController::interact()
 	if ( m_bDisabled )
 		return;
 
+    if ( !(*m_character) ){
+        return;
+    }
+    
 	// Find the front of the character
 	int x = 0;
 	int y = 0;
-	switch (m_character->getCurrentDir())
+	switch ((*m_character)->getCurrentDir())
 	{
 	case UP:
 		y = -1;
@@ -45,14 +49,14 @@ void OwPlayerController::interact()
 	}
 
 	//attempt to grab object in front
-	CCPoint temp = m_character->getTiledPosition();
+	CCPoint temp = (*m_character)->getTiledPosition();
 	temp.x += x;
 	temp.y += y;
 	OwEntityBase * object = static_cast<OwEntityBase*>(OwManager::getInstance()->getTiledMapUserData()->getUserData(temp));
-	if ( !object || object == m_character)
+	if ( !object || object == (*m_character))
 		return;
 
-	object->interact(m_character);
+	object->interact((*m_character));
 	return;
 }
 
@@ -60,12 +64,16 @@ void OwPlayerController::update(float dt)
 {
 	if ( m_bDisabled )
 		return;
+    
+    if ( !(*m_character) ){
+        return;
+    }
 
 	if ( m_bStartMoving ) {
 		updateMovement(dt);		
 	}
 
-	if ( !this->m_character->isMoving() ) {
+	if ( !this->(*m_character)->isMoving() ) {
 		doExitCheck();
 		doBattleCheck();
 	}
@@ -75,7 +83,12 @@ void OwPlayerController::updateMovement(float dt)
 {
 	if ( m_bDisabled )
 		return;
-	CCPoint playerPos = m_character->getPosition();
+    
+    if ( !(*m_character) ){
+        return;
+    }
+    
+	CCPoint playerPos = (*m_character)->getPosition();
  
     if ( abs(m_movingDirection.x) > abs(m_movingDirection.y) ) 
 	{
@@ -115,6 +128,12 @@ void OwPlayerController::moveDown()
 {
 	if ( m_bDisabled )
 		return;
+    
+    if ( !(*m_character) ){
+        return;
+    }
+    
+  
 	move(DOWN);
 	m_bCheckExit = true;
 	m_bCheckBattle = true;
@@ -124,6 +143,11 @@ void OwPlayerController::moveLeft()
 {
 	if ( m_bDisabled )
 		return;
+    
+    if ( !(*m_character) ){
+        return;
+    }
+    
 	move(LEFT);
 	m_bCheckExit = true;
 	m_bCheckBattle = true;
@@ -133,6 +157,11 @@ void OwPlayerController::moveRight()
 {
 	if ( m_bDisabled )
 		return;
+    
+    if ( !(*m_character) ){
+        return;
+    }
+    
 	move(RIGHT);
 	m_bCheckExit = true;
 	m_bCheckBattle = true;
@@ -142,7 +171,7 @@ void OwPlayerController::doExitCheck()
 {
 	if ( !m_bCheckExit ) 
 		return;
-	
+    
 	OwManager::getInstance()->checkExit();
 	m_bCheckExit = false;
 }

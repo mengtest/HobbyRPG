@@ -12,7 +12,7 @@ OwAIMove::OwAIMove(DirectionEnum direction, int steps)
 
 void OwAIMove::update(float dt)
 {
-	if ( m_controller )
+	if ( getController() )
 	{
 		if ( m_nStepsCount < m_nSteps && !m_controller->isMoving() )
 		{
@@ -27,7 +27,7 @@ void OwAIMove::update(float dt)
 
 bool OwAIMove::isDone()
 {
-	if ( m_controller) 
+	if ( getController() ) 
 	{
 		if ( m_nStepsCount >= m_nSteps && !m_controller->isMoving() ) 
 		{

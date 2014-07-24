@@ -122,7 +122,7 @@ bool OwManager::init(OverworldScene * scene)
 	// load event manager
 	m_eventManager = new EventManager();
 
-	//ì¬‚Ì‚à‚Ì‘S•”‚ÍƒV[ƒ“‚É‘‰Á‚·‚é//
+	//ä½œæˆã®ã‚‚ã®å…¨éƒ¨ã¯ã‚·ãƒ¼ãƒ³ã«å¢—åŠ ã™ã‚‹//
 	m_scene->setViewPointCenter(m_character->getPosition());
 	//m_scene->getGameLayer()->runAction(CCFollow::create(m_character->getSprite(), cocos2d::CCRect(0.0f, 0.0f, 1000.0f, 1000.0f)));
 	m_character->setFollow(m_scene->getGameLayer() );
@@ -376,7 +376,7 @@ void OwManager::removeChildFromUILayer( cocos2d::CCNode * obj )
     
 bool OwManager::loadTileMap(const string& tmxDir)
 {
-	// TileMap‚Íì¬‚µ‚Ü‚·
+	// TileMapã¯ä½œæˆã—ã¾ã™
 	m_tiledMap = new CCTMXTiledMap();
     if ( !m_tiledMap->initWithTMXFile( ("maps//" + tmxDir + ".tmx").c_str() ))
 	{
@@ -385,7 +385,7 @@ bool OwManager::loadTileMap(const string& tmxDir)
 	}
  
 
-	//Meta‚ÍŒ©‚½‚­‚È‚¢‚Å‚·.
+	//Metaã¯è¦‹ãŸããªã„ã§ã™.
 	m_metaLayer = m_tiledMap->layerNamed("Meta");
 	if ( !m_metaLayer ) 	{
 		CCLOG("[OwManager][loadTileMap][error]: m_metaLayer is null");
@@ -394,7 +394,7 @@ bool OwManager::loadTileMap(const string& tmxDir)
 	m_metaLayer->setVisible(Config::getInstance().isDebug()); 
 
 	// Init user data map
-	// ƒ†[ƒU[ƒf[ƒ^[‚ðì¬‚µ‚Ü‚·
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ¼ã‚’ä½œæˆã—ã¾ã™
 	m_tiledMapUserData = new OwTiledMapUserData();
 	m_tiledMapUserData->init(m_tiledMap->getMapSize().width, m_tiledMap->getMapSize().height);
 
@@ -475,7 +475,7 @@ bool OwManager::loadPlayer(int x, int y)
 	}
 
 	m_controller = new OwPlayerController();
-	m_controller->setCharacter(m_character);
+	m_controller->setCharacter(&m_character);
 
 	m_controlUI = new OwControlUITypeB(m_controller);
 	

@@ -13,7 +13,7 @@ public:
 	~OwPlayerController() {}
 
 	inline OwCharacter * getCharacter() { return m_character; }
-	inline void setCharacter( OwCharacter * character ) { m_character = character; }
+	inline void setCharacter( OwCharacter ** character ) { m_character = character; }
 
 	void update( float dt );
 	
@@ -43,7 +43,7 @@ private:
 	bool m_bStartMoving;
 	bool m_bCheckExit;
 	bool m_bCheckBattle;
-	OwCharacter * m_character;
+	OwCharacter ** m_character;
 };
 
 #endif
